@@ -1,0 +1,24 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="{{ site.description }}">
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ "/bootstrap/css/bootstrap.min.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ "/bootstrap/css/bootstrap-theme.min.css" | prepend: site.baseurl }}">
+
+    <!-- Custom JS -->
+    <script src="{{ "/bootstrap/js/jquery-1.11.1.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/bootstrap/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/bootstrap/js/jquery.jslatex.js" | prepend: site.baseurl }}"></script>
+    <script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:800,700,600' rel='stylesheet' type='text/css'>
+</head>

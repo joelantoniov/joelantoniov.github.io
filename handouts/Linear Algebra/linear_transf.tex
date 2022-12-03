@@ -1,0 +1,188 @@
+\documentclass[11pt]{scrartcl}
+\usepackage{evan}
+\usepackage{mdframed}
+\makeatletter
+\let\theorem\undefined
+\let\c@theorem\undefined
+\let\lemma\undefined
+\let\c@lemma\undefined
+\makeatother
+\newmdtheoremenv[outerlinewidth=2,leftmargin=20,
+  rightmargin=20,backgroundcolor=white,
+  outerlinecolor=blue,innertopmargin=0.5\topskip,
+  splittopskip=\topskip,skipbelow=\baselineskip,
+skipabove=\baselineskip]
+{theorem}
+{Theorem}
+
+\newmdtheoremenv[outerlinewidth=2,leftmargin=20,
+  rightmargin=20,backgroundcolor=white,
+  outerlinecolor=blue,innertopmargin=0.5\topskip,
+  splittopskip=\topskip,skipbelow=\baselineskip,
+skipabove=\baselineskip]
+{lemma}
+{Lemma}
+
+
+\lhead{}
+\rhead{Linear Transformations}
+
+\newcommand{\CL}{\mathcal L}
+\newcommand{\CM}{\mathcal M}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\rk}{rk}
+
+\begin{document}
+\title{Linear Transformations}
+\author{Joel Antonio-V\'asquez\plusemail{hello@joelantonio.me}}
+\date{\today}
+\maketitle
+
+%\setcounter{section}{-1}
+%\section{Abstract Nonsense}
+\begin{definition*}
+  Let $V, W$ be vector spaces over a field $F$. A function $\varphi: \map{V}{W}$ is a linear transformation if
+$$
+\varphi(ru + sv) = r\varphi(u) + s\varphi(v)
+$$
+where $r,s \in F$ and vectors $u, v \in V$. The set of all linear transformations from $V$ to $W$ is namely $\CL(V, W)$ and if $V = W$, then $\varphi$ is called \textbf{linear operator}, namely $\CL(V)$.
+\begin{definition*} Let $\varphi \in \CL(V, W)$. The subspace
+  \begin{itemize}
+      \ii $\Ker(\varphi) = \{v \in V \ | \ \varphi v = 0\}$, is called the kernel of $\varphi$.
+      \ii $\Img(\varphi) = \{\varphi v \ | \ v \in V\}$, is called the image of $\varphi$.
+  \end{itemize}
+  The dimension of $\Ker(\varphi)$ is known as the \textbf{nullity} ($\Null$) and the dimension of $\Img(\varphi)$ is known as the \textbf{rank} ($\rk$).
+\end{definition*}
+
+\begin{theorem}[Rank-nullity theorem]
+  \label{theo:1}
+  Let $V, W$ be vector spaces over a field $F$, and let $\varphi \in \CL(V, W)$ be a linear transformation, then
+  $$
+  \dim(V) = \rk(\varphi) + \Null(\varphi).
+  $$
+\end{theorem}
+\textbf{Proof:} Obviously $\Ker(\varphi) \subseteq V$, $\Img(\varphi) \subseteq W$. Let $\SB_{x} = \{x_{1}, \dots, x_{s}\}, \SB_{y} = \{y_{0}, \dots, y_{r}}\}$ be the bases for the vector spaces $\Ker(\varphi)$ and $\varphi(V)$ with dimension $s$ and $r$ respectively. Let $m$ be the dimension of $V$, so we must prove that $s + r = m$. If $y_{i} \in \varphi(V)$ then there exists $z_{i} \in V$ such that $\varphi(z_{i}) = y_{i}$. We claim that $\SB = \SB_{x} \cup \varphi^{-1}(\SB_{y}) = \{x_{1}, \dotsm x_{s}\} \cup \{z_{1}, \dots z_{r}\}$ because $\{z_{1}, \dots, z_{r}\} = \varphi^{-1}(\SB_{r})$ is a linearly independent subset of $V$, then $\SB$ should be a subset of $V$ which is linearly independent. Notice that $\SB_{x} \cap \varphi^{-1}(\SB_{y}) = \emptyset$. Now, we must show that $\SB$ spans $V$. Let $v \in V$ such that $\varphi(v) = w$, for any $w \in W$. There exists $\alpha_{1}, \dots, \alpha_{r}$ such that $w = \alpha_{1}y_{1} + \dots + \alpha_{r}y_{r}$ because $\SB_{y}$ forms a bases of $\varphi(V)$. We see that $T(v - \alpha_{1}z_{1} - \dots - \alpha_{r}z_{r}) = \alpha(v) - w = 0$, thus
+$$
+v = \alpha_{1}z_{1} + \dots + \alpha_{r}z_{r}  + \SB_{1}x_{1} + \dots \SB_{s}x_{s},
+$$
+since $v - \alpha_{1}z_{1} - \dots - \alpha_{r}z_{r} = \SB_{1}x_{1} + \dots + \SB_{s}x_{s}$, thus $v \in \text{span}(\SB)$ and indeed $\text{span}(\SB) = V$ and forms a bases from $B$. Hence $s + r = m$. \qedsymbol \\ \\ 
+From the proof of theorem \ref{theo:1}, we have the next one theorem
+\begin{theorem}
+  Let $\varphi \in \CL(V, W)$. Then
+  \begin{enumerate}[1)]
+      \ii $\varphi$ is surjective iff $\Img(\varphi) = W$,
+      \ii $\varphi$ is injective iff $\Ker(\varphi) = \{0\}$.
+  \end{enumerate}
+\end{theorem} \\
+See problem 1.
+\section{Isomorphisms}
+\begin{definition*}
+  Let $\varphi: \map{V}{W}$ be a linear transformation, we say that $V \approx W$ are \textbf{isomorphic} if $\varphi$ is bijective.
+\end{definition}
+\begin{theorem}
+  Let $V$ and $W$ be vector spaces over $F$. Then $V \approx W$ iff $\dim(V) = \dim(W)$.
+\end{theorem}
+\textbf{Proof:} We suppose that $\dim(V) = \dim(W)$. Let $\SB_{v} = \{v_{1}, \dots, v_{k}\}$ and $\SB_{w} = \{w_{1}, \dots, w_{k}\}$ be bases for $V$ and $W$ respectively. If $\varphi: \map{V}{W}$ is defined as $v_{i} \mapsto w_{i}$ for all $i$, then $[\varphi]^{\SB_{v}}_{\SB_{w}} = I$ which is invertible, thus $\varphi$ is invertible and indeed an isomorphism. \qedsymbol \\ \\
+Let $V = \Ker(\varphi) \oplus \Ker(\varphi)^{c}$, where $\Ker(\varphi)^{c}$ is the complement of $\Ker(\varphi)$. It follows that
+\begin{equation}
+\label{eqn:1}
+\dim(V) = \dim(\Ker(\varphi)^{c}) + \dim(\Ker(\varphi)) \tag{*},
+\end{equation} \\
+from theorem \ref{theo:1}, we know that $\dim(V) = \rk(\varphi) + \Img(\varphi)$, then it follows that in (*), $\Ker(\varphi)^{c} \approx \Img(\varphi)$. \qedsymbol
+\section{Linear Transformations from $F^{n}$ to $F^{m}$}
+Let $A$ be a $n \times m$ matrix over $F$, and let $\varphi_{A} \in \CL(F^{n}, F^{m})$ such that $\varphi_{A}(v) = Av$, thus
+$$
+A = (\varphi e_{1} | \dots | \varphi e_{n}),
+$$
+where $\{e_{1}, \dots, e_{n}\}$ is a base for $A$.
+\begin{theorem}
+  Let $V$ and $W$ be finite-dimensional vector spaces over $F$, with \textbf{ordered bases} $\SB_{b} = \{b_{1}, \dots, b_{n}\}$ and $\SB_{c} = \{c_{1}, \dots, c_{m}\}$, respectively.
+  \begin{enumerate}[1.]
+      \ii The map $\mu: \map{\CL(V, W)}{\CM_{m, n}(F)}$ defined by
+      $$
+      \mu(\varphi) = [\varphi]_{\SB_{b}, \SB_{c}},
+      $$ 
+      is an isomorphism and so $\CL(V, W) \approx \CM_{m, n}(F)$. Hence,
+      $$
+      \dim(\CL(V, W)) = \dim(\CM_{m, n}(F)) = m \times n
+      $$
+      \ii If $\phi \in \CL(U, V)$ and $\varphi \in \CL(V, W)$ and if $\SB_{b}, \SB_{c}$ and $\SB_{d}$ are ordered bases for $U, V$ and $W$ repectivey. Then
+      $$
+      [\varphi \phi]_{\SB_{b}, \SB_{d}} = [\varphi]_{\SB_{c}, \SB_{d}} [\phi]_{\SB_{b}, \SB_{c}}
+      $$
+  \end{enumerate}
+  Thus $\varphi \phi$ is the product of the matrices $\varphi$ and $\phi$.
+\end{theorem}
+\textbf{Proof:} First, let's prove that $\mu$ is linear
+$$
+  [s\phi + r\varphi]_{\SB_{b}, \SB_{c}}[b_{i}]_{\SB_{b}} = [(s\phi + r\varphi)(b_{i})]_{\SB_{c}}
+  $$
+  $$
+  \hspace{9.5em}= [s\phi(b_{i}) + r\varphi(b_{i})]_{\SB_{c}}
+  $$
+  $$
+  \hspace{11em}= s[\phi(b_{i})]_{\SB_{c}} + r[\varphi(b_{i})]_{\SB_{c}}
+  $$
+  $$
+  \hspace{13.5em}= (s[\phi]_{\SB_{b}, \SB_{c}} + r[\varphi]_{\SB_{b}, \SB_{c}})[b_{i}]_{\SB_{b}}
+  $$
+  Since $[b_{i}]_{\SB_{b}} = e_{i}$ is a basis vector, we conclude that
+  $$
+  [s\phi + r\varphi]_{\SB_{b}, \SB_{c}} = s[\phi]_{\SB_{b}, \SB_{c}} + r[\varphi]_{\SB_{b}, \SB_{c}},
+  $$
+  thus $\mu$ is linear. If $A \in \CM_{m, n}$, we define $\varphi$ by the condition $[\varphi b_{i}]_{\SB_{c}} = A^{(i)}$, so $\mu(\varphi) = A$ and $\mu$ is surjective. Since $\Ker(\mu) = \{0\}$ because $[\varphi]_{\SB_{b}} = 0$ implies that $\varphi = 0$. Hence, the map $\mu$ is an isomorphism. \qedsymbol
+\section{Invariant subspaces}
+\begin{definition*}
+  Let $S \subset V$ be a subspace, which is said to be $\varphi$-\textbf{invariant} if $\varphi S \subseteq S$ (i.e. $\varphi s \in S$ for all $s \in S$), where $\varphi \in \CL(V)$ (See problem 4).
+\end{definition}
+\begin{definition*}
+  Let $\varphi \in \CL(V)$. If $V = S \oplus T$ and if both $S$ and $T$ are $\varphi$-invariant, we say that the pair $(S, T)$ \textbf{reduces} $\varphi$.
+\end{definition}
+\begin{definition*}
+  Let $V = S \oplus T$. The linear operator $\rho_{S, T}: \map{V}{V}$ defined by
+  $$
+  \rho_{S, T}(s + t) = s,
+  $$
+  where $s \in S$ and $t \in T$ is called \textbf{proyection} onto $S$ \textbf{along} $T$
+\end{definition}
+\begin{theorem}
+  Let $V = S \oplus T$. Then $(S, T)$ reduces $\varphi \in \CL(V)$ if and only if $\varphi$ commutes with $\rho_{S, T}$.
+\end{theorem}
+\textbf{Proof:} Suppose that there exists a projection $\rho = \rho_{S, T}$ for which
+$$
+\rho \varphi \rho = \varphi \rho,
+$$
+then $S$ and $T$ are $\varphi$-invariant if and only if
+$$
+\rho_{S, T}\varphi \rho_{S, T} = \rho_{S, T}\varphi \hspace{1em} \text{and} \hspace{1em} (\iota - \rho_{S, T})\varphi(\iota - \rho_{S, T}) = (\iota - \rho_{S, T})\varphi
+$$
+that is equivalent to
+$$
+\rho_{S, T}\varphi\rho_{S, T} = \rho_{S, T}\varphi \hspace{1em} \text{and} \hspace{1em} \rho_{S, T}\varphi = \varphi\rho_{S, T},
+$$
+then follows that $\rho_{S, T}\varphi = \varphi\rho_{S, T}$. \qedsymbol
+\section{Problems}
+\begin{enumerate}[1.]
+    \ii Proof theorem 2.
+    \ii (Sylvester's rank inequality) Let $\varphi, \phi \in \CL(V, W)$, and let $n$ be the dimension of $V$. Show that
+    $$
+    \rk(\varphi) + \rk(\phi) - n \leq \rk(\varphi \phi).
+    $$
+    \ii Let $A$ be a $n \times m$ matrix over $F$. Show that
+    \begin{itemize}
+        \ii $\varphi_{A}: \map{F^{n}}{F^{m}}$ is injective iff $\rk(A) = n$.
+        \ii $\varphi_{A}: \map{F^{n}}{F^{m}}$ is surjective iff $\rk(A) = m$.
+    \end{itemize}
+    \ii Let $S$ and $T$ be subspaces of $V$, such that $V = S \oplus T$ and let $\varphi \in \CL(V)$. Show that if S is $\varphi$-invariant then does not imply that $T$ is also $\varphi$-invariant.
+    \ii Let $V$ be a vector space over a field $F$ of characteristic $\neq$ 2 and let $\rho$ and $\sigma$ be projections. Show that the difference $\rho - \sigma$ is a projection if and only if 
+    $$
+    \rho\sigma = \sigma\rho = \sigma.
+    $$
+\end{enumerate}
+\section{Further Links}
+\begin{itemize}
+    \ii Don Monk's notes on Advanced linear algebra: \url{http://euclid.colorado.edu/~monkd/m5151.html} \\ \\
+    Prof. Monk has used the book Advanced linear algebra by Steve Roman to take notes on the course, as well as the author of this handout did it, specifically Chapter 2.  \end{itemize}
+
+
+\end{document}

@@ -1,0 +1,46 @@
+\contentsline {chapter}{\tocchapter {Chapter}{}{Preface}}{v}{chapter*.1}
+\contentsline {chapter}{\tocchapter {Chapter}{1}{Group Theory}}{1}{chapter.1}
+\contentsline {section}{\tocsection {}{1}{Structure of a Group}}{3}{section.1.1}
+\contentsline {subsection}{\tocsubsection {}{1.1}{Homomorphisms}}{3}{subsection.1.1.1}
+\contentsline {subsection}{\tocsubsection {}{1.2}{Cosets}}{3}{subsection.1.1.2}
+\contentsline {subsection}{\tocsubsection {}{1.3}{Order}}{5}{subsection.1.1.3}
+\contentsline {subsection}{\tocsubsection {}{1.4}{Isomorphism}}{7}{subsection.1.1.4}
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.1}{The first isomorphism theorem}}{8}{subsubsection.1.1.4.1}
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.2}{The second isomorphism theorem}}{8}{subsubsection.1.1.4.2}
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.3}{The third isomorphism theorem}}{10}{subsubsection.1.1.4.3}
+\contentsline {subsection}{\tocsubsection {}{1.5}{Direct Products}}{10}{subsection.1.1.5}
+\contentsline {subsection}{\tocsubsection {}{1.6}{Conjugacy}}{13}{subsection.1.1.6}
+\contentsline {section}{\tocsection {}{2}{Groups Actions}}{14}{section.1.2}
+\contentsline {subsection}{\tocsubsection {}{2.1}{Orbits}}{16}{subsection.1.2.1}
+\contentsline {section}{\tocsection {}{3}{Simple Groups}}{18}{section.1.3}
+\contentsline {section}{\tocsection {}{4}{Sylow's theorem}}{19}{section.1.4}
+\contentsline {subsection}{\tocsubsection {}{4.1}{First Sylow Theorem}}{19}{subsection.1.4.1}
+\contentsline {subsection}{\tocsubsection {}{4.2}{Second and Third Sylow Theorems}}{20}{subsection.1.4.2}
+\contentsline {section}{\tocsection {}{5}{Series}}{21}{section.1.5}
+\contentsline {subsection}{\tocsubsection {}{5.1}{Normal series}}{21}{subsection.1.5.1}
+\contentsline {subsection}{\tocsubsection {}{5.2}{Composition series}}{22}{subsection.1.5.2}
+\contentsline {section}{\tocsection {}{6}{Solvable Groups}}{22}{section.1.6}
+\contentsline {section}{\tocsection {}{7}{The Hall Theorems}}{24}{section.1.7}
+\contentsline {chapter}{\tocchapter {Chapter}{2}{Ring Theory}}{27}{chapter.2}
+\contentsline {section}{\tocsection {}{1}{Ideals}}{28}{section.2.1}
+\contentsline {section}{\tocsection {}{2}{Homomorphism}}{30}{section.2.2}
+\contentsline {section}{\tocsection {}{3}{Noetherian Rings}}{30}{section.2.3}
+\contentsline {section}{\tocsection {}{4}{Principal Ideal Domain}}{32}{section.2.4}
+\contentsline {subsection}{\tocsubsection {}{4.1}{Modules over a PID}}{33}{subsection.2.4.1}
+\contentsline {section}{\tocsection {}{5}{Commutative Rings}}{37}{section.2.5}
+\contentsline {subsection}{\tocsubsection {}{5.1}{Integral Extension}}{39}{subsection.2.5.1}
+\contentsline {subsection}{\tocsubsection {}{5.2}{Localization}}{39}{subsection.2.5.2}
+\contentsline {subsection}{\tocsubsection {}{5.3}{Dedekind Domains}}{40}{subsection.2.5.3}
+\contentsline {subsection}{\tocsubsection {}{5.4}{Krull Dimension}}{41}{subsection.2.5.4}
+\contentsline {section}{\tocsection {}{6}{Rational Fraction}}{42}{section.2.6}
+\contentsline {section}{\tocsection {}{7}{Unique Factorization Domains}}{43}{section.2.7}
+\contentsline {chapter}{\tocchapter {Chapter}{3}{Module Theory}}{45}{chapter.3}
+\contentsline {section}{\tocsection {}{1}{Free Modules}}{48}{section.3.1}
+\contentsline {section}{\tocsection {}{2}{Noetherian Modules}}{48}{section.3.2}
+\contentsline {section}{\tocsection {}{3}{Hilbert's Theorems}}{50}{section.3.3}
+\contentsline {chapter}{\tocchapter {Chapter}{4}{Field Theory}}{53}{chapter.4}
+\contentsline {section}{\tocsection {}{1}{Extensions}}{54}{section.4.1}
+\contentsline {subsection}{\tocsubsection {}{1.1}{The Algebraic Closure}}{54}{subsection.4.1.1}
+\contentsline {section}{\tocsection {}{2}{Separability}}{56}{section.4.2}
+\contentsline {section}{\tocsection {}{3}{Galois Theory}}{57}{section.4.3}
+\contentsline {chapter}{\tocchapter {Chapter}{}{Bibliography}}{59}{chapter*.3}

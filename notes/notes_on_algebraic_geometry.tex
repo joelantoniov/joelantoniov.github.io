@@ -1,0 +1,244 @@
+\documentclass[10pt]{amsbook}%
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{mathabx}%
+\usepackage{mathtools}%
+\usepackage{amssymb}%
+\usepackage{graphicx}
+\usepackage{enumerate}
+\newcommand{\ii}{\item}
+\newenvironment{subproof}[1][Proof]{
+\begin{proof}[#1] \renewcommand{\qedsymbol}{∎}}
+{\end{proof}}
+\newcommand\defeq{\stackrel{\mathclap{\normalfont\mbox{\small{def}}}}{=}}
+
+\theoremstyle{plain}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{definition*}{Definition}
+\newtheorem{acknowledgement}{Acknowledgement}
+\newtheorem{algorithm}{Algorithm}
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}{Case}
+\newtheorem{claim}{Claim}
+\newtheorem{conclusion}{Conclusion}
+\newtheorem{condition}{Condition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollary}
+\newtheorem{criterion}{Criterion}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem{exercise}{Exercise}
+\newtheorem{lemma}{Lemma}
+\newtheorem{notation}{Notation}
+\newtheorem{problem}{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{proposition*}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{solution}{Solution}
+\newtheorem{summary}{Summary}
+\newtheorem{theorem}{Theorem}
+\numberwithin{equation}{section}
+\makeatletter
+\renewcommand\tocsection[3]{%
+  \indentlabel
+  {\vspace{0.25em} \@ifnotempty{#2}{\ignorespaces #1 \S#2.\quad }}#3%
+}
+\makeatother
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=Red,citecolor=Green]{hyperref}
+\usepackage{mdframed}
+\makeatletter
+\let\theorem\undefined
+\let\c@theorem\undefined
+\let\lemma\undefined
+\let\c@lemma\undefined
+\let\proposition\undefined
+\let\c@proposition\undefined
+\makeatother
+\newmdtheoremenv[outerlinewidth=2,leftmargin=20,
+  rightmargin=20,backgroundcolor=white,
+  outerlinecolor=blue,innertopmargin=0.1\topskip,
+  innerbottommargin=10,
+  splittopskip=\topskip,skipbelow=\baselineskip,
+skipabove=\baselineskip]
+{theorem}
+{Theorem}
+
+\newmdtheoremenv[outerlinewidth=2,leftmargin=20,
+  rightmargin=20,backgroundcolor=white,
+  outerlinecolor=blue,innertopmargin=0.1\topskip,
+  innerbottommargin=10,
+  splittopskip=\topskip,skipbelow=\baselineskip,
+skipabove=\baselineskip]
+{lemma}
+{Lemma}
+
+\newmdtheoremenv[outerlinewidth=2,leftmargin=20,
+  rightmargin=20,backgroundcolor=white,
+  outerlinecolor=blue,innertopmargin=0.1\topskip,
+  innerbottommargin=10,
+  splittopskip=\topskip,skipbelow=\baselineskip,
+skipabove=\baselineskip]
+{proposition}
+{Proposition}
+%-----------------------------------------------------------
+% Macros
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\HC}{\mathcal H}
+\newcommand{\OC}{\mathcal O}
+\newcommand{\CK}{\mathcal C}
+\newcommand{\AK}{\mathcal A}
+\newcommand{\BK}{\mathcal B}
+\newcommand{\DK}{\mathcal D}
+\newcommand{\IF}{\mathfrak I}
+\newcommand{\CL}{\mathcal L}
+\newcommand{\ML}{\mathcal L}
+\newcommand{\BC}{\mathcal B}
+\newcommand{\SC}{\mathcal S}
+\newcommand{\CR}{\mathcal R}
+\newcommand{\af}{\mathfrak a}
+\newcommand{\sff}{\mathfrak s}
+\newcommand{\bff}{\mathfrak b}
+\newcommand{\rf}{\mathfrak r}
+\newcommand{\mf}{\mathfrak m}
+\newcommand{\MF}{\mathfrak M}
+\newcommand{\pf}{\mathfrak p}
+\newcommand{\ifr}{\mathfrak i}
+\newcommand{\qf}{\mathfrak q}
+\newcommand{\if}{\mathfrak i}
+\newcommand{\PF}{\mathfrak P}
+\newcommand{\QF}{\mathfrak Q}
+\newcommand{\UF}{\mathfrak U}
+\newcommand{\card}{\text{card}}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\Fix}{\text{Fix}}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\rk}{rk}
+\newcommand{\charin}{\text{ char }}
+\renewcommand{\proof}{ \textbf{Proof: }}
+\renewcommand{\counterexample}{ \textbf{Counterexample: }}
+\renewcommand{\ie}{i.e., }
+\renewcommand{\eg}{e.g., }
+\newcommand{\lrangle}[1]{\langle \text{#1} \rangle}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Aut}{Aut}
+\newcommand{\Stab}[1]{\text{Stab}(#1)}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Irr}{Irr}
+\DeclareMathOperator{\hgt}{hgt}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Core}{Core}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Rad}{Rad}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\gcd}{gcd}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\GL}{GL} % General linear group
+\DeclareMathOperator{\SL}{SL} % Special linear group
+\newcommand{\leftnormal}{\trianglelefteq}
+\newcommand{\nleftnormal}{\ntrianglelefteq}
+\newcommand{\rightnormal}{\trianglerighteq}
+\newcommand{\nrightnormal}{\ntrianglerighteq}
+
+%-----------------------------------------------------------
+\begin{document}
+\frontmatter
+\title[notes]{Lecture notes on Algebraic Geometry}
+\author[Joel Antonio-V\'asquez]{Joel Antonio-V\'asquez}
+\address{Ica, Peru}
+\email{hello@joelantonio.me}
+\urladdr{http://joelantonio.me/}
+\thanks{}%The Author thanks J. Smith
+\subjclass{}%Primary 05C38, 15A15; Secondary 05A15, 15A18
+
+\begin{abstract}
+  %
+\end{abstract}
+\maketitle
+\tableofcontents
+
+
+\chapter*{Preface}
+
+\markboth{PREFACE}{PREFACE} 
+%
+
+\mainmatter
+
+%\part{The First Part}
+
+\chapter{Group Theory}
+
+\section{Structure of a Group}
+  
+\chapter{Field Theory}
+
+%\part{The second part}
+%
+%\chapter{Algebras}
+%
+%\backmatter \appendix
+%
+%\chapter{The First Appendix}
+%
+%The \verb"\appendix" command should be used only once. Subsequent
+%appendices can be created using the Chapter command.
+%
+%\chapter{The Second Appendix}
+%%
+%Some text for the second Appendix.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                 BIBLIOGRAPHY                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% arXiv bibliography macro
+\def\arXiv#1{\href{http://arxiv.org/abs/#1}{arXiv:#1}}
+
+\begin{thebibliography}{0}
+ 
+ \bibitem[Va]{vakil} Ravi Vakil,
+   \emph{THE RISING SEA, Foundations of Algebraic Geometry. \/}
+   2010-2015. \\
+
+ \bibitem[Ha]{hartshorne} Robin Hartshorne,
+   \emph{Algebraic Geometry (Graduate Texts in Mathematics). \/}
+   Springer Science \& Business Media, 1977. \\
+
+ \bibitem[ShA]{shafarevich} Igor R. Shafarevich,
+   \emph{Basic Algebraic Geometry 1 (Varities in Projective Space), Third Edition. \/}
+   Springer-Verlag, 1994. \\
+
+ \bibitem[ShB]{shafarevich} Igor R. Shafarevich,
+   \emph{Basic Algebraic Geometry 1 (Schemes and Complex Manifolds), Third Edition. \/}
+   Springer Science \& Business Media, 1994. \\
+
+ \bibitem[Li]{liu} Qing Liu,
+   \emph{Algebraic Geometry and Arithmetic Curves (Oxford Graduate Texts in Mathematics). \/}
+   Springer Science \& Business Media, 1994. \\
+
+ \bibitem[Gr]{grothendieck} Alexander Grothendieck,
+   \emph{\'El\'ements de g\'eom\'etrie alg\'ebrique: IV. \'Etude locale des sch\'emas et des morphismes de sch\'emas, Troisi\`eme partie. \/ }
+   Publications Math\'ematiques De L'I.H.\'E.S., 1966. \\
+
+ \bibitem[Ch]{chen} Evan Chen,
+   \emph{Math 137 Lecture Notes. \/}
+   Harvard, Spring 2015 \url{http://www.mit.edu/~evanchen/notes/Harvard-137.pdf} .\\
+
+
+
+\end{thebibliography}
+
+\end{document}

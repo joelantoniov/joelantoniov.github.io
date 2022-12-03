@@ -1,0 +1,80 @@
+\documentclass{amsbook}
+\usepackage{antoniovasquez}
+\usepackage{patch-asy}
+\usepackage{asymptote}
+\usepackage{diagrams}
+\usepackage{mla13}
+\usepackage{mdframed}
+\usepackage[nottoc]{tocbibind}
+\usepackage{titlesec}
+\usepackage[titles]{tocloft}
+
+\renewcommand\cftchapfont{\normalfont}
+\renewcommand\cftchappagefont{\normalfont}
+
+\makeatletter
+\let\theorem\undefined
+\let\c@theorem\undefined
+\let\lemma\undefined
+\let\c@lemma\undefined
+\makeatother
+\newmdtheoremenv[outerlinewidth=2, leftmargin=20,
+  rightmargin=20, backgroundcolor=white,
+  outerlinecolor=blue, innertopmargin=0.5\topskip,
+  splittopskip=\topskip, skipebelow=\baselineskip,
+  skipabove=\baselineskip]
+{theorem}
+{Theorem}
+
+\newmdtheoremenv[outerlinewidth=2, leftmargin=20,
+  rightmargin=20, backgroundcolor=white,
+  outerlinecolor=blue, innertopmargin=0.5\topskip,
+  splittopskip=\topskip, skipebelow=\baselineskip,
+  skipabove=\baselineskip]
+{lemma}
+{Lemma}
+
+\lhead{}
+\rhead{}
+
+\AtBeginDocument{\renewcommand\contentsname{Table of Contents}}
+
+\titleformat{\chapter}[display]
+{}{\hfill\rule{.7\textwidth}{3pt}}{0pt}
+{\hspace*{.3\textwidth}\huge\bfseries}[\addvspace{-1pt}]
+\titleformat{name=\chapter,numberless}[display]
+{}{\hfill\rule{.7\textwidth}{3pt}}{0pt}
+{\hspace*{.3\textwidth}\huge\bfseries}[\addvspace{-1pt}]
+
+\author{Joel Antonio Vásquez}
+\title{Title}
+\date{} %if don't wanna to show the date %
+% these are compressed lists to help fit into a 1 page limit %
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Section}
+\subsection{subsection1}
+\subsection{subsection2}
+\begin{definition*}
+  $\RR$
+\end{definition*}
+
+\begin{lemma}
+\end{lemma}
+\section{Section}
+
+\begin{theorem}
+\end{theorem}
+
+\begin{proposition*}
+\end{proposition*}
+
+\begin{remark*}
+\end{remark*}
+
+\end{document}

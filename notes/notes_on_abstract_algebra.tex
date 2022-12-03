@@ -1,0 +1,3037 @@
+\documentclass[11pt]{amsbook}%
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{mathabx}%
+\usepackage{mathtools}%
+\usepackage{amssymb}%
+\usepackage{graphicx}
+\usepackage{enumerate}
+\newcommand{\ii}{\item}
+\newenvironment{subproof}[1][Proof]{
+\begin{proof}[#1] \renewcommand{\qedsymbol}{∎}}
+{\end{proof}}
+\newcommand\defeq{\stackrel{\mathclap{\normalfont\mbox{\small{def}}}}{=}}
+
+\theoremstyle{plain}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{definition*}{Definition}
+\newtheorem{acknowledgement}{Acknowledgement}
+\newtheorem{algorithm}{Algorithm}
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}{Case}
+\newtheorem{claim}{Claim}
+\newtheorem{conclusion}{Conclusion}
+\newtheorem{condition}{Condition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollary}
+\newtheorem{criterion}{Criterion}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem{exercise}{Exercise}
+\newtheorem{lemma}{Lemma}
+\newtheorem{notation}{Notation}
+\newtheorem{problem}{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{proposition*}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{solution}{Solution}
+\newtheorem{summary}{Summary}
+\newtheorem{theorem}{Theorem}
+\numberwithin{equation}{section}
+\makeatletter
+\renewcommand\tocsection[3]{%
+  \indentlabel
+  {\vspace{0.25em} \@ifnotempty{#2}{\ignorespaces #1 \S#2.\quad }}#3%
+}
+\makeatother
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=Red,citecolor=Green]{hyperref}
+\usepackage{mdframed}
+\makeatletter
+\let\theorem\undefined
+\let\c@theorem\undefined
+\let\lemma\undefined
+\let\c@lemma\undefined
+\let\proposition\undefined
+\let\c@proposition\undefined
+\makeatother
+\newmdtheoremenv[outerlinewidth=2,leftmargin=20,
+  rightmargin=20,backgroundcolor=white,
+  outerlinecolor=blue,innertopmargin=0.1\topskip,
+  innerbottommargin=10,
+  splittopskip=\topskip,skipbelow=\baselineskip,
+skipabove=\baselineskip]
+{theorem}
+{Theorem}
+
+\newmdtheoremenv[outerlinewidth=2,leftmargin=20,
+  rightmargin=20,backgroundcolor=white,
+  outerlinecolor=blue,innertopmargin=0.1\topskip,
+  innerbottommargin=10,
+  splittopskip=\topskip,skipbelow=\baselineskip,
+skipabove=\baselineskip]
+{lemma}
+{Lemma}
+
+\newmdtheoremenv[outerlinewidth=2,leftmargin=20,
+  rightmargin=20,backgroundcolor=white,
+  outerlinecolor=blue,innertopmargin=0.1\topskip,
+  innerbottommargin=10,
+  splittopskip=\topskip,skipbelow=\baselineskip,
+skipabove=\baselineskip]
+{proposition}
+{Proposition}
+%-----------------------------------------------------------
+% Macros
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\HC}{\mathcal H}
+\newcommand{\OC}{\mathcal O}
+\newcommand{\CK}{\mathcal C}
+\newcommand{\AK}{\mathcal A}
+\newcommand{\BK}{\mathcal B}
+\newcommand{\DK}{\mathcal D}
+\newcommand{\IF}{\mathfrak I}
+\newcommand{\CL}{\mathcal L}
+\newcommand{\ML}{\mathcal L}
+\newcommand{\BC}{\mathcal B}
+\newcommand{\SC}{\mathcal S}
+\newcommand{\CR}{\mathcal R}
+\newcommand{\af}{\mathfrak a}
+\newcommand{\sff}{\mathfrak s}
+\newcommand{\bff}{\mathfrak b}
+\newcommand{\rf}{\mathfrak r}
+\newcommand{\mf}{\mathfrak m}
+\newcommand{\MF}{\mathfrak M}
+\newcommand{\pf}{\mathfrak p}
+\newcommand{\ifr}{\mathfrak i}
+\newcommand{\qf}{\mathfrak q}
+\newcommand{\if}{\mathfrak i}
+\newcommand{\PF}{\mathfrak P}
+\newcommand{\QF}{\mathfrak Q}
+\newcommand{\UF}{\mathfrak U}
+\newcommand{\card}{\text{card}}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\Fix}{\text{Fix}}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\rk}{rk}
+\newcommand{\charin}{\text{ char }}
+\renewcommand{\proof}{ \textbf{Proof: }}
+\renewcommand{\counterexample}{ \textbf{Counterexample: }}
+\renewcommand{\ie}{i.e., }
+\renewcommand{\eg}{e.g., }
+\newcommand{\lrangle}[1]{\langle \text{#1} \rangle}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Aut}{Aut}
+\newcommand{\Stab}[1]{\text{Stab}(#1)}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Irr}{Irr}
+\DeclareMathOperator{\hgt}{hgt}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Core}{Core}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Rad}{Rad}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\gcd}{gcd}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\GL}{GL} % General linear group
+\DeclareMathOperator{\SL}{SL} % Special linear group
+\newcommand{\leftnormal}{\trianglelefteq}
+\newcommand{\nleftnormal}{\ntrianglelefteq}
+\newcommand{\rightnormal}{\trianglerighteq}
+\newcommand{\nrightnormal}{\ntrianglerighteq}
+
+%-----------------------------------------------------------
+\begin{document}
+\frontmatter
+\title[notes]{Lecture notes on Abstract Algebra}
+\author[Joel Antonio-V\'asquez]{Joel Antonio-V\'asquez}
+\address{Ica, Peru}
+\email{hello@joelantonio.me}
+\urladdr{http://joelantonio.me/}
+\thanks{}%The Author thanks J. Smith
+\subjclass{}%Primary 05C38, 15A15; Secondary 05A15, 15A18
+
+\begin{abstract}
+  The intention to this lectures notes is present a lot
+  of examples in basic abstract Algebra.
+\end{abstract}
+\maketitle
+\tableofcontents
+
+
+\chapter*{Preface}
+
+\markboth{PREFACE}{PREFACE} 
+I must say that this notes are not finished at all, until now I only can say that this is
+a recompilation of many definitions of the books which are in the references, the first
+section has a different taste since I’ve written my own examples and proofs, the rest is incomplete,
+you must to consider this. As soon as possible I will update this notes and I'll focus on
+examples and different proofs, please don’t take this notes totally seriously yet, but
+if you have any suggestion or you see any typo, please send me a mail, thanks.
+
+\mainmatter
+
+%\part{The First Part}
+
+\chapter{Group Theory}
+First, we learn one of the most important structure on Abstract Algebra,
+namely \textbf{groups}.
+
+\begin{definition*}
+  \label{def-group}
+  Let $G$ be a set with a function $*: G \times G \longrightarrow G$ such that
+  for each $a, b \in G$ then $a * b \in G$. Further, $G$ claims the following
+  axioms: 
+  \begin{enumerate}[G1. ]
+      \ii For all $a, b, c \in G$ then $a*(b*c) = (a*b)*c$, (\textbf{associativity}).
+      \ii There exists an element $e \in G$ such that $e*a = a*e = a$, (\textbf{identity}, denoted by $1_{G}$).
+      \ii There exists an element $a' \in G$ such that $a*a' = a'*a = e$,
+      where $e$ is the identity element, (\textbf{inverse}, denoted by $a^{-1}$).
+  \end{enumerate} 
+  Then, $G$ is called a group, denoted by $(G, *)$.
+\end{definition*} 
+
+\begin{proposition}
+  $1_{G} \in G$ is unique in any group.
+\end{proposition} \vspace{1.8em}
+\textbf{Proof: } Let $1, 1'$ be identities of $G$. Then $1 = 1*1' = 1'$. \qedsymbol
+
+\begin{proposition}
+  \label{prop-2}
+  The inverse of any element $a \in G$ is unique.
+\end{proposition} \vspace{1.8em}
+\textbf{Proof: } Suppose that $a', a''$ are inverses of $a$. Then $a'*a = a'*a*a'' = a''$. \qedsymbol \\
+
+\begin{example*}
+  Let $\rho : y \longrightarrow \sin(y)$ be the sine curve map. Then its isometries forms a group.
+  \begin{center}
+    \begin{bmatrix}
+      0 && v && -v \\
+      -v && 0 && v \\
+      v && -v && 0 \\
+    \end{bmatrix}
+  \end{center}
+    The map $\rho$ is only linear for this case, since $\sin(v + -v) = \sin(v) + \sin(-v) = 0$.
+    Indeed, the identity element is $0$ and asserts properties G1 and G2. Then, the isometries
+    of the sine curve forms a group.
+\end{example*}
+
+From here, we can define other kind of groups with additional axioms. Indeed,
+if we have a proper subset $G' \subset G$ such that $G'$ asserts the axioms in definition \ref{def-group}
+of $G$ into $G'$ (i.e., if $a,b \in G'$ so does $ab \in G$, $1_{G} \in G'$ and for every $a \in G$ so does $a^{-1} \in G$),
+then $G'$ is called a \textbf{subgroup}, denoted by $G' < G$.
+
+\begin{example*}
+  The trivial subgroups (i.e. not proper subgroups) of a group $G$ are itself and $1_{G}$.
+\end{example*}
+
+\begin{example*}
+  $H_{i \in I}$ are subgroups of $G$, then so does $\bigcap_{i \in I} H_{i}$. \\
+  \textbf{Proof: } If $\bigcap_{i \in I} H_{i} = 1_{G} \text{ or } G$, then is trivially true.
+  Let $G' \neq 1_{G}, G$, Then $1_{G} \in G'$ since every $H_{i}$ must
+  have the identity element. If $x \in G'$ so does $x^{-1} \in G'$ since
+  every $H_{i}$ have the inverses of elements. $G'$ is associative for the above reasons.
+  So, $G'$ is a subgroup of $G$. \qedsymbol
+\end{example*}
+
+\begin{example*}
+  $H_{i \in I}$ are subgroups of $G$, then not necessarily does $\bigcup_{i \in I} H_{i}$. \\
+  \textbf{Counterexample: } $\QQ[\sqrt[2]{5}] \cup \QQ[\sqrt[3]{5}] \nless \QQ[\sqrt[6]{5}]$.
+\end{exammple*}
+
+\begin{definition*}
+  \label{def-abelian}
+  Let $G$ be a group in the sense of definition \ref{def-group}. Further, for all $a, b \in G$
+  asserts strictly that $a*b = b*a$. Then, $G$ is called an \textbf{abelian group} (\textbf{commutative}).
+\end{definition*}
+
+\begin{example*}[Dihedral group]
+  The dihedral group, is the group of symmetries of a regular $n$-gon in the plane. It has the
+  presentation
+  $$
+  \langle x, a \ \vert \ a^{n} =  x^{2} = e, xax^{-1} = a^{-1} \rangle,
+  $$
+  where $e$ is the identity element. \\
+  The $D_{n}$s are nonabelian for $n \geq 3$, the elements $a, x$ do not commute.
+  But $D_{2}$ is, its elements are $\{1, p, r, pr\}$.
+\end{example*}
+
+\begin{definition*}
+  \label{def-semigroup}
+  Let $S$ be a set endowed with associative binary operation $*: S \times S \longrightarrow S$. Then
+  $S$ is called a \textbf{semigroup}.
+\end{definition*}
+We can say that a semigroup is called a \textbf{monoid} iff asserts the axiom G2. 
+It's easy to see that a group is a monoid with the additional axiom G3. \\ \\
+Up to this point, we've seen basic and easy definitions related to groups, the main
+purpose now is to build several properties and operations around groups in the section
+\ref{sect-structure-group}. Before finished this little introduction, let's
+list some classic group examples.
+\begin{example*} 
+  $&&$ \\
+  \begin{enumerate}[$\circ$ ]
+      \ii A symmetric $\RR$-correlation;
+      \ii A skew $\CC$-correlation;
+      \ii A skew $\widetilde{\HH}$- or equivalently, $\overline{\HH}$-correlation;
+      \ii Let $J = \left(\begin{matrix} 0 && I_{n} \\ -I_{n} && 0 \end{matrix} \right)$;
+      \ii Let $V$ be a vector space. Then $\Aut(V) := \{T: V \longrightarrow V \vert T \text{ a linear isomorphism}\}$.
+  \end{enumerate}
+\end{example*}
+Don't worry if you don't know at all the above examples, the idea of this is to start getting used of notation, in
+later sections we'll work on them.
+
+
+\section{Structure of a Group}
+\label{sect-structure-group}
+Now, let's see what kind of operations we can do around groups.
+
+\subsection{Homomorphisms}
+
+\begin{definition*}
+  \label{def-homomorphism}
+  A \textbf{homomorphism} of two groups $G, G'$ is a function $f: G \longrightarrow G'$ such that
+  $f(ab) = f(a)f(b)$ for every $a, b \in G$.
+\end{definition*}
+Actually, we can map the set of homomorphisms of two groups $G, G'$ as
+$$
+\Hom(G, G')  = \{\text{homomorphisms } f: G \longrightarrow G' \}.
+$$
+\begin{lemma}
+  If $\varphi: A \longrightarrow B$ and $\rho: B \longrightarrow C$ are homomorphism groups.
+  Then so is $\varphi \circ \rho: A \longrightarrow C$.
+\end{lemma} \vspace{1.8em}
+\textbf{Proof: }Let $a, b, c \in A, B, C$, respectively. $\varphi \circ \rho = \rho(\varphi(a)) = \rho(b) = c$.
+Moreover, $1_{\varphi} \circ 1_{\rho} = 1_{\varphi \circ \rho}$ and
+$\varphi^{-1} \circ \rho^{-1} = \varphi(\rho(c)^{-1})^{-1} = \varphi(b)^{-1} = a$.
+Indeed, homomorphisms preserve identity elements and inverses. \qedsymbol \\ \\
+A group homomorphism $\varphi: (G, \circ) \longrightarrow (G', *)$ sastifies the following properties:
+\begin{enumerate}[1. ]
+    \ii $\varphi(1_{G}) = 1_{G'}$.
+    \ii $\varphi(a^{-1}) = \varphi(a)^{-1}$ for all $a \in G$.
+    \ii $\Ker \varphi \subset G$ and $\im \varphi \subset G'$ are subgroups.
+\end{enumerate}
+\textbf{Proof: }
+\begin{enumerate}[(1). ]
+    \ii $1_{G'}\varphi(1_{G}) = \varphi(1_{G}) = \varphi(1_{G}1_{G}) = \varphi(1_{G})\varphi(1_{G})$.
+    Then $1_{G'} = \varphi(1_{G})$. 
+    \ii Since $1_{G'} = \varphi(1_{G})$, then $1_{G'} = \varphi(aa^{-1}) = \varphi(a)\varphi(a^{-1})$.
+    Finally, $\varphi(a)^{-1} = \varphi(a^{-1})$. 
+    \ii Let $x, y \in \Ker \varphi$, by (1) $\varphi(1_{G}) = 1_{G'}$ and 
+    $\varphi(x) = \varphi(y)$. Then,
+    $$
+    = \varphi(x^{-1} \circ y ) = \varphi(x^{-1}) * \varphi(y) \\
+
+    \hspace{9.7em} = (\varphi(x))^{-1} * \varphi(y) \\
+
+    \hspace{9.7em} = 1_{T}^{-1} * 1_{T} \\ 
+
+    \hspace{9.7em} = 1_{T}
+    $$
+
+    So, $x^{-1} \circ y \in \Ker \varphi$. Indeed, $\Ker \varphi$ is a subgroup.
+    (Same to show that $\im \varphi$ is a group).
+    \qedsymbol
+\end{enumerate}
+
+\subsection{Cosets}
+\begin{definition*}
+  Let $H < G$ be a subgroup of $G$ of the form $gH = \{gh: h \in G\}$. Then 
+  the subset $gH$ is called a \textbf{left coset} of a subgroup $H$
+  (same apply to \textbf{right coset}, denoted by $Hg$).
+\end{definition*} \\
+A \textbf{coset} is left or right. Any element of a coset is called a
+\textbf{representative} of that coset.
+
+\begin{definition*}
+  A subgroup $H < G$ is called \textbf{normal} when the left cosets and
+  the right cosets of the subgroup coincide (i.e., $gH = Hg$ for all $g \in G$),
+  denoted by $H \leftnormal G$.
+\end{definition*}
+
+\begin{proposition}
+  All the subgroups of an abelian group are normal.
+\end{proposition} \vspace{1.8em}
+\textbf{Proof: }Let $H < G$ be a subgroup of any abelian group $G$. Let $h \in H$
+be any element of $H$. Then for all $g \in G$ we have that $gh \in H$.
+Since $G$ is commutative so is $H$, then $hg \in H$, so $gh = hg$. Indeed,
+$G \leftnormal H$. \qedsymbol
+
+\begin{example*}
+  Let $1_{S_{2}}$ be the identity of any subgroup of index 2, then to
+  $S_{2}$ could be a group there exists another element $v$
+  such that $v \cdot  1_{S_{2}} = v$ since the group has index
+  2, only left $v \cdot v = 1_{S_{2}}$. Now, $S_{2} \leq G_{n}$
+  for a $n \geq 2$, since $S_{2}$ is a subgroup of $G_{n}$ then
+  $1_{S_{2}} = 1_{G_{n}}$ and for any $u \in G_{n}$ we have that
+  $uS = Su$. Indeed, any subgroup of index 2 is normal. \qedsymbol
+\end{example*}
+
+\begin{example*}
+  $D_{n}$ has normal subgroups, which consists of its rotations $R$ and
+  its reflections $F$ subject to the relations $R^{n} = F^{2} = 1_{D_{n}}$
+  and $(RF)^{2} = 1_{D_{n}}$. For $n$ odd the normal subgroups are
+  $\{1_{D_{n}}\}$ and $\langle R^{d} \rangle$ (i.e., cyclic group) for all divisors
+  $d \vert n$. If $n$ is even, there are two more normal subgroups
+  $\langle R^{2}, F \rangle$ and $\langle R^{2}, RF \rangle$.
+\end{example*}
+
+\begin{proposition}
+  Let $A, B \leq G$ be subgroups of $G$. If $A \leftnormal B$ and
+  $B \leftnormal G$ then not necessarilty $A \leftnormal G$.
+\end{proposition} \vspace{1.8em}
+\textbf{Counterexample: }Let $G = S_{4}$ (symmetry group), $A = \langle (12)(34) \rangle$
+and $B = \{(12)(34), (13)(42), (23)(41), 1_{B}\}$. Clearly, $A \leftnormal B$,
+$B \leftnormal S_{4}$ but not $A \leftnormal S_{4}$. \qedsymbol
+
+\begin{proposition}
+  Let $\varphi: A \longrightarrow B$ be an arbitrary homomorphism of groups, then
+  $N \leftnormal A$ does not necessarily imply $\varphi(N) \leftnormal B$.
+\end{proposition} \vspace{1.8em}
+\textbf{Counterexample: } Let $H$ be any non-normal subgroup of $B$.
+If $N = A = H$, then claim follows. \\ \\
+We need to notice that having a left or right coset $H$ of a group $G$, then 
+represents a \textbf{quotient} of $G$ by $H$, denoted by $G/H$.
+
+\begin{definition*}
+  \label{def-center}
+  The \textbf{center} of a group $G$ is
+  $$
+  Z(G) = \{g \in G \ \vert \ gx = xg \text{ for all } x \in G \}.
+  $$
+\end{definition*}
+$Z(G)$ is clearly a normal subgroup of $G$.
+
+\begin{example*}
+  Let $H \leq Z(G)$ and let $z \in Z(G)$, then $gzg^{-1} = z$ for all
+  $g \in G$. Hence $gHg^{-1} = H$ for all $H$. Indeed, all
+  subgroups of $Z(G)$ are normal subgroups of $G$.
+\end{example*}
+
+\subsection{Order}
+\begin{definition*}
+  The \textbf{order} of a group $G$ is the cardinality $|G|$, which could be
+  a positive integer or $\infty$.
+\end{definition*}
+Obviously, the order of a element $g$ in a group $G$ is infinite
+if $g^{m} \neq 1$ for all $m \neq 0$. \\
+
+\begin{example*}
+  Suppose that for any trivial group that $G = 1_{G}$, then its order is 1.
+\end{example*}
+
+\begin{theorem}[Lagrange's Theorem]
+  \label{theo-lagrange}
+  If $H$ is a subgroup of a finite group $G$, then $|H|$ divides $|G|$.
+\end{theorem} \vspace{1.8em}
+\textbf{Proof: }Let $H$ be a proper subset which is subgroup of $G$.
+We know that for all $g \in G$ then $|gH| = |H|$. So
+we define the \textit{left translation map} $\varphi_{g}: H \longrightarrow Hg$
+which is an onto map.
+
+\begin{lemma}
+  \label{lemm-2}
+  $\varphi_{g}$ is bijective.
+\end{lemma} \vspace{1.8em}
+\textbf{Proof: } Since $\varphi_{g}$ is onto, only left to show that is also
+one-to-one map. If $gh = gh'$ where $h, h' \in G$ then implies
+that $h = h'$. Indeed, $\varphi_{g}$ is bijective. \qedsymbol \\ \\
+By lemma \ref{lemm-2}, we have that exists a $\HC$ left
+transversal for $H$ in $G$, then
+$$
+|G| = \sum_{\HC} |gH| = \sum_{\HC} |H| = |\HC||H|
+$$
+\qedsymbol \\ \\
+However, the converse of Lagrange's Theorem is false, let's see
+the following example.
+\begin{example*}
+  Let $A_{4}$ be the \textbf{alternating group} (i.e., group of even permutations of a finite set)
+  of order 12, which has no subgroup of order 6.
+\end{example*}
+
+\begin{definition*}
+  The \textbf{order of an element} $g$ in a finite group $G$ is given by
+  $g^{m} = 1_{G}$. By Theorem \ref{theo-lagrange}, $m$ divides
+  $|G|$.
+\end{definition*}
+
+\begin{proposition}
+  Any group of even order, has an element of order two.
+\end{proposition} \vspace{1.8em}
+\textbf{Proof: } Let $G$ be a group and suppose that $|G| = 2m$, then
+one elemenet of $G$ is obviously $1_{G}$ which left us
+$2m - 1$ elements. Apart of the elements paired with their
+inverses, there is an element $g \in G$ such that $g = g^{-1}$.
+Thus, $g$ is an element of order two. \qedsymbol
+
+\begin{definition*}[Cyclic group]
+  Let $C_{n}$ be a group which is generated by a single element $c$ such that
+  $C_{n} = \langle c \rangle$ where every element of $C_{n}$ is a power
+  of $c$.
+\end{definition*}
+
+\begin{proposition}
+  If $m$ and $n$ are relative primes, then $C_{mn} \cong C_{m} \times C_{n}$.
+\end{proposition} \vspace{1.8em}
+\textbf{Proof: }Let $C_{mn} = \langle c \rangle$ be cyclic of order $mn$.
+Let $M = \langle c^{m} \rangle \cong C_{m}$ and $N = \langle c^{n} \rangle \cong C_{n}$.
+$c^{k} \in M$ iff $k$ divides $m$ and $c^{k} \in N$ iff $k$ divides $n$.
+Now, if $c^{k} \in M \cap N$, then $k$ divides $m$ and $n$, in fact 
+$k$ divides $mn$, thus $M \cap N = 1_{C_{mn}}$. Hence $MN = C_{mn}$,
+since $m$ and $n$ are relative primes. \qedsymbol
+
+\begin{definition*}[Euler's $\phi$ function]
+  Euler's function $\phi(n)$ is the number of integers $1 \leq k \leq n$
+  that are relatively prime to $n$. Where 
+  $$
+  \phi(n) = n \prod_{p \ \text{prime}, \ p \vert n} (1 - 1/p).
+  $$
+\end{definition*}
+
+\begin{proposition}
+  A cyclic group of order $n$, has exactly $\phi(n)$ elements order $n$.
+\end{proposition} \vspace{1.8em}
+\textbf{Proof: }Let $G = \langle c \rangle$ be cyclic of order $n$.
+Let $1 \leq k \leq n$ such that $(c^{k})^{n} = 1_{G}$, then $k$ has order
+$n$ iff $k$ and $n$ are relatively prime. If $\gcd(k, n) = 1$, then
+$c^{k}$ has order $n$. If $(c^{k})^{m} = 1_{G}$, then $n$ divides
+$km$ and $n$ divides $m$. \qedsymbol
+
+\begin{definition*}[$p$-groups]
+  Let $p$ be a prime, then a $p$-group is a group of order power
+  of $p$.
+\end{definition*}
+
+\begin{theorem}[Fundamental Theorem of Finite Abelian Groups]
+  \label{theo-finite-abelian}
+  Let $G$ be a finite additive group (i.e., $+:G \times G \longrightarrow G$),
+  let $p > 0$ be a prime number that divides $G$ and let $G(p)$ be the
+  unique $p$-subgroup of $G$ of maximal order. Then,
+  $$
+  G = \bigoplus_{p | |G|} G(p),
+  $$
+  where $G(p) = \{x \in G \ | \ x^{p^{r}} = 1_{G}, \ \text{for some integer} \ r \} \leftnormal G \ \text{and} \ |G(p)| = p^{n}$. \\ \\
+  Futhermore, if $p | \ |G|$, then
+  $$
+  G(p) \cong \bigtimes_{i=1}^{r} \ZZ/p^{p_{n_{i}}} \ZZ,
+  $$
+  where $r$ is unique and $1 \leq n_{1} \leq \dots \leq n_{r}$ also
+  unique relative to this ordering.
+\end{theorem} \vspace{1.8em}
+\textbf{Proof: }First, let's prove that $G \cong G(p_{1}) \times \dots \times G(p_{r})$.
+Clearly, $|G(p_{1}) \dots G(p_{r})| = |G(p_{1})| \dots |G(p_{r})|$ since $G(p_{1}) \dots G(p_{r})$ is a group,
+if $x_{1} \dots x_{r} = 1_{G}$ with $x_{i} \in G(p_{i})$ for $i = 1, \dots, r$, then
+$G(p_{1}) \times \dots \times G(p_{r}) \longrightarrow G$ is a group homomorphism since
+$x_{j}^{n/p_{i}^{m_{i}}} = 1_{G}$ for all $j \neq i$. Thus, the map is clearly
+isomorphism. By the above, each $G(p)$ is isomorphic to product of clyclic
+$p$-groups, so now we need to show that
+\begin{equation}
+  \label{eq-1.1}
+  \bigtimes_{i=1}^{r} \ZZ/p^{n_{i}} \ZZ \cong \bigtimes_{j=1}^{s}\ZZ/p^{m_{j}}\ZZ, \tag{*}
+\end{equation}
+with $n_{1} \geq \dots \geq n_{r}$ and $m_{1} \geq \dots \geq m_{s}$. Mutliplying
+(\ref{eq-1.1}) by $p$ we get
+$$
+  \bigtimes_{i=1}^{r} \ZZ/p^{n_{i}-1} \ZZ \cong \bigtimes_{j=1}^{s}\ZZ/p^{m_{j}-1}\ZZ
+$$
+as $p(\ZZ/p^{k}\ZZ) \cong \ZZ/p^{k-1}\ZZ$ for all $k$. Then $|G(p)| = \prod_{i=1}^{r} p^{n_{i}} = \prod_{i=1}^{s} p^{m_{i}}$,
+so we conclude that $r = s$ and $n_{i} = m_{i}$ for all $i$. \qedsymbol \\ \\
+As you can see, Theorem \ref{theo-finite-abelian} generalizes to finitely generated abelian
+groups. Futhermore, an abelian group $G$ is called:
+\begin{enumerate}[i)]
+    \ii \textit{Torsion-free}, if every non-identity element in $G$ has infinite order.
+    \ii \textit{Torsion}, if every non-identity element in $G$ has finite order.
+\end{enumerate}
+
+\subsection{Isomorphism}
+$&&$ \\
+\subsubsection{The first isomorphism theorem}
+
+\begin{theorem}[First Isomorphism Theorem]
+  \label{theo-first-isomorphism}
+  Let $\varphi: G \longrightarrow G'$ be a group homomorphism.
+  Then $\Ker \varphi$ is a normal subgroup of $G$, and there
+  is an isomorphism $\rho: G/\Ker \varphi \longrightarrow \im \varphi$
+  given by $\rho(g\Ker \varphi)  = \varphi(g)$. In fact, $G/\Ker \varphi \cong \im \varphi$.
+\end{theorem} \vspace{1.8em}
+\textbf{Proof: }We need to prove that $\rho$ is surjective and injective.
+Let $\psi: G \longrightarrow G/\Ker \varphi$,
+Since $\rho = \varphi \ \circ \ \psi$, then $\rho$ is surjective.
+Now, let $x \in \Ker \rho$ such that $x$ has the form $g\Ker \varphi$, then $\rho(x) = \varphi(g)$.
+Thus, $g \in \Ker \rho$. So $\rho$ is injective and indeed is an isomorphism.
+
+\begin{proposition}
+  \label{prop-9}
+  Any two cyclic groups of order $n$ are isomorphic.
+\end{proposition} \vspace{1.8em}
+\textbf{Proof 1: }Let $G_{1} = \lrangle{a}$ and $G_{2} = \lrangle{b}$ such
+that $|a| = |b| = n$. Then there is a map $\varphi: G_{1} \longrightarrow G_{2}$
+such that there is a bijection $\varphi(a^{n}) = b^{n}$ since that if $a^{n} = a^{r}$
+and $b^{r} = b^{n}$ then $\varphi(a^{n}) = \varphi(a^{r}) = b^{r} = b^{n}$.
+Now, let $x = a^{s}, y = a^{t} \in G_{1}$ then
+$$
+\varphi(xy) = \varphi(a^{s}a^{t}) 
+
+\hspace{15em } = \varphi(a^{s+t}) 
+
+\hspace{15em} = \varphi(b^{s+t}) 
+
+\hspace{15em}  = \varphi(b^{s}b^{t}) 
+
+\hspace{15em} = \varphi(a^{s})\varphi(a^{t}) 
+
+\hspace{15em} = \varphi(x)\varphi(y)
+$$ \\ \\
+
+Thus, $\varphi$ is homomorphism. Indeed, $G_{1} \cong G_{2}$. \qedsymbol \\ \\
+\textbf{Proof 2: }There is a more abstract proof about proposition \ref{prop-9}.
+Let $G$ be a cyclic group with generator $g$, then there is a surjective homomorphism
+$(\ZZ, +) \longrightarrow G$ sending 1 to $g$. Let $H \leq \ZZ$ be a subgroup,
+by Theorem \ref{theo-first-isomorphism} $G \cong \ZZ/H$, thus we can generate the
+subgroups $0\ZZ, 1\ZZ, 2\ZZ, \dots$. The quotient group $\ZZ/n\ZZ$ has order
+$n$ if $n \neq 0$ and order $\infty$ if $n = 0$, the order of $G$ determines its
+isomorphism class. So, if $|G| = n$ is finite, then $G \cong \ZZ/n\ZZ$ and if
+$|G|$ is infinite, then $G \cong \ZZ$. \qedsymbol 
+
+$&&$ \\
+\subsubsection{The second isomorphism theorem}
+\begin{theorem}[Second Isomorphism Theorem]
+  \label{theo-second-isomorphism}
+  Let $G$ be a group, $H < G$ be a subgroup and $N \lhd G$ be
+  a normal subgroup. Then $HN \leq G$  is a subgroup, 
+  $N \leftnormal HN$ a normal subgroup, $H \cap N$ is a
+  normal subgroup of $H$. In fact, there is a map isomorphism
+  $\varphi: H/(H \cap N) \longrightarrow HN/N$.
+\end{theorem} \vspace{1.8em}
+\textbf{Proof: }First, we show that $HN \leq G$. Since $N \lhd  G$,
+then $NH = HN$ and $1_{G} \in HN$. Let $h \in H$ and $n \in N$,
+then $hn \in HN$ and $(hn)^{-1} = n^{-1}h^{-1} \in HN = NH$.
+So, $HNHN = HHNN = HN$. \\ \\
+Now, as $N$ is normal in $G$,
+it's certainly normal in $HN$, so we have a map
+$$
+\rho: H \longrightarrow HN/N,
+$$
+such that $\rho$ sends $h$ to $hN$. Suppose $x \in HN/N$, then
+$x = hnN = hN$, thus $\rho$ is surjective. Suppose that
+$h \in \Ker \rho$, then $hN = N$ the identity coset, so that $h \in N$.
+Thus, $h \in H \cap N$. Then, $h \in \Ker \varphi$ and by Theorem \ref{theo-first-isomorphism} $\varphi$
+is isomorphic. \qedsymbol
+
+$&&$ \\
+
+\subsubsection{The third isomorphism theorem}
+\begin{theorem}[Third Isomorphism Theorem]
+  \label{theo-thrid-isomorphism}
+  Let $G$ be a group and $N, M \leftnormal G$
+  be two normal subgroups such that $N \subset M$. Then
+  $$
+  G/M \cong (G/N)(M/N).
+  $$
+\end{theorem} \vspace{1.8em}
+\textbf{Proof: }Let $\rho: G \longrightarrow G/M$ be a map such that
+$N \subset \Ker \rho$, then there is a homomorphism $\phi: G/N \longrightarrow G/M$. \\ \\
+So, $\phi$ is surjective since $\phi$ sends $gN$ to the left coset $gM$.
+Now, suppose that $gN \in \Ker \phi$, then the left coset $gM$ is the identity coset,
+that is, $gM = M$, so that $g \in M$. Thus, the kernel consists of those left
+cosets of the form $gN$, for $g \in M$, that is, $M/N$. Indeed, by Theorem \ref{theo-first-isomorphism} then
+$G/M \cong (G/N)(M/N)$. \qedsymbol
+
+
+\subsection{Direct Products}
+One way to construct groups from small groups is thought direct products.
+
+\begin{definition*}
+  \label{def-direct-product}
+  Let $G_{1}, G_{2}$ be two groups, then its direct product is denoted by
+  $G_{1} \ \oplus \ G_{2}$, which is in the end the cartesian product
+  (i.e., $(x_{1}, x_{2}, \dots x_{n})(y_{1}, y_{2}, \dots, y_{n}) = (x_{1}y_{1}, x_{2}y_{2}, \dots x_{n}y_{n})$)
+\end{definition*}
+
+\begin{proposition}
+  Let $G_{1}, G_{2}, \dots G_{m}$ be groups of order $n$. Then
+  $$
+  G = \bigoplus\limits_{i} G_{i},
+  $$
+  is in fact a group.
+\end{proposition} \vspace{1.8em}
+\textbf{Proof: }We have that $1_{G} = (1_{G_{1}} \dots 1_{G_{m}})$ is the identity
+element of $G$. Since we have a cartesian product of groups, then
+$G$ is associative. Now, let $g$ be any element of $G$, since
+$g = (g_{1} \dots g_{m})$ then its inverse is $g^{-1} = (g_{1}^{-1} \dots g_{m}^{-1})$.
+Indeed, $G$ is a group. \qedsymbol
+
+\begin{proposition}
+  \label{prop-8}
+  Let $G_{1}, G_{2}$ be groups, we say that a group $G$ is isormorphic
+  to the direct product $G_{1} \oplus G_{2}$ iff there exists
+  normal subgroups $A, B \lhd G$ such that
+  $A \cong G_{1}$, $B \cong G_{2}$, $A \cap B = 1_{G}$
+  and $AB = G$.
+\end{proposition} \vspace{1.8em}
+\textbf{Proof: }Let $\varphi: G_{1} \oplus G_{2} \longrightarrow G_{1}$ and
+$\rho: G_{1} \oplus G_{2} \longrightarrow G_{2}$ be two projective maps
+then $\Ker \varphi$ and $\Ker \rho$ are two normal subgroups
+from $G_{1} \oplus G_{2}$. We can see that $\Ker \varphi \cap \Ker \rho = 1_{G}$
+and $\Ker \varphi \oplus \Ker \rho = G_{1} \oplus G_{2}$
+since $(x_{1}, x_{2}) = (x_{1}, 1)(1, x_{2})$ for every $(x_{1}, x_{2}) \in G_{1} \oplus G_{2}$
+and every $(x_{1}, 1 ) \in \Ker \rho$ and $(1, x_{2}) \in \Ker \varphi$. \\ \\
+Suppose that the map $\tetha: G_{1} \oplus G_{2} \longrightarrow G$
+be an isomorphism map, then $A = \tetha(\Ker \rho)$ and $B = \tetha(\Ker \varphi)$
+are normal subgroups of $G$. Indeed, $A \cong \Ker \rho \cong G_{1}$,
+$B \cong \Ker \varphi \cong G_{2}$, $A \cap B = 1_{G}$ and $AB = G$. \qedsymbol \\ \\
+By proposition \ref{prop-8} we can define the \textbf{internal direct sum} as follows.
+\begin{definition*}
+  \label{def-internal-sum}
+  Let $G$ be a group, which is the internal direct sum of the groups $G_{1} \oplus \dots \oplus G_{n}$
+  when $G_{i} \leftnormal G$ for all $i = 1, \dots, n$, $\bigcap_{i} G_{i} = 1_{G}$ and $G_{1}  \dots G_{n} = G$.
+\end{definition*}
+\begin{example*}
+  \label{exam-direct-sum}
+  Let $p_{1}, \dots, p_{n}$ be primes numbers. An abelian group of order $p_{1}^{k_{1}}, \dots, p_{n}^{k_{n}}$
+  is a direct sum of subgroups of order $p_{1}^{k_{1}}, \dots, p_{n}^{k_{n}}$.
+\end{example*}
+About internal direct sums, we cay say that a group $G$ is \textbf{indecomposable} when
+$G \neq 1$ and $G = M \oplus N$, that implies that $M = 1$ or $N = 1$. In this way,
+every finite group is a direct sum of indecomposable subgroups.
+
+\begin{proposition}
+  Every group of finite length is a direct sum of finitely indecomposable subgroups.
+\end{proposition} \vspace{1.8em}
+\textbf{Proof: }Let $G = A \oplus B$ and $M = C \oplus D$, then $G = A \oplus C \oplus D$
+for some subgroup $A$, so $C, D \leftnormal G$. Then $C, D \subsetneq M$, so $M$
+is not indecomposable, but $C$ and $D$ are direct sums of indecomposable subgroups,
+the so is $M$, which is the required contradiction. \qedsymbol \\ \\
+We need to notice, that a simple group and indecomposable group are not equivalence.
+A simple group is indecomposable but an indecomposable group need not be simple.
+\begin{example*}
+  $\ZZ/p^{2}\ZZ$ is indecomposable but not simple.
+\end{example*}
+
+\begin{theorem}[Krull-Schmidt Theorem]
+  \label{theo-krull-schmidt}
+  Let $G$ be a group of finite length such that is a direct sum
+  $$
+  G = G_{1} \oplus \dots \oplus G_{n} = H_{1} \oplus \dots \oplus H_{m}
+  $$
+  of indecomposable subgroups. Then $m = n$ and $G_{i} \cong H_{i}$. Hence,
+  $$
+  G = G_{1} \oplus \dots \oplus G_{k} \oplus H_{k+1} \oplus \dots \oplus H_{n}.
+  $$
+\end{theorem} \vspace{1.8em}
+\textbf{Proof: } REMAINDER. \\
+
+It's interesting see how in definition \ref{def-internal-sum} is needed
+to keep both subgroups as normal subgroups. \textit{\textbf{What would happen if only one of them would be normal?}} \\ \\
+Well, supposing that $G_{1}$ is normal and $G_{2}$ is not, we can get the following interesting facts: \\
+
+\begin{enumerate}[1. ]
+    \ii Since $G_{1}$ is normal, then for every $g_{2} \in G_{2}$ we have $g_{2}G_{1}g_{2}^{-1} = G_{1}$,
+    that means, each $g_{2}$ induces an automorphism of $G_{1}$. So, we can define a
+    homomorphism map $\varphi: G_{1} \longrightarrow \Aut G_{2}$, by letting $g_{2}$
+    map to the homomorphism $g_{1} \mapsto g_{2}g_{1}g_{2}^{-1}$. \\
+    \ii If $G_{1}$ and $G_{2}$ are abelian groups, that not mean that $G_{1} \oplus G_{2}$
+    is necessarily abelian. By example, the symmetry group $S_{3}$ is a nonabelian group
+    of order 6 viewed as the permutations of $\{1, 2, 3\}$, which is the cyclic group $C_{3}$ of order 3.
+    If we letting $G_{1} = C_{3}$ and $G_{2} = C_{2}$ (i.e., cyclic group of order 2), then $G = \{I, (1, 2, 3), (1, 3, 2)\}$, which
+    is not an abelian group. \\
+    \ii If $G_{1}$ and $G_{2}$ have the same order $k$, that not mean that $G$ should be of the same order (no as example \ref{exam-direct-sum}).
+    By example, letting $G_{1} = C_{2} \times C_{2} = \{1, x\} \times \{1, x\}$ (which is of exponent 2), if we take
+    $G_{2} = \{1, n\} = C_{2}$, also of exponent 2, and let the nontrivial element
+    of $G_{2}$ act on $G_{1}$ by the rule $n^{-1}(a, b)n = (b, a)$. Then, $(x, 1)n$ has order 4: \\
+    \begin{align*}
+      \bigl((x,1)n\bigr)^2 = (x,1)n(x,1)n &= (x,1)(n^{-1}(x,1)n) = (x,1)(1,x) = (x,x)\\
+      \bigl((x,1)n\bigr)^3 = (x,x)(x,1)n &= (1,x)n\\
+      \bigl((x,1)n\bigr)^4 = (1,x)n(x,1)n &= (1,x)(n^{-1}(x,1)n) = (1,x)(1,x) = (1,1).
+    \end{align*}
+\end{enumerate}
+So far, we've seen interesting facts if only one of the groups is normal. So, let's make of this
+a defintion.
+\begin{definition*}[Semidirect products]
+  \label{def-semi-product}
+  Let $G$ be a group, which is isomorphic to the semidirect product of the groups $G_{1}, G_{2}$ iff
+  there exist subgroups $M$ and $N$ of $G$ such that $M \cong G_{1}$, $N \cong G_{2}$ where
+  $M \lhd G$, $M \cap N = \{1_{G}\}$ and $MN = G$.
+\end{definition*}
+Perhaps, the notation for direct products and direct sums could be a little messy,
+however, we will specify which direct operation we are working on to be more precise.
+In the end, we will see what are the differents between these operations.
+
+\subsection{Conjugacy}
+\begin{definition*}
+  Conjugacy, is an equivalence relation on a group $G$ such that $g, x \in G$,
+  then $&&^{g}x = gxg^{-1}$, these equivalence classes are the \textbf{conjugacy classes} of $G$.
+  So, any group $G$ can be partitioned into conjugacy classes,
+  $$
+  &&^{G}x = \{&&^{g}x: g \in G\}
+  $$
+  for the conjugacy class of $x$ in $G$.
+\end{definition*}
+
+\begin{definition*}
+  The centralizer in $G$ of an element $x$ of a group $G$ is
+  $$
+  C_{G}(x) = \{g \in G \ \vert \ gx = xg\}.
+  $$
+\end{definition*}
+We notice that the number of conjugates of an element of a group $G$ is the index
+of its centralizer in $G$.
+
+\begin{definition*}
+  Let $G$ be a group and $H < G$ be a subgroup. The \textbf{normalizer}
+  of $H$ in $G$ is defined by
+  $$
+  N_{G}(H) := \{g \in G \ \vert \ gHg^{-1} = H\}.
+  $$
+\end{definition*}
+
+\begin{proposition}[The Class Equation]
+  In a finite group $G$,
+  $$
+  |G| = \sum |C| = |Z(G)| + \sum_{|C| > 1} |C|.
+  $$
+\end{proposition} \vspace{1.8em}
+\textbf{Proof: }As the conjugacy classes constitute a partition of $G$, then $|G| = \sum |C|$.
+Iff $x \in Z(G)$, then the conjugacy class of $x$ is trivial, this is $|C| = 1$.
+Hence,
+$$
+|G| = \sum |C| = \sum_{|C| = 1} + \sum_{|C| > 1} |C| = |Z(G)| + \sum_{|C| > 1} |C|.
+$$ \qedsymbol
+
+\section{Groups Actions}
+Now that we know some basic structures about groups, let's see how a group $G$ \textbf{acts} on a set $X$
+and which is the effect of this.
+\begin{definition*}
+  \label{def-19}
+  Let $G$ be a group, let $X$ be a set and let a homormorphism $*: G \longrightarrow S_{X}$ where
+  $S_{X}$ is the permutation set of $X$. We say that the pair $(X, *)$ is called a $G$-action.
+\end{definition*} 
+Thus, in Definition \ref{def-19} for each $g \in G$ gives a permutation $*_{g}$ of $X$, which
+sends any element $x \in X$ to an element $*(g)x$. We need to remark that if
+$*: G \times X \longrightarrow X$, then $(X, *)$ is called a left $G$-action and
+if $*: X \longrightarrow  G \times X$, then is called a right $G$-action and
+$X$ is a $G$-set. \\ \\
+Now, we can set up an equivalence relation. If $X$ is a $G$-set, then we define
+the \textbf{stabilizer} of $x \in X$ by
+$$
+\Stab{x} = G_{x} = \{g \in G \ | \ g * x = x\}.
+$$
+\begin{definition*}
+  \label{def-orbit}
+  The \textbf{orbit} of an element $x \in X$ is the subset given by
+  $$
+  G \cdot x = \{g \cdot x : g \in G \} \subseteq X.
+  $$
+\end{definition*}
+\begin{itemize}
+  \ii The \textbf{kernel} of a group action $\varphi: G \longrightarrow S_{X}$ is the normal subgroup of $G$
+  consisting of the elements acting trivially on $X$. Then,
+  $$
+  \ker \varphi = \bigcap_{x \in X} G_{x} = \{g \in G : X^{g} = X\}.
+  $$
+  \ii A $G$-action on $X$ is \textbf{faithful} or \textbf{effective} if $\Ker \varphi$ is trivial.
+  Equivalently, the action is faithful if no trivial element of $G$
+  acts trivially on $X$. In other words, a group action is faithful iff
+  the homomorphism to the group of transformation is an injection.
+\end{itemize}
+Now, it's necessary to prove that actually a $G$-action generates a bijection.
+\begin{proposition}
+  Let $X$ be a $G$-set, $x \in X$. Define
+  $$
+  f_{x}: G/G_{x} \longrightarrow G*x  \text{ by } gG_{x} \mapsto g*x.
+  $$
+  Then, $f_{x}$ is a well-defined bijection. In particular, if $|G:G_{x}|$ is finite,
+  then
+  $$
+  |G*x| = |G:G_{x}| \text{ and } |G*x| \text{ divides } |G|.
+  $$
+\end{proposition} \vspace{1.8em}
+\textbf{Proof: }Let $g, g' \in G$, then $g*x = g'*x$
+\begin{enumerate}[i. ]
+    \ii iff $g'^{-1}*(g*x) = x$,
+    \ii iff $(g'^{-1}g)*x = x$,
+    \ii iff $g'^{-1}g \in G_{x}$,
+    \ii iff $gG_{x} = g'G_{x}$.
+\end{enumerate}
+Then, $f_{x}$ is well-defined, one-to-one and surjective. So, claim follows. \qedsymbol
+\begin{example*}
+  Let $X$ be a set, and define $\Aut_{\text{Set}}(X)$ to be the set of automorphisms on $X$,
+  which arises a group action.
+\end{example*}
+
+\begin{example*}
+  Let $G = X$ be a $G$-set by itself. The left action is given by
+  $$
+  *: G \times X \longrightarrow X \text{ by } g*x = gxg^{-1}
+  $$
+  called \textit{conjugation} by $G$. The orbit of an element $a \in X = G$ is 
+  $$
+  C(a) := G*a = \{xax^{-1} \ | \ x \in G\},
+  $$
+  called the \textit{conjugacy class} of $a$, and the \textit{stabilizer} of $a$ is
+  $$
+  \Stab{a} := G_{a} = \{x \in G \ | \ xax^{-1} = a\} = \{x \in G \ | \ xa = ax\}.
+  $$
+  This subgroup of $G$, is called the \textit{centralizer} of $a$. So, $Z_{G}(a)$
+  is the set of elements of $G$ commuting with $a$. In particular, $\lrangle{a} \subset Z_{G}(a)$.
+  The set of fixed points of this action is
+  $$
+  F_{G}(X) = \{a \in X \ | \ xax^{-1} = a \text{ for all } x \in G\} 
+  $$
+  $$
+  \hspace{2.5em} = \{a \in G \ | \ xa = ax \text{ for all } x \in G \},
+  $$
+
+  the \textit{center} $Z(G)$ of $G$.
+
+
+\begin{definition*}
+  Let $n$ be a positive integer and let
+  $$
+  S_{n} \defeq \Aut_{\text{Set}}(\{1, 2, \dots, n\}).
+  $$
+  We call this the \textbf{symmetry group} of $n$ letters.
+\end{definition*}
+
+\begin{theorem}[Cayley's Theorem]
+  Every group $G$ is isomorphic to a subgroup of the symmetric group $S_{G}$.
+\end{theorem} \vspace{1.8em}
+\proof Let $G$ be a group, and let $S_{G}$ be the permutation group of $G$. For each $g \in G$,
+define $\rho_{g}: G \longrightarrow G$ by $\rho_{g}(g) = gh$. Then $\rho_{g}$ is invertible
+with inverse $\rho_{g^{-1}}$, and so is the permutation of the set $G$. \\
+Define $\phi: G \longrightarrow S_{G}$ by $\phi(g) = \rho_{g}$. Then $\phi$ is a
+homomorphism, since
+$$
+(\phi(gh))(x) = \rho_{gh}(x) = ghx = \rho_{g}(hx) = (\rho_{g} \circ \rho_{g})(x) =  ((\phi(g))(\phi(h)))(x),
+$$
+and $\phi$ is injective, since if $\phi(g) = \phi(h)$ then $\rho_{g} = \rho_{h}$, so 
+$gx = hx$ for all $x \in X$, and so $g = h$ as required. So $\phi$ is 
+an embedding of $G$ into its own permutation group. If $G$ is finite of order $n$, then
+simply numbering the element of $G$ gives an embedding from $G$ to $S_{n}$. \qedsymbol \\ \\
+Now, let's see a generalization of Cayley's Theorem given by Prof. Terence Tao (\href{https://terrytao.wordpress.com/2014/10/06/a-trivial-generalisation-of-cayleys-theorem/}{see}), this generalization is about to have an index $n$ subgroup that is isomorphic to a fixed group $H$.
+
+\begin{theorem}[Cayley's Theorem for $H$-sets]
+  Let $H, G$ be groups such that $G$ has index $n$ and is isormorphic to $H$.
+  Then, $G$ is isomorphic to a subgroup ${\tilde G}$ of the semidirect product $S_{n} \ltimes H^{n}$,
+  defined explicity as the set of tuples 
+  $$
+  (\phi, (h_{i})_{i=1}^{n})(\rho, (k_{i})_{i=1}^{n}) := (\phi \circ \rho, (h_{\rho(i)}k_{i})_{i=1}^{n})
+  $$
+  and inverse
+  $$
+  (\phi, (h_{i})_{i=1}^{n})^{-1} := (\phi^{-1}, (h_{\phi(i)}^{-1})_{i=1}^{n}).
+  $$
+
+\end{theorem} \vspace{1.8em}
+\proof Let $X, Y$ be $H$-sets and let a morphism $f: X \longrightarrow Y$ which
+respects the right action of $H$, thus $f(x)h = f(xh)$ for all $x \in X$ and $h \in H$.
+Suppose that $H \subset G$, then we can see $G$ as an $H$-set, in this way,
+we notice that $G$ is isomorphic to the $H$-set $\{1. \dots, n\} \times H$ with the
+right action of $H:(i, h)k := (i, hk)$ and identified with $S_{n} \ltimes H$, acting
+on the former $H$-set by the rule
+$$
+(\phi, (h_{i})_{i=1}^{n})(i, h) := (\phi(i), h_{i}h).
+$$
+\qedsymbol
+
+\subsection{Orbits}
+Now, let's extend the idea of equivalence relation introduced in Definition \ref{def-orbit}.
+\begin{lemma}
+  \label{lemm-equiv-relation}
+  Let $X$ be a $G$-set under $*$, then $\sim_{G}$ is an equivalence relation on $X$.
+\end{lemma} \vspace{1.8em}
+\proof We need to prove three points:
+\begin{enumerate}[1. ] 
+    \ii \textbf{Reflexitivity: }For all $x \in X$, we see that $x = 1_{G}*x$, so $x \sim_{G} x$.
+    \ii \textbf{Symmetry: }If $x_{1} \sim_{G} x_{2}$, then there is a $g \in G$ such that $x_{1} = g*x_{2}$,
+    indeed
+    $$
+    g^{-1}*x_{1} = g^{-1}*(g*x_{2}) = 1_{g}*x_{2} = x_{2}.
+    $$
+    Of course, $x_{1} = g*x_{2}$ iff $x_{1}*g^{-1} = x_{2}$.
+    \ii \textbf{Transitivity: }Suppose that $x_{1} \sim_{G} x_{2}$ and $x_{2} \sim_{G} x_{3}$.
+    Let $g, g' \in G$ such that $x_{1} = g*x_{2}$ and $x_{2} = g'*x_{3}$.
+    Then, $x_{1} = g*x_{2} = g*(g'*x_{3}) = (g.g')*x_{3}$, so $x_{1} \sim_{G} x_{3}$.
+\end{enumerate}
+\qedsymbol \\ \\
+Thanks to Lemma \ref{lemm-equiv-relation}, we can see that the equivalence class of $x$ via $\sim_{G}$
+is actually the set
+$$
+\overline{x} = \{g*x \ | \ g \in G\}.
+$$
+As we've seen in Definition \ref{def-orbit}, the set $\overline{x}$ is called the orbit of $x$ under $*$,
+which gives a system of representatives $\OC$ for the equivalence classes under $\sim_{G}$. 
+
+\begin{definition*}[Mantra of $G$-actions]
+  \label{def-mantra-g-actions}
+  Let $X$ be a $G$-set and $\OC$ a system of representatives. Then
+  $$
+  X = \bigvee_{\OC} G*x \text{ and if } |X| \text{ is finite, then } X = \sum_{\OC} |G*x|.
+  $$
+\end{definition*}
+
+\begin{theorem}[Orbit Descomposition Theorem]
+  \label{theo-orbit}
+  Let $X$ be a $G$-set. Then
+  $$
+  X = F_{G}(X) \vee \bigvee_{\OC^{*}} G*x.
+  $$
+  In particular, if $X$ is a finite set, then
+  $$
+  |X| = \sum\limits_{\OC} |G*x| = |F_{G}(X)| + \sum\limits_{\OC^{*}} [G:G_{x}].
+  $$
+\end{theorem} \vspace{1.8em}
+\proof By Definition \ref{def-mantra-g-actions}, $|G*x| = [G:G_{x}]$. So, claim follows. \qedsymbol
+
+\begin{example*}[A precise example]
+  Let $G = D_{3} = \{e, r, r^{2}, f, fr, rf\}$, with $|G| = 6$ and satisfying $r^{3} = e = f^{2}$ and
+  $frf^{-1} = r^{-1} = r^{2}$. We have $fr = r^{2}f$ and $rf = fr^{2}$, so
+  $$
+  C(e) = \{e\} \hspace{3.6em} \text{ and } \hspace{0.5em} 1|6
+  $$
+  $$
+  C(r) = \{r, r^{2}\} \hspace{2.2em} \text{ and } \hspace{0.5em} 2|6
+  $$
+  $$
+  C(f) = \{f, fr, rf\} \hspace{0.5em} \text{ and } \hspace{0.5em} 3|6
+  $$
+  and
+  $$
+  Z_{G}(e) = G \hspace{3.6em} \text{ and } \hspace{0.5em} |C(e)| = [G:Z_{G}(e)] = 1
+  $$
+  $$
+  Z_{G}(r) = \{e, r, r^{2}\} \hspace{0.8em} \text{ and } \hspace{0.5em} |C(r)| = [G:Z_{G}(r)] = 2
+  $$
+  $$
+  Z_{G}(f) = \{e, f\} \hspace{2em} \text{ and } \hspace{0.5em} |C(f)| = [G:Z_{G}(f)] = 3
+  $$
+  with fixed points
+  $$
+  Z(G) = \{e\},
+  $$
+  so
+  $$
+  |G| \hspace{0.5em} = \hspace{0.5em} |Z(G)| \hspace{0.5em} + \hspace{0.5em} |C(r)| \hspace{0.5em} + \hspace{0.5em} |C(f)|
+  $$
+  $$
+  6 \hspace{1.5em} = \hspace{1.5em} 1 \hspace{1.5em} + \hspace{1.5em} 2 \hspace{1.5em} + \hspace{1.5em} 3.
+  $$
+\end{example*}
+
+\begin{theorem}[Cauchy's Theorem]
+  \label{theo-cauchy}
+  Let $p$ be a prime number which divides the order of the finite group $G$. Then there exists
+  an element of $G$ of order $p$.
+\end{theorem} \vspace{1.8em}
+\proof Let $G$ be a finite group and $p$ a prime number which divides the order of $G$. Set
+$$
+X = \{(g_{1}, \dots, g_{p}) \in G^{p} \ | \ g_{1} \dots g_{p} = e \text{ in } G\} \subset G^{p},
+$$
+where $G^{p} = G \times \dots \times G$ ($p$ times). Let $(\ZZ/p\ZZ, +)$ act on $X$.
+Applying Orbit Descomposition Theorem \ref{theo-orbit}, we get
+$$
+|G^{p}| = |X| = |F_{\ZZ/p\ZZ}(X)| + \sum_{\OC^{*}} \ [\ZZ/p\ZZ:(\ZZ/p\ZZ)_{x}].
+$$
+If $x \in \OC^{*}$, then $(\ZZ/p\ZZ)_{x} = 1$ as $\ZZ/p\ZZ$ has only the trivial subgroups.
+So,
+$$
+0 \equiv |X| \equiv |F_{\ZZ/p\ZZ}(X)| \mod p.
+$$
+Clearly, $e \neq g_{1} = \dots = g_{p}$. Then, $g^{p} = e$ as needed. \qedsymbol
+
+\begin{proposition}
+  The order of the orbit of an element is equation to the index of its
+  stabilizer.
+\end{proposition} \vspace{1.8em}
+\proof Let $G$ act on $X$. Let $x \in X$, there is a surjection map
+$*:G \longrightarrow G \times X$ onto the orbit of $x$ induces a injection
+correspondence between the elements of the orbit $x$ and the classes
+of the equivalence relation induced on $G$ by $*$. The latter
+are the left cosets of $\Stab{x}$, since $g*x = h*x$ is equivalent
+to $x = g^{-1}h*xx$ and to $g^{-1}h \in \Stab{x}$. Hence the order of the
+orbit of $x$ equals the number of left cosets of $\Stab{x}$. \qedsymbol
+
+\section{Simple Groups}
+Now that we know some facts about Definition \ref{def-center}, we can establish a relation
+between the center and simple groups. First, let's see what a simple group is.
+\begin{definition*}
+  Let $G$ be a group. We say that $G$ is simple if $G$ has no normal subgroups other than trivial ones (i.e., $1_{G}$ and $G$).
+\end{definition*}
+
+\begin{proposition}
+  \label{prop-simple}
+  Every homomorphism from a simple group to another group is either injective or trivial.
+\end{proposition} \vspace{1.8em}
+\proof Let $f: G \longrightarrow G'$ a nontrivial homomorphism from a simple group $G$ into another group $G'$,
+since $\Ker f$ is a normal subgroup of $G$, then $f$ is automatically injective and claim follows. \qedsymbol \\ \\
+By Proposition \ref{prop-simple}, if $G$ is nonabelian simple, then the center $Z(G) = \{1_{G}\}$. By Lagrange's Theorem
+\ref{theo-lagrange}, any group of order prime is simple.
+
+\begin{example*}
+  $A_{5}$ is the unique simple non-abelian group of smallest order.
+\end{example*}
+
+\begin{example*}
+  The $\PSL_{n}(K)$ for $n \geq 3$ and $k$ has at least
+  four elements, is simple.
+\end{example*} 
+
+\begin{definition*}
+  Let $G$ be a group and $H$ a subgroup of $G$. We define the \textbf{core}
+  of $H$ in G by $\Core_{G}(H) := \bigcap_{G} xHx^{-1}$.
+\end{definition*}
+
+\begin{lemma}
+  \label{lemm-core}
+  Let $H$ be a group, and suppose that $H \substeq G$ is a subgroup with
+  $|G:H| = n$. Then $H$ contains a normal subgroup $N$ of $G$ such that
+  $|G:N|$ divides $n!$.
+\end{lemma} \vspace{1.8em}
+\proof Letting $N = \Core_{G}(H)$. Then $G/N$ is isomorphic to a subgroup of the symmetric group $S_{n}$,
+and by Lagrange's Thereom \ref{theo-lagrange}, $|G/N|$ divides $|S_{n}| = n!$. \qedsymbol
+
+\begin{lemma}
+  Let $G$ be a simple group such $G$ contains a subgroup of index $n > 1$.
+  Then $|G|$ divides $n!$.
+\end{lemma} \vspace{1.8em}
+\proof Taking $N$ from Lemma \ref{lemm-core}, then it's proper in $G$ because $n > 1$.
+Since $G$ is simple, $N = 1$ and thus $|G| = |G/N|$ divides $n!$. \qedsymbol
+
+\section{Sylow's theorem}
+\label{section-sylow-theorem}
+Let $p > 1$ and $m > 1$ be relatively primes. Let $G$ be a group of order
+$p^{r}m$ where $r > 0$. We define the Sylow $p$-subgroup $H$ of $G$ by
+$$
+\Syl_{p}(G) := \{H \ | \ H \text{ a Sylow $p$-subgroup of } G\}.
+$$
+
+\subsection{First Sylow Theorem}
+
+\begin{theorem}[First Sylow Theorem]
+  \label{theo-first-sylow}
+  Let $p$ be a prime number. Let $k > 0$ such that $p^{k}$ divides
+  the order a group $G$, then $G$ has a subgroup of order $p^{k}$.
+\end{theorem} \vspace{1.8em}
+\proof By induction and assuming that $k \geq 2$, let $T$ be a finite group
+such that $|T| < |G|$ and $p^{k}||T|$, then $T$ contains a subgroup of 
+order $p^{k}$. Now, we need to show that $G$ actually contains a subgroup
+of order $p^{k}$. \\ \\
+Let $H$ be a proper subset of $G$ such that $H = \lrangle{a}$ where
+$a \in G$. If $a \in Z(G)$, we see that $xa^{i}x^{-1} = a^{i}$ for all $x \in G$ and $i \in \ZZ$.
+Then $p \ | \ [G:Z_{G}(a)]$. In particular,  $H \leftnormal G$ and $G/H$
+is a group of order $[H:H] = |G|/|H| = |G|/p < |G|$. Since $p^{k-1}| |G/H|$,
+then there exists a subgroup $T \subset G/H$ of order $p^{k-1}$.
+Let $*: G \longrightarrow G/H$ be the canonical epimorphism. Then $H$ is the 
+kernel and there exists a subgroup $\tilde{T}$ of $G$ containing $G$ and
+satisfying $T = \tilde{T}/H$. Hence $|\tilde{T}| = |T||H| = p^{m}$, and claim follows. \qedsymbol \\ \\
+First Sylow Theorem can be viewed as a generalization of Cauchy's Theorem \ref{theo-cauchy}.
+
+\begin{lemma}
+  Let $P$ be a Sylow $p$-subgroup of a group $G$. Then every $p$-subgroup of the normalizer $N_{G}(P)$
+  is contained in $P$.
+\end{lemma} \vspace{1.8em}
+\proof Let $H \leq N_{G}(P)$ be a $p$-subgroup. Since $H$ normalizes $P$, the product $HP$ is
+a subgroup of $N_{G}(P)$ and $P \leftnormal HP$. Since
+$$
+HP/P \cong H/H \cap P
+$$
+is a quotient of the $p$-group $H$, and $P$ is a $p$-group, it follows that $HP$ is a $p$-group.
+And $P \leq HP$. But $P$ is maximal $p$-subgroup of $G$, by definition of Sylow
+$p$-subgroup. Hence $HP = P$, meaning that $H \leq P$. \qedsymbol
+
+\subsection{Second and Third Sylow Theorems}
+\begin{theorem}[Second Sylow Theorem]
+  \label{theo-second-sylow}
+  Let $p$ be a prime number. The number of Sylow $p$-subgroups of a finite group $G$
+  divides the order of $G$ and is congruent to 1 module $p$.
+\end{theorem} 
+
+\begin{theorem}[Third Sylow Theorem]
+  \label{theo-third-sylow}
+  Let $p$ be a primer number. All Sylow $p$-subgroups of a finite group are conjugate.
+\end{theorem} \vspace{1.8em}
+\proof As Sylow did it, let's prove Theorem \ref{theo-second-sylow} and \ref{theo-third-sylow} together.
+Let $S$ be a Sylow $p$-subgroup. A conjugate of a Sylow $p$-subgroup is a Sylow $p$-subgroup, therefore
+$S$ acts on the set $\mathfrak{S}$ of all Sylow $p$-subgroups by inner automorphisms. Under this action,
+$\{S\}$ is an orbit, since $aSa^{-1} = S$ for all $a \in S$. Conservely, if $\{T\}$ is a trivial orbit, then
+$aTa^{-1} = T$ for all $a \in S$ and $s \subseteq N_{G}(T)$, then $T \leftnormal N_{G}(T)$ and yields $S = T$.
+Thus $\{S\}$ is the only trivial orbit. The orders of the other orbits are indexes in $S$ of stabilizers and
+are multiples of $p$. Hence $|\mathfrak{S}| \equiv 1 \mod p$. \\ \\
+Suppose that $\mathfrak{S}$ contains two distinct conjugacy $\mathcal{C}$ and $\mathcal{C}'$ of subgroups.
+Any $S \in \mathcal{C}$ acts on $\mathcal{C}$ and $\mathcal{C}' \subseteq \mathfrak{S}$ by inner automorphisms.
+Then the trivial orbit $\{S\}$ is in $\CK$ , by the above, $|\CK| \equiv 1$ and $|\CK'| \equiv 0 \mod p$.
+But any $T \in \CK'$ also acts on $\CK \cup \CK'$ by inner automorphisms, then the trivial orbit $\{T\}$
+is in $\CK'$, so that $|\CK'| \equiv 1$ and $|\CK| \equiv 0 \mod p$. This shows that $\mathfrak{S}$
+cannot contain two distinct conjugacy classes of subgroups. Therefore $\mathfrak{S}$ is a conjugacy class
+and $|\mathfrak{G}|$ divides $|G|$. \qedsymbol
+
+\begin{proposition}
+  \label{prop-p-contained}
+  In a finite group, every $p$-subgroup is contained in a Sylow $p$-subgroup.
+\end{proposition} \vspace{1.8em}
+\proof As we seen, a $p$-subgroup $H$ of a finite group $G$ acts by inner automorphisms on the set
+$\mathfrak{G}$ of all Sylow $p$-subgroups. Since $|\mathfrak{G}| \equiv 1 \mod p$ there is a least
+one trivial orbit $\{S\}$. Then $hSh^{-1} = S$ for all $h \in H$ and $H \subseteq N_{G}(S)$. Now,
+$S$ is a Sylow $p$-subgroup of $N_{G}(S)$, and $H \subseteq S$, so $S \leftnormal N_{G}(S)$. \qedsymbol
+
+\section{Series}
+\begin{definition*}
+  Let $G$ be a non-trivial group. A sequence of groups
+  $$
+  N_{0} \subset N_{1} \subset \dots \subset N_{n} = G,
+  $$
+  is called \textit{subnormal} if $N_{i} \leftnormal N_{i+1}$ and
+  called \textit{normal} if $N_{i} \leftnormal G$.
+  The quotients $N_{n}/N_{n-1}, \dots, N_{1}/N_{0}$ are called
+  the \textit{factors} of the series.
+  Letting $N_{0} = 1_{G}$ and $N_{n} = G$, then it's called
+  \begin{enumerate}[I. ]
+      \ii \textbf{Cyclic series}, if $N_{i+1}/N_{i}$ is cyclic for all $i$.
+      \ii \textbf{Abelian series}, if $N_{i}/N_{i}$ is abelian for all $i$.
+      \ii \textbf{Composition series}, if $N_{i+1}/N_{i}$ is simple for all $i$.
+  \end{enumerate}
+\end{definition*} \\
+Two normal series are equal if both of them have the same length, the same
+factors and up to isomorphism and indexing.
+
+\begin{example*}
+  Let $C = \lrangle{c}$. Then, the series
+  $1 \leftnormal \{1, c^{3}\} \leftnormal C$ and $1 \leftnormal \{1, c^{2}, c^{4} \} \leftnormal C$
+  are equal.
+\end{example*}
+
+\subsection{Normal series}
+\begin{definition*}
+  A \textit{refinement} of a normal series $\mathcal{A}: \  1_{G} = A_{0}, \leftnormal \dots \leftnormal A_{m} = G$
+  is a normal series $\mathcal{B}: \ 1_{G} = B_{0} \leftnormal \dots \leftnormal B_{n} = G$
+  such that every $A_{i}$ is one of the $B_{j}$'s.
+
+\end{definition*}
+
+\begin{theorem}[Schreier Refinement Theorem]
+  \label{theo-refinement}
+  Any two series of a group have equivalent refinements.
+\end{theorem} \vspace{1.8em}
+\proof Let $\mathcal{A}: \  1_{G} = A_{0}, \leftnormal \dots \leftnormal A_{m} = G$
+  is a normal series $\mathcal{B}: \ 1_{G} = B_{0} \leftnormal \dots \leftnormal B_{n} = G$
+  two normal series of a group $G$. Let $C_{k}, D_{k}$ where $0 \leq k \leq mn$,
+  then we can write $k = ni + j$ for $0 \leq i < m$ and $0 \leq j < n$ as
+  we can write $k = mj' + i'$ for $0 \leq i' < m$ and $0 \leq j' < n$.
+  Then, there is a permutation $\phi: ni+j \longrightarrow mj+i$ of $\{0, 1, \dots, mn-1\}$. \\ \\
+  By the above, we can see that $A_{i} = C_{ni} \subseteq \dots \subseteq C_{ni+n} = A_{i+1}$
+  and $B_{j} = D_{mj} \subseteq \dots \subseteq D_{mj+m} = B_{j+1}$, for all $0 \leq i < m$ and
+  $0 \leq j < n$. Letting $A = A_{i}, A' = A_{i+1}$ and $B = B_{j}, B' = B_{j+1}$, then
+  $C_{ni+j} = A(A' \cap B)$, $C_{ni+j+1} = A(A' \cap B')$, $D_{mj+i} = B(B' \cap A)$, $D_{mj+i+1} = B(B' \cap A')$
+  are subgroups of $G$, $C_{ni+j} \leftnormal C_{ni+j+1}$ and $D_{mj+i} \leftnormal D_{mj+i+1}$.
+  So, they are normal series and refinements of $\mathcal{A}$ and $\mathcal{B}$. \qedsymbol
+
+\subsection{Composition series}
+\begin{proposition}
+  \label{prop-finite-group}
+  Every finite group has a composition series.
+\end{proposition} \vspace{1.8em}
+\proof Let $\mathcal{A}: \ 1_{G} = A_{0} \nleftnormal \dots \nleftnormal A_{m} = G$ has length
+$m \leq n$. Hence $G$ has a strictly ascending normal series of maximal length. \qedsymbol
+
+\begin{theorem}[Jordan-H{\"o}lder Theorem]
+  Any two composition series of a group are equivalent.
+\end{theorem} \vspace{1.8em}
+\proof Let $\AK$ and $\BK$ be two compositions series from $G$. By Theorem \ref{theo-refinement},
+$\AK$ and $\BK$ have equivalent refinements $\CK$ and $\DK$, respectively. Let $\phi$ be
+a permutation such that $C_{k}/C_{k-1} \cong D_{\phi(k)}/D_{\phi(k-1)}$ for all $k > 0$ sends
+the nontrivial factors of $\CK$ onto the nontrivial factors of $\DK$, and sends the
+factors of $\AK$ onto the factors of $\BK$, therefore $\AK$ and $\BK$ are equivalent. \qedsymbol
+
+\begin{example*}
+  Let $m = a_{1} \dots a_{n} \in \ZZ$ where $a_{i} > 1$. Then we have a subnormal series
+  $$
+  0 = a_{1} \dots a_{n} \ZZ/m\ZZ < \dots < a_{1}\ZZ/m\ZZ < \ZZ/m\ZZ.
+  $$
+  As $\ZZ/m\ZZ$ is finite group, by Proposition \ref{prop-finite-group} it has a composition series.
+\end{example*}
+
+\section{Solvable Groups}
+\begin{definition*}
+  A solvable group is a group with a normal series whose factors are abelian.
+\end{definition*}
+
+\begin{example*}
+  Every abelian group is solvable.
+\end{example*}
+\proof Since any abelian group has a normal series $\AK$, then for any two $A_{i+1}/A_{i}$
+where $A_{i+1}, A_{i} \in \AK$ is actually a normal subgroup, then claim follows. \qedsymbol
+
+\begin{example*}
+  The dihedral group $D_{n}$ is solvable for every $n \geq 2$ because it has a chain of subgroups $1 < C_{n} < G$
+  and $G/C_{n} = C_{2}$.
+\end{example*}
+
+\begin{definition*}
+  The \textit{commutator} of two elements $x, y$ is $xyx^{-1}y^{-1}$, the commutator subgroup of a group $G$
+  is the subgroup $G'$ of $G$ generated by all commutators.
+\end{definition*}
+
+\begin{proposition}
+  \label{prop-smallest-normal}
+  $G'$ is the smallest normal subgroup $N$ of $G$ such that $G/N$ is abelian.
+\end{proposition} \vspace{1.8em}
+\proof Since the inverse of a commutator is in fact a commutator, let $x \in G'$
+b a product of commutators $x = c_{1} \dots c_{n}$, then
+$$
+axa^{-1} = ac_{1}a^{-1} \dots ac_{n}a^{-1} \in G' \text{ for all } a \in G'.
+$$
+Thus, $G' \leftnormal G$. If $N \leftnormal G$ and $G/N$ is abelian, then $Nxy = Nyx$ and
+$xyx^{-1}y^{-1} \in N$ for all $x, y \in G$, and $G' \subseteq N$. \qedsymbol
+
+\begin{theorem}
+  Let $G$ be a group. Then $G$ is solvable iff there exist an integer $n$ such that $G^{(n)} = 1_{G}$.
+\end{theorem} \vspace{1.8em}
+\proof It's known that $G^{(i)}/G^{(i+1)}$ is abelian, hence if $G^{(n)} = 1_{G}$ for some
+$n$, then $G$ is solvable. Conversely, suppose that
+$$
+1_{G} = N_{n} \subset N_{n-1} \subset \dots \subset N_{1} \subset G
+$$
+is an abelian series. By Proposition \ref{prop-smallest-normal}, $G' \subset N_{1}$. By induction,
+we suppose that $G^{(i-1)} \subset N_{n-1}$. Finally, $G^{(i)} = [G^{(i-1)}, G^{(i-1)}] \subset [N_{i-1}, N_{i-1}] \subset N_{i}$.
+\qedsymbol
+
+\begin{proposition}
+  \label{prop-p-solvable}
+  Every finite $p$-group is solvable.
+\end{proposition} \vspace{1.8em}
+\proof As $G$ has a subgroup $N$ of order $p-1$, which is normal, then $N$ and $G/N$ are solvable.
+By induction, then $G$ is in fact solvable. \qedsymbol \\ \\
+We can generalize Proposition \ref{prop-p-solvable} with the following proposition.
+\begin{proposition}
+  \label{prop-pq-solvable}
+  Every group of order $p^{m}q^{n}$, where $p$ and $q$ are prime numbers, is solvable.
+\end{proposition} \vspace{1.8em}
+\proof Since there are subgroups of order $p^{m}$ and $q^{n}$, then by Proposition \ref{prop-p-solvable}
+are solvable. Then claim follows. \qedsymbol
+
+\begin{definition*}
+  A normal series $1_{G} = C_{0} \leftnormal \dots \leftnormal C_{m} = G$ is \textbf{central normal series} when
+  $C_{i} \leftnormal G$ and $C_{i+1}/C_{i} \subseteq Z(G/C_{i})$ for all $0 \leq i < m$.
+\end{definition*}
+
+\begin{definition*}
+  A group is \textbf{nilpotent} when it has a central normal series.
+\end{definition*}
+We can say that nilpotent groups are a kind of solvable groups with futher properties.
+
+\begin{proposition}
+  Every finite $p$-group is nilpotent.
+\end{proposition} \vspace{1.8em}
+\proof The trivial case is when $p \leq 2$, then claim follows. Suppose that $n > 2$, then
+$G$ has a nontrivial center, then $G/Z(G)$ is nilpotent and so does $G$. \qedsymbol
+
+
+
+\section{The Hall Theorems}
+The Hall Theorems can be viewed as stronger versions of Sylow's Theorem seen in Section \ref{section-sylow-theorem}.
+Futhermore, these theroems hold in Solvable groups.
+
+\begin{theorem}
+  \label{theo-first-hall}
+  Let $m$ and $n$ be relative prime numbers. Every solvable of order $mn$ contains
+  a subgroup of order $m$.
+\end{theorem} \vspace{1.8em}
+\proof The trivial case is when $m$ is a power of any prime number, then claims follows by First Sylow Theorem \ref{theo-first-sylow}.
+Otherwise, let $G$ be a group and suppose that it has a normal subgroup $N$ of order $p^{k} > 1$ for some prime $p$ and $k \in \ZZ$.
+Then, $p^{k}$ divides $m$ or $n$. \\ \\
+If $p^{k}$ divides $m$, then $|G/N| = (m/p^{k})n$, where $m/p^{k}$ and $n$ are relatively prime and $|G/N| < |G|$. By induction,
+$G/N$ has a subgroup $H/N$ of order $m/p^{k}$, where $N \subset H \leq G$, then $|H| = m$. \\ \\
+If $P^{k}$ divides $n$, then $|G/N| = (n/p^{k})m$, where $n/p^{k}$ and $m$ are relatively prime and $|G/N| < |G|$. By induction,
+$G/N$ has a subgroup $H/N$ of order $m$ when $N \subseteq H \leq G$. Then $|H| = mp^{k}$. Now, $N \leftnormal H$,
+$N$ is abelian, and $N$ has order $p^{k}$, which is relatively prime to $m$. Then $H$ has a subgroup of order $m$,
+and then so does $G$. \qedsymbol
+
+\begin{theorem}
+  \label{theo-second-hall}
+  In a solvable group of order $mn$, where $m$ and $n$ are relatively prime, all subgroups of order $m$ are conjugate.
+\end{theorem} \vspace{1.8em}
+\proof Let $G$ be group of order $mn$, if $m$ is a power of any prime number, then claim follows by Third Sylow Theorem \ref{theo-third-sylow}.
+Otherwise, let $G$ be a group and suppose that it has a normal subgroup $N$ of order $p^{k} > 1$ for some prime $p$ and $k \in \ZZ$.
+Let $A, B \leq G$ have order $m$. \\ \\
+Suppose that $p^{k}$ divides $m$. By induction, $A/N$ and $B/N$ are conjugate in $G/N$, $G/N = (Nx)(A/N)(Nx)^{-1}$ for some $x \in G$. Then
+$$
+B = \bigcup_{b \in B} Nb = \bigcup_{a \in A}(Nx)(Na)(Nx)^{-1}
+$$
+$$
+\hspace{3.3em} = \bigcup_{a \in A}Nxax^{-1} = N(xAx^{-1}) = xAx^{-1},
+$$
+since $N = xNx^{-1} \subseteq xA^{-1}$. Thus $A$ and $B$ are conjugate in $G$. \\ \\
+Now, suppose that $p^{k}$ divides $n$. Then $A \cap N = B \cap N = 1$, hence $|NA| = |NB| = p^{k}m$,
+and the subgroups $NA/N \cong A/(A \cap N)$ and $NB/N \cong B/(b \cap N)$ of $G/N$ have order $m$.
+By induction, $NA/N$ and $NB/N$ are conjugate in $G/N$. Therefore, $A$ and $B$ are conjugate in $G$. \qedsymbol
+
+\begin{theorem}
+  \label{theo-third-hall}
+  In a solvable group of order $mn$, where $m$ and $n$ are relatively prime, every subgroup whose order
+  divides $m$ is contained in a subgroup of order $m$.
+\end{theorem} \vspace{1.8em}
+\proof Let $G$ be group of order $mn$, if $m$ is a power of any prime number, then claim follows by Proposition \ref{prop-p-contained}.
+Otherwise, let $G$ be a group and suppose that it has a normal subgroup $N$ of order $p^{k} > 1$ for some prime $p$ and $k \in \ZZ$.
+Let $H$ be a subgroup of $G$ whose order $l$ divides $m$. \\ \\
+Suppose that $p^{k}$ divides $m$. Then $|NH/N| = |H|/|H \cap N|$ divides $m$, is relatively prime to $n$, and divides
+$|G/N| = (m/p^{k})n$. By induction, $H/N$ is contained in a subgroup $K/N$ of $G/N$ of order $m$, where $N \subseteq K \leq G$,
+then $|K| = p^{k}m$ and $H \subseteq HN \subseteq K$. If $p^{k} < n$, then $|K| < |G|$ and $H$ is contained
+in a subgroup of $K$ of order $m$, by the induction. \\ \\
+Now, suppose that $p^{k} = n$. Let $A$ be a subgroup of $G$ of order $m$. Then $A \cap N = 1, |NA| = |N||A| = |G|$ and
+$NA = G$. Hence $|A \cap NH| = |A||NH|/|ANH| = mp^{k}l/mn = l$. Thus, $H$ and $K = A \cap NH$ are subgroups
+of $NH$ of order $l$. By Theorem \ref{theo-second-hall}, $H$ and $K$ are conjugate in $NH:H = xKx^{-1}$ for
+some $x \in NH$. Then $H$ is contained in the subgroup $xAx^{-1}$ of $G$, which has order $m$. \qedsymbol
+
+\chapter{Ring Theory}
+Another structure and one of the most used and important in Abstract Algebra, are rings.
+\begin{definition*}
+  \label{def-ring}
+  Let $R$ be a a set. A ring is an ordere triple $(R, +, \cdot)$ where $+$ and $\cdot$ are binary
+  operations, such that:
+  \begin{enumerate}[R1. ]
+      \ii $(R, +)$ is an abelian group.
+      \ii $(R, \cdot)$ is a semigroup. Futhermore, the multiplication is associative.
+      \ii The multiplication is distributive: $x(y + z) = xy + yz$ and $(y + z)x = yx + zx$
+      for all $x, y, z \in R$.
+  \end{enumerate}
+\end{definition*}
+From the above definition, we can remark that if $(R, \cdot)$ has an identity element, then we say that $(R, +, \cdot)$
+is a ring with identity (i.e., $1_{R}$). Meanwhile, the identity from $(R, +)$ is denoted by $0_{R}$.
+
+\begin{definition*}
+  \label{def-commutative-ring}
+  A ring $R$ is called \textbt{commutative ring} if for all $a, b \in R$, then
+  $$
+  ab = ba.
+  $$
+  Futhermore, a commutative ring $R$ is called integral domain if $0_{R} \neq 1_{R}$ and if $ab = 0$, then
+  either $a = 0$ or $b = 0$.
+\end{definition*}
+
+\begin{definition*}
+  A \textbf{unit} in a ring is an invertible element.
+\end{definition*}
+
+\begin{definition*}
+  \label{def-ring-field}
+  A commutative division ring is called a \textbf{field}.
+\end{definition*}
+
+\begin{example*}
+  $&&$
+  \begin{itemize} 
+      \ii $\ZZ$ is a domain.
+      \ii $\QQ, \RR, \CC$ are fields.
+      \ii \ZZ/n\ZZ, is a commutative ring for $n \in \ZZ^{+}$ and it's a domain iff $n$ is a prime number.
+  \end{itemize}
+\end{example*}
+
+\end{example*}
+
+\begin{definition*}
+  \label{def-ring-homomorphism}
+  Let $R, S$ be rings. A map $\varphi: R \longrightarrow S$ is a ring homomorphism if
+  for all $a, b \in R$, sastifies that:
+  \begin{enumerate}[1. ]
+      \ii $\varphi(0_{R}) = 0_{S}$.
+      \ii $\varphi(a + b) = \varphi(a) + \varphi(b)$.
+      \ii $\varphi(1_{R}) = 1_{S}$.
+      \ii $\varphi(a \cdot b) = \varphi(a) \cdot \varphi(b)$.
+  \end{enumerate}
+\end{definition*}
+By Definition \ref{def-ring-homomorphism}, we can say that the map $\varphi: R \longrightarrow S$ is called
+\begin{enumerate}[I. ]
+    \ii \textit{Ring monomorphism} if $\varphi$ is injective.
+    \ii \textit{Ring epiomorphism} if $\varphi$ is surjective.
+    \ii \textit{Ring isomorphism} if $\varphi$ is bijective with inverse ring homomorphism.
+    \ii \textit{Ring automorphism} if $R = S$ and $\varphi$ is a ring isomorphism.
+\end{enumerate}
+
+\begin{example*}[Polynomial rings]
+  For any ring $R$, we have the ring
+  $$
+  R[x] = \{a_{0} + a_{x}x + \dots + a_{n}x^{n} \ | \ a_{1}, \dots, a_{n} \in R \},
+  $$
+  called the \textit{ring of polynomials with coefficients in } $R$, where $x$ is the indeterminate.
+\end{example*}
+
+\begin{definition*}
+  Let $R$ be a ring. A subring is a subset $S \subset R$ which sastifies the conditions of Definition \ref{def-ring}.
+\end{definition*}
+
+\begin{example*}
+  $\ZZ \subset \QQ$ and $\ZZ, \RR, \QQ \subset \CC$ are subrings.
+\end{example*}
+
+\begin{definition*}[Binomial Theorem]
+  \label{def-binomial-theorem}
+  In a commutative ring $R$,
+  $$
+  (x + y)^{n} = \sum_{0 \leq i \leq n} \binom{n}{i} x^{i}y^{n-i}, \text{ where }  \binom{x}{y} \frac{n!}{i!(n-i)!}.
+  $$
+\end{definition*}
+The Definition \ref{def-binomial-theorem} works perfectly for any ring, as long as $xy = yx$.
+
+\section{Ideals}
+Ideals can be viewed as the analogue in ring theory of a normal subgroup in group theory.
+\begin{definition*}
+  Let $R$ be a ring. An ideal is a proper subset $I \subset (R, +)$ such that $x \in I$, then $xy \in I$
+  and $yx \in I$ for all $y \in R$.
+\end{definition*}
+
+\begin{example*}
+  Let $R, S$ be rings. A map $\varphi: R \longrightarrow S$ is a ring homomorphism, then the
+  $\Ker \varphi$ is an ideal of $R$.
+\end{example*}
+\proof Clearly, $\Ker \varphi \subset R$. Let $x \in \Ker \varphi$ then $\varphi(x) = 0_{S}$.
+Now, for all $y \in R$
+$$
+\varphi(y \cdot_{R} x) = \varphi(y) \cdot_{S}  \varphi(x)
+$$ 
+$$
+\hspace{3.2em} = \varphi(x) \cdot_{S} 0_{S}
+$$
+$$
+= 0_{S}
+$$
+Same for $\varphi(x \cdot_{R} y)$, then claim follows. \qedsymbol
+
+\begin{proposition}
+  \label{prop-ideal-generated}
+  Let $R$ be a ring. Let $(I)$ be an ideal of $R$ generated by the subset $I$.
+  If $R$ is commutative, then $(I)$ is of all linar combinations of elements of $I$
+  with coefficients in $R$.
+\end{proposition} \vspace{1.8em}
+\proof If $I \in (I)$, then $xiy$ must in $(I)$ for any $i \in I$ and for all $x, y \in R$.
+If $R$ is commutative, then $xiy = (xy)i$ and $(I)$ is the set of all finite sums $x_{1}i_{1} + \dots + x_{n}i_{n}$
+with $n \geq 0, x_{1}, \dots, x_{n} \in R$ and $i_{1}, \dots, i_{n} \in I$. \qedsymbol
+
+\begin{definition*}
+  \label{def-principal-ideal}
+  Let $a \in R$. Define
+  $$
+  (a) = RaR := \{\sum_{i=1}^{n} x_{i}ay_{i} \ | \ n \in \ZZ^{+}, x_{i}, y_{i} \in R, 1 \leq i \leq n\},
+  $$
+  an ideal of $R$ called \textbf{principal ideal} generated by $a$. It's the smallest ideal
+  in $R$ containing $a$.
+\end{definition*}
+
+\begin{proposition*}
+  Let $R$ be a ring. The principal ideal generated by $a \in R$ is the set $aR$ of all multiplies of $a$.
+\end{proposition*} \vspace{1.8em}
+\proof By Proposition \ref{prop-ideal-generated}, a linear combination $x_{1}a_{1} + \dots + x_{n}a_{n}$
+of copies of $a$ is a multiple $(x_{1} + \dots + x_{n})a$ of $a$. Then, claim follows. \qedsymbol
+
+\begin{lemma}
+  The intersection of two ideals is an ideal.
+\end{lemma} \vspace{1.8em}
+\counterexample Let $(2)$ and $(3)$ be two ideals which are multiples of 2 and 3, respectively.
+So, $(2) \cap (3) = (6)$ but 6 is not a prime number as well as $(6)$ is not a prime ideal. \qedsymbol
+
+\begin{definition*}
+  \label{def-maximal-ideal}
+  A \textbf{maximal ideal} of a ring $R$ is an ideal $M \neq R$ of $R$ such that there is no
+  ideal $M \subsetneq I \subsetneq R$.
+\end{definition*}
+
+\begin{proposition}
+  Let $R$ be a ring with identity. Every proper ideal is contained in a maximal ideal.
+\end{proposition} \vspace{1.8em}
+\proof Since an ideal is proper iff not contains the identity element, then having an ideal
+$I \neq R$, we can apply Zorn's lemma to a chain of proper ideals of $R$. Then, by Zorn's lemma
+there is a maximal element $M$ which is proper and claim follows. \qedsymbol
+
+\begin{definition*}
+  \label{def-prime-ideal}
+  Let $R$ be a commutative ring and let $I$ be an ideal. We say that $I$
+  is a prime ideal in $R$ if
+  $$
+  ab \in I \text{ implies that } a \in I \text{ or } b \in I.
+  $$
+\end{definition*}
+
+\begin{lemma}
+  \label{lemm-maximal-ideal}
+  Every maximal ideal is a prime ideal.
+\end{lemma} \vspace{1.8em}
+\proof Let $M$ be a maximal ideal, by Definition \ref{def-maximal-ideal} if $xy \in M$ then
+$x \in M$ or $y \in M$ since $M$ is proper, clearly follows the Definition \ref{def-prime-ideal}.
+
+\begin{example*}
+  Let $p$ be a prime number, then $p\ZZ = (p)$ which is a maximal ideal and by Lemma \ref{lemm-maximal-ideal} is also
+  a prime ideal.
+\end{example*}
+
+\section{Homomorphism}
+\begin{definition*}
+  \label{def-homomorphism-ring}
+  Let $R, S$ be rings. A map $\rho: R \longrightarrow S$ is a homomorphism of rings. Then image or range of $\rho$ is
+  $$
+  \im \rho = \{\rho(x) \ | \ x \in R\}.
+  $$
+  The kernel of $\rho$ is
+  $$
+  \Ker \rho = \{x \in R \ | \ \rho(x) = 0\}.
+  $$
+\end{definition*}
+
+\begin{definition*}
+  Let $I$ be an ideal of a ring $R$. The ring of all cosets of $I$ is the quotient ring $R/I$ of $R$ by $I$.
+  The homomorphism $x \longmapsto x+1$ is the canonical projection of $R$ onto $R/I$.
+\end{definition*}
+
+\begin{definition*}
+  Let $n$ be an positive integer number. The ring $\ZZ_{n}$ of the integers modulo $n$ is the quotient
+  ring $\ZZ/\ZZ n$.
+\end{definition*}
+
+\begin{theorem}[Factorization Theorem]
+  \label{theo-factorization}
+  Let $I$ be an ideal of a ring $R$. Every homomorphism of ring $\rho: R \longrightarrow S$ whose
+  kernel contains $I$ factors uniquely through the canonical projection $\phi: R \longrightarrow R/I$, then
+  there is homomorphism $\varphi: R/I \longrightarrow S$ unique such that $\rho = \phi \circ \varphi$.
+\end{theorem} \vspace{1.8em}
+\proof $\phi((x + I)(y + U)) = \phi(xy + I) = \rho(xy) = \rho(x)\rho(y) = \varphi(x + I)\varphi(y + I)$
+for all $x + I, y + I \in R/I$, and $\phi(1_{R}) = \phi(1_{R} + I ) = \rho(1_{R}) = 1_{R}$. So, claim follows. \qedsymbol
+
+\begin{theorem}[Homomorphism Theorem]
+  If $\rho: R \longrightarrow S$ is a homomorphism of rings, then
+  $$
+  R/\Ker \rho \cong \im \rho.
+  $$
+  Indeed, there is an isomorphism $\theta: R/\Ker f \longrightarrow \im f$ unique such that
+  $\rho = \iota \circ \theta \circ \pi$ where $\iota: \im f \longrightarrow S$ is the 
+  inclusion homomorphism and $\pi: R \longrightarrow R/\Ker f$ is the canonical projection.
+\end{theorem} \vspace{1.8em}
+\proof Clearly, there is an isomorphism of abelian groups $\theta: (R/\Ker f, +) \longrightarrow (\im f, +)$ 
+unique such that $\rho = \iota \circ \theta \circ \pi$, equivalently , $\theta(x + \Ker \rho) = \rho(x)$
+for all $x \in R$. Then $\rho$ is homomorphism and an isomorphism. \qedsymbol
+
+\section{Noetherian Rings}
+
+\begin{definition*}
+  \label{def-ascending-chain}
+  Let $R$ be a commutative ring, the ascending chain condition has three equivalent forms:
+  \begin{enumerate}[a. ]
+      \ii Every infinite ascending sequence $\af_{1} \subseteq \af_{2} \subseteq \dots \subseteq \af_{n} \subseteq \af_{n+1} \subseteq \dots$
+      of ideals of $R$ terminates, then there exists $N > 0$ such that $\af_{n} = \af_{N}$ for all $n \geq N$, \label{(a)}
+      \ii there is no infinite strictly ascending sequence $\af_{1} \subsetneq \af_{2} \subsetneq \dots \subsetneq \af_{n} \subsetneq \af_{n+1} \subsetneq \dots$
+      of ideals of $R$, \label{(b)}
+      \ii every nonempty set $\SC$ of ideals of $R$ has a maximal element (an element $\sff$ of $\SC$,
+      not necessarily a maximal ideal of $R$, such that there is no $\sff \subsetneq \af \in \SC$). \label{(c)}
+  \end{enumerate}
+\end{definition*}
+
+\begin{definition*}
+  \label{def-noetherian-ring}
+  A commutative ring is Noetherian when its ideals satisfy the ascending chain condition in the sense
+  of Definition \ref{def-ascending-chain}.
+\end{definition*}
+
+\begin{proposition}
+  A commutative ring $R$ is Noetherian iff every ideal of $R$ is finitely generated (as an ideal).
+\end{proposition} \vspace{1.8em}
+\proof Let $\af$ be an ideal of $R$. Let $\SC$ be the set of all finitely generated ideals of $R$
+contained in $\af$. Then $\SC$ contains principal ideals and is not empty. If $R$ is Noetherian, then $\SC$
+has a maximal element $\sff$ by (c). Then $\sff \subseteq \sff + (a) \in \SC$ for every $a \in \af$,
+since $\sff + (a)$ is finitely generated, by $a$ and the generators of $\sff$. Since $\sff$ is maximal
+in $\SC$ it follows that $\sff = \sff + (a)$ and $a \in \sff$. Hence $\af = \sff$ and $\af$ is finitely generated. \\ \\
+Conversely, assume that every ideal of $R$ is finitely generated. Let $\af_{1} \subseteq \af_{2} \subseteq \dots \subseteq \af_{n} \subseteq \af_{n+1} \subseteq \dots$ be ideals of $R$. Then $\af = \bigcup_{n>0} \af_{n}$ is an ideal of $R$ and is finitely generated, by, say $a_{1}, \dots, a_{k}$. Then $a_{i} \in \af_{n_{i}}$
+for some $n_{i} > 0$. If $N \geq n_{1}, \dots, n_{k}$, then $a_{N}$ contains $a_{1}, \dots, a_{k}$. Hence $\af \subseteq \af_{N}$, and
+$\af \subseteq \af_{N} \subseteq \af_{n} \subseteq \af$ shows that $\af_{n} = \af_{N}$ for all $n \geq N$. \qedsymbol
+
+\begin{theorem}[Hilbert Basis Theorem]
+  Let $R$ be a commutative ring with identity. If $R$ is Noetherian, then $R[X]$ is Noetherian.
+\end{theorem} \vspace{1.8em}
+\proof Let $\UF$ be an udeal of $R[X]$. We construct a finite set of generators of $\UF$.
+For every $n \geq 0$ let
+$$
+\af_{n} = \{r \in R \ | \ rX^{n} + a_{n-1}X^{n-1} + \dots + a_{0} \in \UF \text{ for some } a_{n-1}, \dots, a_{0} \in R\}.
+$$
+Then $\af_{n}$ is an ideal of $R$, since $\UF$ is an ideal of $R[X]$, and $\af_{n} \subseteq \af_{n+1}$, since
+$f(x) \in \UF$ implies $Xf(X) \in \UF$. Since $R$ is Noetherian, the ascending sequence
+$\af_{0} \subseteq \af_{1} \subseteq \dots \subseteq \af_{n} \subseteq \af_{n+1} \subseteq \dots$
+terminates at some $\af_{m}(\af_{n} = \af_{m} \text{ for all } n \geq m)$. Also, each
+ideal $\af_{k}$ has a finite generating set $\SC_{k}$. \\ \\
+For each $s \in \SC_{K}$ there exists $g_{\SC} = sX^{k} + a_{k-1}X^{k-1} + \dots + a_{0} \in \UF$.
+We show that $\UF$ coincides with the ideal $\BF$ generated by all $g_{\SC}$ with $s \in S_{0} \cup S_{1} \cup \dots \cup S_{m}$.
+Hence $\UF$ is finitely generated, and $R[X]$ is Noetherian. Now let $f = a_{n}X^{n} + \dots + a_{0} \in \UF$
+have degree $n \geq 0$. Then $a_{n} \in \af_{n}$. \\ \\
+If $n \leq m$, then $a_{n} = r_{1}s_{1} + \dots + r_{k}s_{k}$ for some $r_{1}, \dots, r_{n} \in R$ and
+$s_{1}, \dots, s_{k} \in \SC_{n}$, then $g = r_{1}g_{s_{1}} + \dots + r_{k}g_{s_{k}} \in \BF$ has degree at most $n$,
+and the coefficient of $X^{n}$ in $g$ is $r_{1}s_{1} + \dots + r_{k}s_{k} = a_{n}$. Hence
+$f-g \in \UF$ has degree less than $n$. Then $f-g \in \BF$, by induction $f \in \BF$. \\ \\
+If $n > m$ then $a_{n} \in \af_{n} = \af_{m}$ and $a_{n} = r_{1}s_{1} + \dots + r_{k}s_{k}$ for some
+$r_{1}, \dots, r_{n} \in R$ and $s_{1}, \dots, s_{k} \in S_{m}$, then $g = r_{1}g_{s_{1}} + \dots + r_{k}g_{s_{k}} \in \BF$
+has degree at most $m$ and the coefficient of $X^{m}$ in $g$ is $r_{1}s_{1} + \dots + r_{k}s_{k} = a_{n}$.
+Hence $X^{n-m}g \in \BF$ has degree at most $n$, and the coefficient of $X^{n}$ in $g$ is $a_{n}$.
+As above, $f - X^{n-m}g \in \BF$ by induction and $f \in \BF$. \qedsymbol
+
+
+\section{Principal Ideal Domain}
+\begin{definition*}
+  A principal ideal domain (or PID) is a domain (i.e., commutative ring with identity and no zero divisors)
+  in which every ideal is principal.
+\end{definition*}
+
+\begin{definition*}
+  An element $p$ of a domain $R$ is prime when $p$ is not zero 
+  or a unit, and $p|a$ or $p|b$. An element $q$ of a domain $R$
+  is irreducible when $q$ is not zero or a unit, and $q = ab$
+  implies that $a$ is a unit or $b$ is a unit.
+\end{definition*}
+
+\begin{theorem}
+  \label{theo-irreducible-elements}
+  In a PID $R$, every element, other than $0$ and units, is a nonempty
+  product of irreducible elements. If futhermore two nonempty products
+  $p_{1}p_{2} \dots p_{m} = q_{1}q_{2} \dots q_{n}$ of irreducible elements are equal,
+  then  $m=n$ and the terms can be indexed so that $Rp_{i} = Rq_{i}$ for all $i$.
+\end{theorem} \vspace{1.8em}
+\proof Suppose that $R$ has elements besides 0 and units that are not
+product of irreducible elements, the principal ideal generated by these
+elements, say $\IF$, consitute a set of ideals of $R$. Let's prove that
+$\IF$ has a maximal element $Ri$. Otherwise, let $Ri_{1} \in IF$. Since
+$Ri_{1}$ is not maximal, there exists $Ri_{1} \subsetneq Ri_{2} \in \IF$.
+By induction, $Ri_{1} \subsetneq Ri_{2} \subsetneq \dots \subsetneq Ri_{n} \subsetneq Ri_{n+1} \subsetneq \dots$
+Then $\mathfrak{i} = \bigcup_{n > 0} Ri_{n}$ is an ideal of $R$. Since $R$
+is a PID, \mathfrak{i} is generated by some $i \in R$. Then $i \in Ri_{n}$
+for some $n$, and $(i) \subseteq Ri_{n} \subsetneq Ri_{n+1} \subsetneq \mathfrak{i} = (i)$.
+This contradiction shows that $\IF$ has a maximal element $Rm$, where $m$
+is not 0, not unit and not irreducible. \\ \\
+Let $m = ab$ for some $a, b \in R$, neither of which is 0 or a unit.
+Then $Rm \subsetneq Ra$ and $Rm \subsetneq Rb$. Hence $a$ and $b$ cannot be neither
+0 nor unit and are product of irreducible elements. But then so is
+$m = ab$. This contradiction shows that every element of $R$, other than
+0 and unit, is a product of irreducible elements. \\ \\
+Now, suppose that $p_{1}p_{2} \dots p_{m} = q_{1}q_{2} \dots q_{n}$, where
+$m, n > 0$ and all $p_{i}, q_{j}$ are irreducible. Since $q_{k}$ is
+irreducible, $q_{k} = up_{m}$ for some unit $u \in R$ and $Rq_{k} = Rp_{m}$.
+By induction, $m-1 = n-1$ and the remaining terms can be reindexed so that
+$Rp_{1} = Ruq_{q} = Rq_{1}$ and $Rp_{i} = Rq_{i}$ for all $1 < i < m$. \qedsymbol
+
+\begin{theorem}
+  \label{theo-representative-irreducible}
+  Every nonzero element of $R$ can be written as the product $p_{1}^{k_{1}} p_{2}^{k_{2}} \dots p_{n}^{k_{n}}$
+  of a unit and of positive powers of distinct representative irreducible
+  elements, which are unique up to the order of the terms.
+\end{theorem} \vspace{1.8em}
+\proof Theorem \ref{theo-irreducible-elements} implies Theorem \ref{theo-representative-irreducible}.
+So, claim follows. \qedsymbol
+
+\begin{definition*}
+  \label{def-lcm}
+  In a domain, an element $m$ is a least common multiple (l.c.m.) of two elements $a$ and $b$
+  when $m$ is a multiple of $a$ and $b$.
+\end{definition*}
+
+\begin{definition*}
+  \label{def-gcd}
+  In a domain, an element $d$ is a greatest common divisor (g.c.d.) of two elements $a$ and $b$
+  when $d$ divides $a$ and $b$.
+\end{definition*}
+
+\begin{proposition}
+  In a PID $R$, every $a, b \in R$ have a least l.c.m and g.c.d. Moreover, $m = \lcm(a, b)$
+  iff $Rm = Ra \cap Rb$, and $d = gcd(a, b)$ iff $Rd = Ra + Rb$. In particular,
+  $d = gcd(a, b)$ implies $d = xa + yb$ for some $x, y \in R$.
+\end{proposition} \vspace{1.8em}
+\proof By Definition \ref{def-lcm}, $m = \lcm(a, b)$ iff $m \in Ra \cap Rb$, and $c \in Ra \cap Rb$ 
+implies $c \in Rm$ iff $Rm = Ra \cap Rb$. As l.c.m exists then $Ra \cap Rb$ must be principal. \\ \\
+By Definition \ref{def-gcd}, $d = \gcd(a, b)$ iff $a, b \in Rd$ and $a, b \in Rc$ implies
+$c \in Rd$, iff $Rd$ is the smallest principal ideal of $R$ contains both $Ra$ and $Rb$.
+The latter is $Ra + Rb$, since every ideal of $R$ is principal. Hence $d = \gcd(a, b)$
+iff $Rd = Ra + Rb$, and then $d = xa + yb$ for some $x, y \in R$. As g.c.d. exists
+then $Ra + Rb$ must be principal. \qedsymbol
+
+\subsection{Modules over a PID}
+\label{subsect-modules-over-pid}
+
+\begin{theorem}
+  \label{theo:1}
+  Let $M$ over a PID $\CR$. There is a unique decresing sequence of proper ideals
+  $$
+  d_{1} \supseteq \dots \supseteq d_{n}
+  $$
+  such that $M$ is isomorphic to the sum of cyclic modules
+  $$
+  M \cong \bigoplus_{i} \CR/(d_{i}).
+  $$
+  The $d_{i}$s are called invariant factors of $M$.
+\end{theorem} \vspace{1.8em}
+\proof Let $\varphi$ be a $\CR$-linear map such that can be determined by $\varphi(e_{1}) = f_{1}, \dots, \varphi(e_{n}) = f_{n}$
+where $e_{1}, \dots, e_{n}$ is the basis of $n$-dimensional $\CR$. Then $\varphi(e_{j}) = \sum_{i=1}^{n} c_{ij}e_{i}$, such that $(c_{ij})$ is the
+matrix presentation of $\varphi$ with respect to the basis. Then
+$$
+\varphi(\CR) = \CR\varphi(e_{1}) \oplus \dots \oplus \CR\varphi(e_{n}) = \CR f_{1} \oplus \dots \oplus \CR f_{n},
+$$
+by aligned bases of $\CR$ and its module $\varphi(\CR)$, we can say that
+$$
+\CR = \CR v_{1} \oplus \dots \oplus \CR v_{n}, \hspace{3em} \varphi(R) = \CR a_{1}v_{1} \oplus \dots \oplus \CR a_{n}v_{n},
+$$
+where $a_{i}$s are nonzero integers. Then
+$$
+\CR/\varphi(R) \cong \bigoplus_{i} \CR/a_{i}\CR.
+$$
+Obvioulsy, $\CR/\varphi(R)$ is our $M$ and claim follows. \qedsymbol \\ \\
+As an useful comment, we can calculate the invariant factors with the Smith Normal
+Form (SNF). \\ \\
+We need to remember that no every module has a basis, that's because
+we use free module here.
+\begin{definition*}
+  \label{def-free-module}
+  A free module is a module with a basis.
+\end{definition*}
+\begin{lemma}
+  \label{lem:1}
+  Let $\CR$ be a $n$-dimensional module over a PID, then every
+  $\CR$-submodule of $\CR$ is an ideal.
+\end{lemma} \vspace{1.8em}
+\proof Let $x \neq 0 \in \CR$, then for $\CR x$ since all ideals in
+$\CR$ are principal, it's clearly that $\CR x \cong \CR$ as $\CR$-modules.
+\qedsymbol
+\begin{lemma}
+  \label{lem:2}
+  Let $\CR$ be a commutative ring and $M$ be an $R$-module. Let $f$ be
+  an $\CR$-linear and onto map such that $f: M \longrightarrow \CR$, then
+  there is an $\CR$-module isomorphism $h: M \cong \CR^{n} \oplus \Ker f$
+  where $h(m) = (f(m), *)$, making $f$ the first component of $h$.
+\end{lemma} \vspace{1.8em}
+\proof Let $\CR^{n} = \CR e_{1} \oplus \dots \oplus \CR e_{n}$ where
+$e_{1}, \dots, e_{n}$ is the basis of $\CR$, let $m_{i} \in M$ such that
+$f(m_{i}) = e_{i}$ then there is a map $g: \CR^{n} \longrightarrow M$ such that
+$$
+g(c_{1}e_{1} + \dots + c_{n}e_{n}) = c_{1}m_{1} + \dots + c_{n}m_{n},
+$$
+Now, we define the function $h: M \longrightarrow \CR^{n} \oplus \Ker f$ such that
+$h(m) = (f(m), m - g(f(m)))$. \qedsymbol
+\begin{theorem}
+  \label{theo:2}
+  Let $M \subset \CR$ be a free $\CR$-module of rank $n$ where $\CR$ is a PID,
+  then for any $S$ submodule of $M$ is free of rank $\leq n$.
+\end{theorem} \vspace{1.8em}
+\proof The free $\CR$-module is $\CR^{n}$ by lemma \ref{lem:1}. By induction on $n$, let $S \subset \CR^{n+1}$ be a submodule.
+We gonna show that $S$ is free of rak $\leq n+1$. The a projection of direct
+sum $\phi: \CR \oplus \CR^{n} \longrightarrow \CR^{n}$ (i.e. $\CR^{n+1} = \CR \oplus \CR^{n}$), then $N = \phi(S) \subset \CR^{n}$ is free of rank $\leq n$.
+Now, by lemma \ref{lem:2}
+$$
+S \cong N \oplus \Ker \phi \vert_{S},
+$$
+so $N \oplus \Ker \phi \vert_{S}$ is free of rank $\leq n+1$, so $S$ does. \qedsymbol
+
+\begin{definition*}
+  Let $\CR$ be a module and let $x \in \CR$, which is called a torsion
+  element if there exists a nonzero $r \in \CR$ such that $rx = 0$. If $rx \neq 0$ for all $r \neq 0 \in R$, then the element $x$ is called a torsion-free.
+\end{definition*}
+
+\begin{definition*}
+  Let $T$ be a module, we say that $T$ is called a torsion-free module, if every
+  element of $T$ is a torsion-free module.
+\end{definition*}
+
+\begin{definition*}
+  Let $T$ be a finitely torsion module over the PID $\CR$. By theorem \ref{theo:1},
+  we write $T \cong R/(d_{1}) \oplus \dots \oplus R/(d_{m})$, then the $\CR$-cardinality of $T$ to be the ideal
+  $$
+  \card_{\CR}(T) = (d_{1}d_{2} \dots d_{m}).
+  $$
+\end{definition*}
+
+\begin{theorem}
+  \label{theo:3}
+  Let $T_{1}$ and $T_{2}$ be two finitely generated torsion $\CR$-modules, then
+  $$
+  \card_{\CR}(T_{1} \oplus T_{2}) = \card_{\CR}(T_{1}) \card_{\CR}(T_{2}).
+  $$
+\end{theorem} \vspace{1.8em}
+\proof We combine cyclic decompositions of $T_{1}$ and $T_{2}$
+and then get $T_{1} \oplus T_{2}$. \qedsymbol \\ \\
+If we pick $x_{1}, \dots, x_{n}$ the generating set for a torsion-free module $T$ as an $\CR$-module,
+then we have a linear map $f: \CR^{n} \longrightarrow T$ where $f(e_{i}) = x_{i}$
+for the basis $e_{1}, \dots, e_{n}$ of $\CR^{n}$ such there exists a linearly
+indepedent sequence $y_{1}, \dots, y_{n}$ of $T$ such that $y_{j} = \sum_{i=1}^{n} a_{ij}x_{i}$ with $a_{ij} \in \CR$. By zorn's lemma, there is a linearly
+independent subset of $T$ with maximal size $t_{1}, \dots, t_{d}$ such that
+$\sum_{j=1}^{d} At_{j} \cong T^{d}$. Then we can get an isomorphism map
+$$
+T \rightarrow aT \hookrightarrow \sum_{j=1}^{d} Tt_{j} \rightarrow A^{d},
+$$
+for a linearly dependent set $x, t_{1}, \dots, t_{d}$ and a nontrivial linear
+realtion $ax + \sum_{i=1}^{d} a_{i}t_{i} = 0$ with $a \neq 0$. Now, we can
+say the following
+\begin{lemma}
+  \label{lem:3}
+  Let $T$ be a finitely generated torsion-free module over a PID $\CR $ such that
+  $T \neq 0$, then there is an embedding $T \hookrightarrow \CR^{d}$ for some
+  $d \geq 1$ such that the image of $T$ intersects each standard coordinate
+  axis of $\CR^{d}$.
+\end{lemma} \vspace{1.8em}
+Now, we use the above lemma to formulate the next theorem
+\begin{theorem}
+  \label{theo:4}
+  Let $\CR$ be a PID, then every finitely generated torsion-free $\CR$-module
+  is a free $\CR$-module.
+\end{theorem} \vspace{1.8em}
+\proof By lemma \ref{lem:3}, there is a module that embeds a finite
+free $\CR$-module, then it's finite free too by theorem \ref{theo:2}. \qedsymbol \\ \\
+As last, we have the following theorem
+\begin{theorem}
+  \label{lem:5}
+  Let $\CR$ be a PID, every finitely $\CR$-module has the form $F \oplus T$ where
+  $F$ is a finite free $\CR$-module and $T$ is a finitely generated torsion
+  $\CR$-module. Moreover, $T \cong \bigoplus\limits_{j} \CR/(a_{j})$ with a nonzero $a_{j}$.
+\end{theorem} \vspace{1.8em}
+\proof Let $T$ be a finitely generated $\CR$-module, with generators
+$x_{1}, \dots, x_{n}$. We define $f:\CR^{n} \longrightarrow T$ by $f(e_{i}) = x_{i}$. We know that 
+$$
+\CR^{n}/N \cong \left(\bigoplus\limits_{j}^{m} \CR/(a_{j})\right) \oplus \CR^{n-m},
+$$
+for some $m \leq n$, a quotient $\CR^{n}/N$ and nonzero $a_{j}$s. The direct
+sum of the $A/(a_{j})$'s is a torsion module and $\CR^{n-m}$ is a finite
+free $\CR$-module. \qedsymbol
+
+\begin{example*}
+  Describe, as a direct sum of cyclic groups, the cokernel of the map
+  $\phi: \mathbb{Z}^{3} \longrightarrow \mathbb{Z}^{3}$ given by left multiplication by the matrix
+  $$
+\left(\begin{matrix} 15 & 6 & 9 \\ 6 & 6 & 6 \\ -3 & -12 & -12 \end{matrix}\right)
+$$
+\end{example*}
+\proof  Let $\phi$ be a $\mathbb{Z}$-linear map such that can be determined by $\phi(e_{1}) = f_{1}, \dots,  \phi(e_{n}) = f_{n}$, where $e_{1}, \dots, e_{n}$ be the basis of $\mathbb{Z}^{n}$. Then $\phi(e_{j}) = \sum_{i=1}^{n} = c_{ij}e_{i}$ for $j = 1, \dots, n$, so $(c_{ij})$ is the matrix representation of $\phi$ with respect to the basis. \\ \\
+Then,
+  $$
+  \phi(\mathbb{Z}^{n}) = \mathbb{Z}\phi(e_{1}) \oplus \dots \oplus \mathbb{Z}\phi(e_{n}) = \mathbb{Z}f_{1} \oplus \dots \oplus \mathbb{Z}f_{n},
+  $$
+  by aligned bases for $\mathbb{Z}^{n}$ and its modulo $\phi(\mathbb{Z}^{n})$, we can say that
+  $$
+  \mathbb{Z}^{n} = \mathbb{Z}v_{1} \oplus \dots \oplus \mathbb{Z}v_{n}, \hspace{1 em} \phi(\mathbb{Z}^{n}) = \mathbb{Z}a_{1}v_{1} \oplus \dots \oplus \mathbb{Z}a_{n}v_{n}
+  $$
+  where $a_{i}$'s are nonzero integers. Then
+  $$
+  \mathbb{Z}^{n}/\phi(\mathbb{Z}^{n}) \cong \bigoplus_{i=1}^{b} \mathbb{Z}/a_{i}\mathbb{Z}.
+  $$
+  Now, for our solution we need to get the Smith Normal Form, since each $a_{i}$ is the $M_{i,i}$ element of the matrix, the Smith Normal Form of the cokernel is:
+  $$
+  \left(\begin{matrix}
+      3 & 0 & 0 \\
+      0 & 3 & 0 \\
+      0 & 0 & 18
+  \end{matrix}\right)
+  $$
+  So, we can describe the cokernel as the sum of cyclic groups:
+  $$
+  \mathbb{Z}^{3}/\phi(\mathbb{Z}^{3}) \cong  \mathbb{Z}/3\mathbb{Z} \oplus \mathbb{Z}/3\mathbb{Z} \oplus \mathbb{Z}/18\mathbb{Z}
+  $$ \qedsymbol
+
+
+\section{Commutative Rings}
+In this Section, let's see many properties related this kind of rings that we haven't seen yet.
+\begin{definition*}
+  \label{def-transporter}
+  Let $\af$ and $\bff$ be ideals of a commutative ring $R$ and let $S$ be a subset of $R$. The set
+  $$
+  \af:S = \{r \in R \ | \ rs \in \af \text{ for all } s \in S\}
+  $$
+  is an ideal and it's called the \textbf{transporter} of $S$ into $\af$.
+\end{definition*}
+
+\begin{definition*}
+  \label{def-radical}
+  Let $R$ be a commutative ring. The radical $\Rad \af$ of an ideal $\af$ is the intersection
+  of all primes ideals of $R$ that contain $\af$.
+\end{definition*}
+
+\begin{proposition}
+  $\Rad \af = \{x \in R \ | \ x^{n} \in \af \text{ for some } n > 0 \}$.
+\end{proposition} \vspace{1.8em}
+\proof Let $x \in R$ and let $\rf$ be the intersection of all prime ideals that contain
+$\af$. If $x \in R/\rf$, then $x \notin \pf$ for some prime ideal $\pf \subset \af$,
+$x^{n} \notin \pf$ for all $n > 0$ since $\pf$ is prime, and $x^{n} \notin \af$ for all $n > 0$. \\ \\
+Suppose $x^{n} \notin \af$ for all $n > 0$. By Zorn's lemma there is an ideal $\pf$
+that contains $\af$, and contains no $x^{n}$, and is maximal with thes properties.
+Let $a, b \in R/\pf$. By choice of $\pf, \pdf + (a)$ contains some $x^{m}$ and
+$\pf + (b)$ contains some $x^{n}$. Then $x^{m} = p + ra, x^{n} = q + sb$ for some
+$p, q \in \pf$ and $r, s \in R$, $x^{m+n} = pq + psb + qra + rsab \in \pf + (ab) \subsetneq \pf$, and
+$ab \notin \pf$. Thus $\pf$ is a prime ideal, since $x \notin \pf$, it follows that $x \notin \rf$. \qedsymbol
+
+\begin{definition*}
+  \label{def-semiprime}
+  An ideal $\af$ of a commutative ring $R$ is semiprime when it's an intersection of prime ideals.
+\end{definition*}
+
+\begin{definition*}
+  \label{def-ideal-primary}
+  Let $R$ be a commutative ring and let $\rf$ be an ideal of $R$. We say that $\rf$ is \textbf{primary}
+  when $\rf \neq R$ and, for all $x, y \in \rf$ implies $x \in \rf$ or $y^{n} \in \rf$
+  for some $n > 0$. An ideal $\rf$ of $R$ is $\pf$-primary when $\rf$ is primary and
+  $\Rad \rf = \pf$.
+\end{definition*}
+
+\begin{lemma}
+  \label{lemm-ideal-noetherian}
+  Every ideal of a Noetherian ring $R$ is the intersection of finitely many irreducible ideals of $R$.
+\end{lemma} \vspace{1.8em}
+\proof Let $\bff$ be the ideal of a ring $R$. Suppose $\bff$ is not the intersection
+of finitely many irreducible ideals of $R$. Is this is false, then the set of such ideals of $R$
+is empty, since $R$ is Noetherian, there is a maximal ideal $\pf$ which is not irreducible.
+Therefore, $\pf = \af \cap \bff$ for some ideals $\af, \bff \subsetneq \pf$. By the maximality
+of $\pf, \af$ and $\bff$ are intersections of finetely many irreducible ideals, but then so is $\pf$,
+a contradiction. \qedsymbol
+
+\begin{theorem}
+  In a Noetherian ring, every ideal is the intersection of finitely manu primary ideals.
+\end{theorem} \vspace{1.8em}
+\proof By Lemma \ref{lemm-ideal-noetherian}, we only need to show that every irreducible ideal $\rf$
+of a Noetherian ring $R$ is primary. Suppose that $ab \in \rf$ and $b \notin \Rad \rf$.
+Let $\af_{n} = \rf:b^{n}$. Then $a \in \af_{1}$, $\rf \subset \af_{n}$, $\af_{n}$ is an ideal,
+and $\af_{n} \subseteq \af_{n+1}$, since $xb^{n} \in \rf$ implies $xb^{n+1} \in \rf$. Since $R$ is Noetherian,
+the ascending sequence $(\af_{n})_{n > 0}$ terminates, hence $\af_{2n} = \af_{n}$ if $n$ is large enough.
+Let $\bff = \rf + Rb^{n}$. If $x \in \af_{n} \cap \bff$, then $xb^{n} \in \rf$ and $x = t + yb^{n}$ for some
+$t \in \rf$ and $y \in R$, whence $tb^{n} + yb^{2n} \in \rf$, $yb^{2n} \in \rf$, $y \in \af_{2n} = \af_{n}$,
+$yb^{n} \in \rf$, and $x = t + yb^{n} \in \rf$. Hence $\af_{n} \cap \bff = \rf$.
+Now, $\bff \subsetneq \rf$, since $b^{n} \notin \rf$. Therefore $\af_{n} = \rf$, hence
+$\af_{1} = \rf$ and $a \in \rf$. \qedsymbol
+
+\begin{definition*}
+  \label{eef-ring-extension}
+  A ring extension of a commutative ring $R$ is a commutative ring $E$ of which $R$
+  is a subring.
+\end{definition*}
+
+\begin{definition*}
+  \label{def-r-module}
+  Let $R$ be a ring. A $R$-module is an abelian group $M$ together
+  with an action $(r, x) \longmapsto rx$ of $R$ on $M$ such that
+  $r(x + y) = rx + ry, (r + s)x = rx + sx, r(sx) = (rs)x$ and $1_{R}x = x$,
+  for all $r, s \in R$ and $x, y \in M$. A submodule $R$-module $M$ is additive
+  msubgroup $N$ of $M$ such that $x \in N$ implies $rx \in N$ for every $r \in R$.
+\end{definition*}
+
+\begin{definition*}
+  An element $\alpha$ of a ring extension $E$ of $R$ is integral over $R$ when it sastifies
+  the following conditions:
+  \begin{itemize}
+    \ii $f(\alpha) = 0$ for some monic polynomial $f \in R[X]$,
+    \ii $R[\alpha]$ is a finetely generated submodule of $E$,
+    \ii $\alpha$ belongs to a subring of $E$ that is a finitely generated $R$-module.
+  \end{itemize}
+\end{definition*}
+
+\subsection{Integral Extension}
+
+\begin{definition*}
+  A ring extension $R \subset E$ is integral, and $E$ is integral over $R$, when
+  every element of $E$ is integral over $R$.
+\end{definition*}
+
+\begin{definition*}
+  A ring extension $E$ of $R$, an ideal $\UF$ of $E$ lies over an ideal $\af$
+  of $R$ when $\UF \cap R = \af$.
+\end{definition*}
+
+\begin{proposition}
+  If $E$ is an ring extension of $R$ and $\UF \subset E$ lies over $\af \subset R$,
+  then $\af/R$ may be identified with a subring of $E/\UF$, if $E$
+  is integral over $R$, then $E/\UF$ is integral over $R/\af$.
+\end{proposition}  \vspace{1.8em}
+The inclusion homomorphism $R \longrightarrow E$ induces a homomorphism $R \longrightarrow E/\UF$
+whose kernel is $\UF \cap R = \af$, and in injective homomorphism $R/\af \longrightarrow E/\UF$,
+$r + \af \longmapsto r + \UF$. Hence $R/\af$ may be identified with a subring of $E/\UF$.
+If $\alpha \in E$ is integral over $R$, then $\alpha + \UF$, then $\alpha + \UF \in E/\UF$ is integral
+over $R/\af$. \qedsymbol
+
+\begin{definition*}
+  The integral closure of a ring $R$ in a ring extension $E$ of $R$ is the subgring $\overline{R}$
+  of $E$ of all elements of $E$ that are integral over $R$. The elements of $\overline{R} \subseteq E$
+  are the algebraic integerss of $E$ (over $R$).
+\end{definition*}
+
+\begin{definition*}
+  A domain $R$ is integrally closed when its integral closure in its quotient field $Q(R)$ is
+  $R$ itself (when no $\alpha \in Q(R)\backslash R$ is integral over $R$).
+\end{definition*}
+
+\begin{proposition}
+  Let $R$ be a domain and let $E$ be an algebraic extension of its quotient field. The integral
+  closure $\overline{R}$ of $R$ in $E$ is an integrally closed domain whose quotient field is $E$.
+\end{proposition} \vspace{1.8em}
+\proof Every $\alpha \in E$ is algebraic over $Q(R)$, $r\alpha$ is integral over $R$ for some $r \in R$,
+hence $E = Q(\overline{R})$. If $\alpha \in E$ is integral over $\overline{R}$, then $\alpha$
+is integral over $R$ and $\alpha \in \overline{R}$, so $\overline{R}$ is integrally closed. \qedsymbol
+
+\subsection{Localization}
+
+\begin{definition*}
+  \label{def-localization}
+  A multiplicative subset of a commutative ring $R$ is a subset $S$ of $R$ that contain the identity element of $R$ and
+is closed under multiplication. A multiplicative subset $S$ is proper when $0 \notin S$.
+\end{definition*}
+
+\begin{definition*}
+  If $S$ is a proper multiplicative subset of a commmutative ring $R$, then $S^{-1}R$ is the ring of faction of
+  $R$ with denominators in $S$.
+\end{definition*} \\
+If $R$ is a domain, then $S = R\backslash \{0\}$ is a proper multiplicative subset
+and $S^{-1}R$ is the field of fractions or quotient fild $Q(R)$ of $R$.
+
+\begin{definition*}
+  Let $S$ be a proper multiplicative subset of $R$. The contraction of an ideal
+  $\UF$ of $S^{-1}R$ is $\UF^{C} = \{a \in R \ | \ a/1 \in \UF\}$. The expansion
+  of an ideal $\af$ of $R$ is $\af^{E} = \{a/s \in S^{-1}R \ | \ a \in \af, s \in S\}$.
+\end{definition*}
+
+\begin{definition*}
+  The localization of a commutative ring $R$ at a prime ideal $p$ is the ring
+  of fractions $R_{p} = (R\p)^{-1}R$.
+\end{definition*}
+
+\begin{definition*}
+  A commutative ring is local when it has only one maximal ideal.
+\end{definition*}
+We need to remark that Localization tranfers properties from local rings to more general rings.
+
+\begin{theorem}
+  Every homomorphism of a ring $R$ into an algbraically closed field $L$ can be extended to every
+  integral extension $E$ of $R$.
+\end{theorem} \vspace{1.8em}
+\proof If $R$ is a field, then $E$ is a field and $E$ is an algebraic extension of $R$. \\
+Now, let $R$ be local and let $\varphi: R \longrightarrow L$ be a homomorphism whose kernel
+is the maximal ideal $\mf$ of $R$. Then $\varphi$ factors through the projection $R \longrightarrow R/\mf$
+and induces a homomorphism $\phi: R/\mf \longrightarrow L$. There is a maximal ideal $\MF$ of $E$
+that lies over $\mf$. The field $R/\mf$ may be identified with a subfield of $E/\MF$.
+Then $E/\MF$ is algebraic over $R/\mf$ and $\pi: R/\mf \longrightarrow L$ can be extended to $E/\MF$.
+Hence $\varphi$ can be extended to $E$. \\ \\
+Finally, let $\varphi: R \longrightarrow L$ be any homomorphism. Then $\pf = \Ker \varphi$ is a
+prime ideal of $R$ and $S = R/\pf$ is a proper multiplicative subset of $R$ and of $E$.
+Therefore $\phi$ extends to $S^{-1}E$, which is integral over $S^{-1}R$, hence $\varphi$
+extends to $E$. \qedsymbol
+
+\subsection{Dedekind Domains}
+\begin{definition*}
+  \label{def-fractional-ideal}
+  A fractional ideal of a domain $R$ is a subset of its quotient field $Q$ of the form $\af/c = \{a/c \in Q \ | \ a \in \af\}$,
+  where $\af$ is an ideal of $R$ and $c \in R$, $c \neq 0$.
+\end{definition*}
+
+\begin{proposition}
+  Let $R$ be a domain and let $Q$ be its quotient field. Every finitely generated submodule
+  of $Q$ is a fractional ideal of $R$. If $R$ is Noetherian, then every fractional ideal
+  of $R$ is finetely generated as a submodule.
+\end{proposition} \vspace{1.8em}
+\proof If $n > 0$ and $q_{1} = a_{1}/c_{1}, \dots, q_{n} = a_{n}/c_{n} \in Q$, then
+$$
+Rq_{1} + \dots + Rq_{n} = Rb_{1}/c + \dots + Rb_{n}/c = (Rb_{1} + \dots + Rb_{n})/c,
+$$
+where $c = c_{1} \dots c_{n}$, hence $Rq_{1} + \dots + Rq_{}$ is a fractional ideal of $R$. Conversely,
+if every ideal $\af$ is finetely generated, $\af = Rb_{1} + \dots + Rb_{n}$ for some
+$b_{1}, \dots, b_{n} \in R$ then every fractional ideal $\af/c = Rb_{1}/c + \dots + Rb_{n}/c$ is a
+finetely generated  submodule of $Q$.
+
+\begin{definition*}
+  A Dedekind domain is a domain that satisfies the equivalent condition:
+  \begin{enumerate}[1. ]
+      \ii Every nonzero ideal of $R$ is invertible (as a fractional ideal),
+      \ii every nonzero fractional ideal of $R$ is invertible,
+      \ii every nonzero ideal of $R$ is a product of prime ideals of $R$,
+      \ii every nonzero ideal of $R$ can be written uniquely as a product of positive
+      powers of distinct prime ideals of $R$.
+  \end{enumerate}
+  Futhermore, $R$ is Noetherian and every prime ideal of $R$ is maximal.
+\end{definition*}
+
+\begin{theorem}[Krull Intersection Theorem]
+  Let $\af \neq R$ be an ideal of a Noetherian ring $R$ and let $\rf = \bigcap_{n > 0} \af^{n}$.
+  Then $\af\rf = \rf$ and $(1-a)\rf = 0$ for some $a \in \af$. If $R$ is a domain,
+  or if $R$ is local, then $\rf = 0$.
+\end{theorem} \vspace{1.8em}
+\proof Let $\qf$ be a primary ideal that contains $\af\ifr$ and let $\pf$ be its radical.
+Then $\pf^{n} \subset \qf$ for some $n$ and $\ifr \subset \qf$, otherwise $\af \subset \qf$, since
+$\qf$ is primary and $\ifr \subset \af^{n} \subset \qf$ anyway. Since $\ai\ifr$ is an
+intersection of primary ideals, this implies $\ifr \subset \af\ifr$ and $\ifr = \af\ifr$.
+Suppose that $(1-a)\ifr = 0$ for some $a \in \af$. Then $1-a \neq 0$. If $R$ is a domain,
+then $(1-a)\ifr = 0$ for some $a \in \af$. Then $1-a \neq 0$. If $R$ is a domain, then
+$(1-a)\ifr = 0$ implies $\ifr = 0$. If $R$ is local, then $1-a$ is a unit and
+again $(1-a)\ifr = 0$ implies $\ifr = 0$. \qedsymbol
+
+\subsection{Krull Dimension}
+\begin{definition*}
+  In a commutative ring $R$, the height $\hgt \pf$ of a prime ideal $\pf$ is
+  the least upper bound of the lengths of strictly descending sequences
+  $\pf = \pf_{0} \subsetneq \pf_{1} \subsetneq \dots \subsetneq \pf_{m}$
+  of prime ideals of $R$.
+\end{definition*}
+
+\begin{definition*}
+  \label{def-spectrum-ring}
+  The \textbf{spectrum} of a commutative ring is the set of its prime ideals,
+  partially ordered by inclusion. The Krull dimension or dimension $\dim R$ of $R$
+  is the least upper bound of the heights of the prime ideals of $R$.
+\end{definition*}
+
+\begin{lemma}
+  Let $R$ be a domain and let $\PF$ be a prime ideal of $R[X]$. If
+  $\PF \cap R = 0$, then $\PF$ has height at most 1.
+\end{lemma} \vspace{1.8em}
+\proof Let $Q$ be the quotient field of $R$ and let $S = R \backslash \{0\}$,
+so that $S^{-1}R = Q$. Since every $r \in R \backslash 0$ is a unit in
+$Q$ and in $Q[X]$. There is a homomorphism $\theta: S^{-1}(R[X]) \longrightarrow Q[X]$, which
+sends $(a_{0} + \dots + a_{n}X^{n})/r \in S^{-1}(R[X])$ to $(a_{0}/r) + \dots + (a_{n}/r)X^{n} \in Q[X]$.
+If $g(X) = q_{0} + q_{1}X + \dots + q_{n}X^{n} \in Q[X]$, then rewriting $q_{0}, q_{1}, \dots, q_{n}$
+with a common denominator puts $g$ in the form $g = f/r$ for some $f \in R[X]$ and 
+$r \in R$, hence $\theta$ is an isomorphism. Thus $S^{-1}(R[X]) \cong Q[X]$ is a PID. \\ \\
+Now, let $\PF \cap R = 0$ and let $0 \neq \QF \subset \PF$ be a prime ideal of $R[X]$.
+Then $\QF \cap R = 0$, and $\QF^{E} \subseteq \PF^{E}$ are nonzero prime ideals of
+the PID $S^{-1}(R[X])$. Hence $\QF^{E}$ is a maximal ideal. $\QF^{E} = \PF^{E}$, and
+$\QF = \PF$. \qedsymbol
+
+\begin{theorem}
+  If $R$ is Noetherian domain, then $\dim R[X] = 1 + \dim R$.
+\end{theorem} \vspace{1.8em}
+\proof Let $(X)$ be a prime ideal of $R[X]$ and $R[X]/(X) \cong R$. In particular,
+$\dim R[X]$ is infinite when $\dim R$ is infinite, and we may assume that $n = \dim R$ is finite.
+We prove by induction on $n$ that $\dim R[X] \leq n+1$. If $n = 0$, then 0 is a maximal ideal of
+$R$, $R$ is a field, $R[X]$ is a PID, and $\dim R[X] = 1$. Now, let $n > 0$ and
+$$
+\PF_{0} \subsetneq \PF_{1} \subsetneq \dots \subsetneq \PF_{m}
+$$
+be prime ideals of $R[X]$. We want to show that $m \leq n+1$. Since $n \leq 1$ we suppose that $m \leq 2$
+and $\PF_{m-1} \cap R \neq 0$. Indeed, suppose that $\PF \cap R = 0$. Then $\PF_{2} \cap R \neq 0$
+and there exists $0 \neq a \in \PF_{m-2} \cap R$. Now, $\PF_{m-2}$ has height at least 2
+and is not minimal over $(a)$.  \\ \\
+Now, $\pf = \PF_{m-1} \cap R$ is a nonzero prime ideal of $R$. Then $\dim R/\pf \leq \dim R-1 = n-1$.
+By induction, $\dim (R/\pf)[X] \leq n$. The projection $R \longrightarrow R/\pf$ induces
+a surjective homomorphism $R[X] \longrightarrow (R/\pf)[X]$ whose kernel is a nonzero prime ideal
+$\PF$ of $R[X]$, which consists of all $f \in R[X]$ with coefficients in $\pf$. Then $\PF \subset \PF_{m-1}$,
+since $\pf \subset \PF_{m-1}$, $\dim R[X]/\PF = \dim(R/\pf)[X] \leq n$, and the sequence
+$$
+\PF_{0}/\PF \subsetneq \PF_{1}/\PF \subsetneq \dots \subsetneq \PF_{m-1}/\PF
+$$
+has length $m-1 \leq n$, so that $m \leq n+1$. \qedsymbol
+
+\section{Rational Fraction}
+
+\begin{definition*}
+  Let $K$ be a field. A \textbf{partial fraction} is a rational fration $f/q^{r} \in K(X)$ in which
+  $q$ is monic and irreducible, $r \geq 1$, and $\deg f < \deg q$. Then $f, q$, and
+  $r$ are unique.
+\end{definition*}
+
+\begin{lemma}
+  \label{lemm-rational-fraction}
+  Every rational fraction can be written uniquely in reduced form.
+\end{lemma} \vspace{1.8em}
+\proof Given $f/g$, divide $f$ and $g$ by the leading coefficient of $g$ and then by
+a monic g.c.d. of $f$ and $g$, the result is in reduced form. \\ \\
+Let $f/g = p/q, fq = gp$, with $g, q$ monic and $\gcd(f, g) = \gcd(p, q) = 1$. Then $q$
+divides $gp$, since $\gcd(p, q) = 1$, $q$ divides $g$. Similarly, $g$ divides $q$.
+Since $q$ and $g$ are monic,  $q = g$. Then $p = f$. \qedsymbol
+
+\begin{lemma}
+  Every rational fraction can be written uniquely as the sum of a polynomial and
+  a polynomial-free fraction in reduced form.
+\end{lemma} \vspace{1.8em}
+\proof By Lemma \ref{lemm-rational-fraction}, we start with a rational fraction $f/g$ in reduced form.
+Polynomial division yields $f = gq + r$ with $q, r \in K[X]$ and $\deg r < \deg g$.
+Then $f/g = q + r/g$, $r/g$ is polynomial-free and is in reduced form, since $g$ is monic and
+$\gcd(r, g) = \gcd(f, g) = 1$. Conversely let $f/g = p + s/h$, with $p \in K[X]$, $\deg s < \deg h$,
+$h$ monic, and $\gcd(s, h) = 1$. Then $f/g = (ph + s)/h$. Both fractions are in reduced form,
+hence $g=h$ and $f = ph + s = pg + s$, by Lemma \ref{lemm-rational-fraction}. Uniqueness
+in polynomial division then yields $p = q$ and $s = r$. \qedsymbol
+
+\section{Unique Factorization Domains}
+\begin{definition*}
+  \label{def-ufd}
+  A unique factorization domain (or UFD) is a domain $R$ (i.e., a commutative ring with identity
+  and no zero divisors) in which
+  \begin{enumerate}[1. ]
+      \ii Every element, other than 0 and units, is a nonempty product of irreducible
+      elements of $R$, and
+      \ii if two nonempty products $p_{1}p_{2} \dots p_{m} = q_{1}q_{2} \dots q_{n}$ of irreducible elements
+      of $R$ are equal, then $m = n$ and the terms can be indexed so that $Rp_{i} = Rq_{i}$
+      for all $i$.
+  \end{enumerate}
+\end{definition*}
+
+\begin{definition*}
+  A polynomial $p$ over a UFD $R$ is primitive when no irreducible element of $R$ divides
+  all the coefficients of $p$.
+\end{definition*}
+
+\begin{lemma}
+  Every nonzero polynomial $f(X) = Q(X)$ can be written in the form $f(X) = tf^{*}(X)$, where
+  $t \in Q, t \neq 0$, and $f^{*}(X) \in R[X]$ is primitive. Moreover, $t$ and $f^{*}$ are
+  unique up to multiplication by units of $R$.
+\end{lemma} \vspace{1.8em}
+\proof We have $f(X) = (a_{0}/b_{0}) + (a_{1}/b_{1})X + \dots + (a_{n}/b_{n})X^{n}$, where
+$a_{i}, b_{i} \in R$ and $b_{i} \neq 0$. Let $b$ be a common denominator (for instance, $b = b_{0}b_{1} \dots b_{n}$).
+Then $f(X) = (1/b)(c + c_{1}X + \dots + c_{n}X^{n})$ for some $c_{i} \in R$. Factoring
+out $a = \gcd(c_{0}, c_{1}, \dots, c_{n})$ yields $f(X) = (a/b)f^{*}(X)$, where $f^{*}$ is primitive. \\ \\
+Suppose that $(a/b) \ g(X) = (c/d) \ h(X)$, where $g, h$ are primitive. Since $g$ and $h$ are primitive,
+$ad$ is a g.c.d. of the coefficients of $ad \ g(X)$, and $bc$ is a g.c.d, of the coefficients
+of $bc \ h(X)$. Hence, $bc = adu$ for some unit $u$ of $R$, so that $g(X) = u  h(X)$ and
+$(a/b)u = c/d$ in $Q$. \qedsymbol
+
+\begin{proposition}[Eisenstein's Criterion]
+  Let $R$ be a UFD and let $f(X) = a_{0} + a_{1}X + \dots + a_{n}X^{n} \in R[X]$. If $f$ is primitive
+  and there exists an irreducible element $p$ of $R$ such that $p$ divides $a_{i}$ for all $i < n$,
+  $p$ does not divide $a_{n}$, and $p^{2}$ does not divide $a_{0}$, then $f$ is irreducible.
+\end{proposition} \vspace{1.8em}
+\proof Suppose that $f = gh$, let $g(X) = b_{0} + b_{1}X + \dots + b_{r}X^{r}$ and $h(X) = c_{0} + c_{1}X + \dots + c_{s}X^{s} \in R[X]$,
+where $r = \deg g$ and $s = \deg h$. Then $a_{k} = \sum_{i+j=k} b_{i}c_{j}$ for all $k$. In particular,
+$a_{0} = b_{0}c_{0}$. Since $p^{2}$ does not divide $a_{0}$, $p$ does not divide both $b_{0}$ and $c_{0}$.
+But $p$ divides $a_{0}$, so $p$ divides, say, $b_{0}$, but not $c_{0}$. Also, $p$ does not divide $b_{r}$,
+since $p$ does not divide $a_{n} = b_{r}c_{s}$. Hence there is a least $k \leq r$ such that $p$ does not divide
+$b_{k}$, and then $p$ divides $b_{i}$ for all $i < k$. Now $p$ divides
+every term of $\sum_{i+j=k} b_{i}c_{j}$ except for $b_{k}c_{0}$. Hence $p$ does not divide $a_{k}$.
+Therefore $k = n$, since $k \leq r \leq r+s = n$ this implies $r = n$, and $h$ is contant. \qedsymbol
+
+\begin{example*}
+  Let $f = 3X^{3} + 4X - 6 \in \ZZ[X]$ is irreducible in $\ZZ[X]$. Indeed, $f$ is primitive, 2 divides
+  all the coefficients of $f$ except the leading coefficient, and 4 does not divide the constant
+  coefficient. Futhermore, $f$ is also irreducible in $\QQ[X]$, and so is $\frac{5}{6}f = \frac{5}{2}X^{3} - \frac{5}{3}X - 5$.
+\end{example*}
+
+
+\chapter{Module Theory}
+Already we have seen some introduction to modules on the Sub-Section \ref{subsect-modules-over-pid}. In this chapter, let's
+expand the theory about modules. We can see modules as a generalization of abelian groups, which sastifies all the axioms
+of a vector space (except for scalars, which can come from another ring or field). From now, let $R$ be a fixed ring.
+
+\begin{definition*}
+  \label{def-module}
+  A (left) $R$-module is an additive group $M$ together with a map $\cdot: R \times M \longrightarrow M$ (the $R$-action) called
+  \textit{scalar multiplication}, which sastifies for all $r, s \in R$ and $x, y \in M$ the following
+  properties:
+  \begin{enumerate}[1. ]
+      \ii $r \cdot (x + y) = r \cdot x + r \cdot y$,
+      \ii $(r + s) \cdot x = r \cdot x + s \cdot x$,
+      \ii $r \cdot (s \cdot x) = (r \cdot s) \cdot x$,
+      \ii $1 \cdot x = x$.
+  \end{enumerate}
+\end{definition*}
+
+\begin{example*}
+  Let $K$ be a field. A $K$-module is a vector space over $K$ with scalars on the left.
+\end{example*}
+
+\begin{example*}
+  Every abelian group $A$ is a unital $\ZZ$-module, in which $nx$ is the usual integer multiple (i.e., $nx = x + x + \dots + x$, when $n > 0$).
+\end{example*}
+
+\begin{example*}
+  Let $\UF$ be a left ideal in $R$. Then $\UF + \UF \subset \UF$ and $R \UF \subset \UF$, so $\UF$
+  is a submodule of $R$. In this way, an $R$-module generalizes the notion of left ideal.
+\end{example*}
+Now, let $M$ be a $R$-module and $N \subset M$, the \textbf{factor group} $M/N$ becomes an $R$-modules by
+$$
+\cdot : R \times M/N \longrightarrow M/N \text{ defined by } r(m + N) = rm + N,
+$$
+for all $r \in R, m \in M$. Then, it's called the \textbf{quotient} or \textbf{factor module}
+of $M$ by $N$.
+
+\begin{definition*}
+  A submodule of a left $R$-module $M$ is an additive subgroup $A$ of $M$ such that
+  $x \in A$ implies $ax \in A$ for all $r \in R$.
+\end{definition*}
+
+\begin{definition*}
+  \label{def-homomorhism-module}
+  A map $f: M \longrightarrow N$ of $R$-modules is called an $R$-homomorphism if $f$ is $R$-linear
+  (i.e., $f(rx + y) = rf(x) + f(y)$ for all $r \in R$ and $x, y \in M$).
+\end{definition*}
+
+\begin{example*}
+  Let $M$ be a $R$-module where $R$ is a commutative ring in the sense of Definition \ref{def-commutative-ring} and $r \in R$.
+  Then
+  $$
+  \lambda_{r}: M \longrightarrow M \text{ by } x \mapsto rx
+  $$
+  is an $R$-homomorphism.
+\end{example*}
+
+\begin{example*}
+  Let $R$ be a commutative ring and $M, N$ are $R$-modules, then
+  $$
+  \Hom_{R}(M, N) = \{f: M \longrightarrow N \ | \ f \text{ an } R\text{-homomorphism} \}
+  $$
+  is an $R$-module with the usual $+$ for functions and the $R$-action $\cdot$ given by $r \cdot f: x \mapsto rf(x)$.
+\end{example*}
+
+\begin{definition*}
+  \label{def-annihilator}
+  The \textbf{Annihilator} of a left $R$-module $M$ is the ideal $\Ann(M) = \{r \in R \ | \ rx = 0 \text{ for all } x \in M \}$
+  of $R$.
+\end{definition*}
+We need to remark that a left $R$-module is \textit{faithful} when its annihilator is 0.
+
+\begin{lemma}
+  \label{lemm-properties-ann}
+  Let $M$ be an $R$-module and $m, m'$ elements in $M$. Then
+  \begin{enumerate}[(i) ]
+      \ii \label{l-i} $\Ann_{R}(m) \subset R$ is a left ideal.
+      \ii \label{l-ii}$ \rho_{m}: R \longrightarrow M$ given by $r \mapsto rm$ is an $R$-homomorphism and satifies $\Ker \rho_{m} = \Ann_{R}(m)$.
+      \ii \label{l-iii} If $\rho_{m}$ is the homomorphism in (\ref{l-ii}), then $\rho_{m}$ induces an $R$-isomorphism $\overline{\rho_{m}}: R/\Ann_{R}(m) \longrightarrow Rm$.
+      \ii \label{l-iv} If $R$ is a commutative ring and $Rm \subset Rm'$, then $\Ann_{R}(m) \subset \Ann_{R}(m')$.
+  \end{enumerate}
+\end{lemma} \vspace{1.8em}
+\proof (\ref{l-i}) and (\ref{l-ii}) are trivial. For (\ref{l-iii}), we can use First Isomorphism Theorem \ref{theo-first-isomorphism}
+for modules and claim follows. For (\ref{l-iv}), suppose that $m = am'$ for some $a \in R$. If $rm' = 0$, then
+$ram' = arm' = 0$. \qedsymbol
+
+\begin{proposition}
+  Let $M$ be an $R$-module. Then $M$ is a cyclic $R$-module iff there exists a left ideal $\UF$ in $R$
+  sastifying $M \cong R/\UF$.
+\end{proposition} \vspace{1.8em}
+\proof $R/\UF = \langle 1 + \UF \rangle = R(1 + \UF)$ is cylcic and claim follows by Lemma \ref{lemm-properties-ann}.
+
+\begin{definition*}
+  \label{def-direct-product-modules}
+  The direct product of a family $(A_{i})_{i \in I}$ of left $R$-modules is their cartesian product $\prod_{i \in I} A_{i}$ in the sense of Definition
+  \ref{def-direct-product} with componentwise addition and action of $R$:
+  $$
+  (x_{i})_{i \in I} + (y_{i})_{i \in I} = (x_{i} + y_{i})_{i \in I}, r(x_{i})_{i \in I} = (rx_{i})_{i \in I}.
+  $$
+\end{definition*}
+
+\begin{definition*}
+  \label{def-direct-sum-modules}
+  The sum direct product (or external sum) of a family $(A_{i})_{i \in I}$ of left $R$-modules is the submodule of $\prod_{i \in I} A_{i}$:
+  $$
+  \bigoplus_{i \in I} A_{i} = \{(x)_{i \in I} \in \prod_{i \in I} A_{i} \ | \ x_{i} = 0 \text{ for almost all } i \in I\}.
+  $$
+\end{definition*}
+
+\begin{definition*}
+  \label{def-internal-sum-modules}
+  A left $R$-module $M$ is the internal direct sum $M = \oplus_{i \in I} A_{i}$ of submodules $(A_{i})_{i \in I}$ when
+  every element of $M$ can be written uniquely as a sum $\sum_{i \in I} a_{i}$, where $a_{i} \in A_{i}$ for
+  all $i$ and $a_{i} = 0$ for almost all $i$.
+\end{definition*}
+We need to remark that a nonzero $R$-module is \textbf{descomposable} if it's isomorphic to the direct
+sum of two nonzero submodules. Otherwise is \textbf{indecomposable}.
+
+\begin{proposition}
+  \label{prop-equiv-sums}
+  Let $(M_{i})_{i \in I}$ be left $R$-modules. For a left $R$-module $M$ the following conditions
+  are equivalent:
+  \begin{enumerate}[(1) ]
+      \ii \label{e-1} $M \cong \bigoplus_{i \in I} M_{i}$,
+      \ii \label{e-2} $M$ contains submodules $(A_{i})_{i \in I}$ such that $A_{i} \cong M_{i}$ for all $i$
+      and every element of $M$ can be written uniquely as a sum $\sum_{i \in I} a_{i}$, where
+      $a_{i} \in A_{i}$ for all $i$ and $a_{i} = 0$ for almost all $i$,
+      \ii \label{e-3} $M$ contains submodules $(A_{i})_{i \in I}$ such that $A_{i} \cong M_{i}$ for all $i$,
+      $M = \sum_{i \in I} A_{i}$, and $A_{j} \cap (\sum_{i \neq j} A_{i}) = 0$ for all $j$.
+  \end{enumerate}
+\end{proposition} \vspace{1.8em}
+\proof (\ref{e-1}) implies (\ref{e-2}). Since $\bigoplus_{i \in I} M_{i}$ contains submodules
+$M'_{i} = \iota(M_{i}) \cong M'_{i}$ such that every element of $\bigoplus_{i \in I} M_{i}$ can
+be written uniquely as a sum $\sum_{i \in I} a_{i}$, where $a_{i} \in M'_{i}$ for all $i$
+and $a_{i} = 0$ for almost all $i$. If $\theta: \bigoplus_{i \in I} M_{i} \longrightarrow M$
+is an isomorphism, then the submodules $A_{i} = \theta(M'_{i})$ of $M$
+have similar properties. \\ \\
+(\ref{e-2}) implies (\ref{e-3}). By (\ref{e-2}), $M = \sum_{i \in I} A_{i}$, moreover, 
+if $x \in A_{j} \cap (\sum_{i \neq k} A_{i})$, then $x$ is a sum $x = \sum_{i \in A} a'_{i}$
+in which $a'_{j} = x, a'_{i} = 0$ for all $i \neq j$, and a sum $x = \sum_{i \in I} a''_{i}$
+in which $a''_{j} = 0 \in A_{j}, a''_{i} \in A_{i}$ for all $i$, $a''_{i} = 0$ for almost all $i$,
+by (\ref{e-2}), $x = a'_{j} = a''_{j} = 0$. \\ \\
+(\ref{e-3}) implies (\ref{e-2}). By (\ref{e-3}), $M = \sum_{i \in I} A_{i}$, so that every
+element of $M$ is a sum $\sum_{i \in I} a_{i}$, where $a_{i} \in A_{i}$ for all $i$
+and $a_{i} = 0$ for almost all $i$. If $\sum_{i \in I} a'_{i} = \sum_{i \in I} a''_{i}$ where
+$a'_{i}, a''_{i} \in A_{i}$, then for every $j \in I$, $a''_{j} - a'_{j} = \sum_{i \neq j} (a'_{i} - a''_{i}) \in A_{i} \cap (\sum_{i \neq j} A_{i})$
+and $a''_{j} = a'_{j}$. \\ \\
+(\ref{e-2}) implies (\ref{e-1}). The inclusion homomorphism $A_{i} \longrightarrow M$ induce a
+module homomorphism $\theta: \bigoplus_{i \in I} A_{i} \longrightarrow M$, namely $\theta((a_{i})_{i \in I}) = \sum_{i \in I} a_{i}$.
+Then $\theta$ is bijective by (\ref{e-2}). The isomorphisms $M_{i} \cong A_{i}$, then induce an
+isomorphism $\bigoplus_{i \in I} M_{i} \cong \bigoplus_{i \in I} A_{i} \cong M$. \qedsymbol \\
+We need to remark that by Proposition \ref{prop-equiv-sums}, internal and external sums differ
+only by isomorphisms, that is, if $M$ is an external sum of modules $(A_{i})_{i \in I}$, then $M$
+is an internal direct sum of submodules $A_{i} \cong M_{i}$, if $M$ is an internal direct sum
+of submodules $(A_{i})_{i \in I}$, then $M$ is isomorphic to the external direct sum $\bigoplus_{i \in I} A_{i}$.
+
+\begin{example*}
+  Let $R = K[x]$. For $n \geq 1$, $\langle x^{n} \rangle$ is an ideal, and therefore $M = R/\langle x^{n} \rangle$ 
+  is a module which is indecomposable.
+\end{example*}
+\proof  From the internal characterisation of direct product groups, we need only show that any
+two submodules intersect nontrivially. We show indeed that any nonzero $N \leq M$ contains
+$x^{n-1} + \langle x^{n} \rangle$. We suppose that
+
+$$
+N \in \alpha_{j}x^{j} + \dots + \alpha_{n-1}x^{n-1} + \langle x^{n} \rangle, \alpha_{j} \neq 0 := n.
+$$
+Then, $n\alpha_{j}^{-1}x^{n-1-j} = x^{n-1} + \langle x^{n} \rangle$. \qedsymbol
+
+
+\section{Free Modules}
+We expand the Definition \ref{def-free-module} in the following way.
+\begin{definition*}
+  \label{def-expand-free-module}
+  A nonzero $R$-module $M$ is called a free $R$-module if there exists a basis
+  for $M$, that is, a subset $\BC$ of $M$ satisfying:
+  \begin{enumerate}[(i) ]
+      \ii $M = \langle \BC \rangle$ (\ie $\BC$ generates or spans $M$).
+      \ii $\BC$ is linearly independent (\ie $\sum_{\BC} r_{x}x = 0$ for all $x \in \BC, r \in R$).
+  \end{enumerate}
+\end{definition*}
+
+\begin{example*}
+  Let $M$ be a $R$-cyclic. Then $M$ is a free $R$-module if there exists an $x \in M$
+  satisfying $M = Rx$ and $\Ann_{R}(x) = 0$. It follows that $M$ is a free $R$-module
+  iff $M \cong R$.
+\end{example*}
+
+\begin{example*}
+  $\QQ$ is not a free $\ZZ$-module.
+\end{example*}
+
+\begin{theorem}[Universal Property of Free Modules]
+  Let $\BC = \{x_{i}\}_{I}$ be a basis for a free $R$-module $M$. If $N$ is
+  an $R$-module and $y_{i}, i \in I$, elements in $N$, then there exists
+  a unique $R$-homomorphism $f: M \longrightarrow N$ such that
+  $x_{i} \mapsto y_{i}$, for all $i \in I$.
+\end{theorem} \vspace{1.8em}
+\proof If $z \in M$, there exists a unique $r_{i} \in R$, almost all $r_{i} = 0$
+such that $z = \sum_{I} r_{i}x_{i}$. In particular, the uniqueness of the $r_{i}$
+implies that $f: M \longrightarrow N$ given by $z \mapsto \sum_{I} r_{i}y_{i}$ is well-defined.
+Clearly, $f$ is uniquely determined by $x_{i} \mapsto y_{i}$ and $f$ is an $R$-homomorphism. \qedsymbol
+
+\begin{lemma}
+  Let $M$ and $N$ be free $R$-modules on bases $\BC$ and $\CK$, respectively.
+  If there exists a bijection $g: \BC \longrightarrow \CK$ (\ie $|\BC| = |\CK|$),
+  then $M \cong N$.
+\end{lemma} \vspace{1.8em}
+\proof The maps $g$ and $g^{-1}$ of sets induce inverse $R$-isomorphisms $M \longrightarrow N$
+and $N \longrightarrow M$. \qedsymbol
+
+\section{Noetherian Modules}
+
+\begin{definition*}[The Maximum Principle]
+  \label{def-maximum-principle}
+  If $S$ is a non-empty set of submodules of $M$, then $S$ contains a maximal element,
+  that is a module $M_{0} \in S$ such that if $M_{0} \in N$ with $N \in S$, then
+  $N = M_{0}$.
+\end{definition*}
+
+\begin{proposition}
+  Let $M$ be a $R$-module. Then the following are equivalent:
+  \begin{enumerate}[(1) ]
+      \ii \label{q-1} Every submodule of $M$ is finetely generated,
+      \ii \label{q-2} $M$ satifies the ascending chain condition, that is, if $M_{i} \subset M$
+      are submodules and
+      $$
+      M_{1} \subset M_{2} \subset \dots \subset M_{n} \subset \dots,
+      $$
+      then there exists a positive integer $N$ such that $M_{N} = M_{N+i}$ for all $i \geq 0$.
+      We say every ascending chain of submodules of $M$ stabilizes. Equivalently,
+      ther exists no infinite chain 
+      $$
+      M_{1} < M_{2} < \dots M_{n} < \dots,
+      $$
+      \ii \label{q-3} $M$ satifies \textit{The Maximum Principle} in the sense of
+      Definition \ref{def-maximum-principle}.
+  \end{enumerate}
+\end{proposition} \vspace{1.8em}
+\proof (\ref{q-1}) implies (\ref{q-2}). Let
+$$
+\CK: M_{1} \subset M_{2} \subset \dots \subset M_{n} \subset \dots  
+$$
+be a chain of submodules of $M$. It follows that the subset $M' = \bigcup_{i=1}^{\infty} M_{i} \subset M$
+is a submodule. By (\ref{q-1}), it's finitely generated, so we can write $M' = \sum_{i=1}^{n} Rx_{i}$
+for some $x_{i} \in M'$. By definition, $x_{i} \in M_{j_{i}}$ some $j_{i}$. Let
+$s$ be the maximum of the finitely many $j_{i}'$s. Then $M' = M_{S}$. It follows
+that $M_{s} = M' = M_{s+i}$ for all $i \geq 0$. \\  \\
+(\ref{q-2}) implies (\ref{q-3}). Suppose that $S$ is a non-empty set of submodules of $M$.
+Let $M_{1}$ lie in $S$. If $M_{1}$ is not maximal, there exists an $M_{2} \in S$ with
+$M_{1} < M_{2}$. Inductively, if $M_{i}$ is not maximal, there exist an $M_{i+1}$ in $S$
+with $M_{i} < M_{i+1}$. By the a.c.c., the sequence
+$$
+M_{1} < M_{2} < \dots M_{i} < \dots
+$$
+must terminate. \\ \\
+(\ref{q-3}) implies (\ref{q-1}). Let $M \subset N$ be a submodule and set
+$$
+S = \{M_{i} \ | \ M_{i} \subset N \text{ is a finitely generated submodule} \}.
+$$
+Then $(0) \in S$ so $S \neq \varnothing$. By assumption, there exists a maximal element
+$M' \in S$. If $N \neq M'$, then there exists $x \in N\backslash M'$. But $M'$
+finitely generated means that $M' + Rx \subset N$ is also finitely generated, so
+the submodule $M' + Rx$ of $N$ lies in $S$. This contradicts the maximality
+of $M'$. Hence $N = M'$ is finitely generated. \qedsymbol
+
+\begin{definition*}
+  \label{def-noeth-ring}
+  Let $R$ be a commutative ring. We say that $R$ is a Noethereian ring
+  if $R$ is a Noetherian $R$-module.
+\end{definition*}
+Definition \ref{def-noeth-ring} coincides with the Definition \ref{def-noetherian-ring}.
+
+\begin{proposition}
+  \label{prop-sequence-noetherian}
+  Let $M$ be an $R$-module and $N$ a submodule of $M$. Then $M$ is $R$-Noetherian iff
+  $N$ and $M/N$ are $R$-Noetherian. In particular, if
+  $$
+  0 \longrightarrow M' \longrightarrow M \longrightarrow M'' \longrightarrow 0
+  $$
+  is an exact sequence of $R$-modules with two of the modules $M$, $M'$, $M''$ being
+  $R$-Noetherian, then they all are $R$-Noetherian.
+\end{proposition} \vspace{1.8em}
+\proof Since $N_{0} \subset N$ is a submodule, then $N_{0} \subset M$ is a submodule
+hence finitely generated $-$ or any ascending chain in $N$ is
+an ascending chain in $M$. Thus $N$ is $R$-Noetherian. By the Correspondence
+Principle, a (countable) chain of submodules in $M/N$ has the form
+$M_{1}/N \subset M_{2}/N \subset \dots$ where $N \subset M_{1} \subset M_{2} \subset \dots$
+chain of submodules of $M$. Thus there exists an $r$ such that $M_{r} = M_{r+j}$
+for all $j \geq 0$ and hence $M_{r}/N = M_{r+j}/N$ for all $j \geq 0$. \qedsymbol
+
+\begin{theorem}
+  Let $R$ be Noetherian ring. If $M$ is a finitely generated $R$-module,
+  then $M$ is $R$-Noetherian.
+\end{theorem} \vspace{1.8em}
+\proof Suppose $M = \sum_{i=1}^{n} Rx_{i}$. Let $f: R^{r} \longrightarrow M$ be the
+$R$-epimorphism given by $e_{i} \mapsto x_{i}$, where $\{e_{1}, \dots, e_{n}\}$
+is the standard basis for $R^{n}$. Since $R$-Noetherian sinc
+$M \amalg N$ is $R$-module because $(M \amalg N)/N \cong M$ where $N, M$ are Noetherian $R$-modules.
+Hence, so is $M \cong R^{}/\Ker f$ by Proposition \ref{prop-sequence-noetherian}.
+
+\section{Hilbert's Theorems}
+
+\begin{theorem}[Hilbert Basis Theorem]
+  If $R$ is a Noetherian ring so is the ring $R[t_{1}, \dots, t_{n}]$.
+\end{theorem} \vspace{1.8em}
+\proof By induction on $n$, it suffices to show that $R[t]$ is Noetherian.
+Let $\BC \subset R[t]$ be an ideal. We must show that $\BC$ is finitely
+generated. Let
+$$
+\UF = \{r \in R \ | \ r = \text{ lead } f, f \in \BC\}.
+$$
+First, let's show that $\UF$ is an ideal. Let $a, b \in \UF$ and $r \in R$ with
+$ra + b$ nonzero. Choose $f, g \in \BC$ say of degrees $m$ and $n$ respectively,
+satisfying lead $f = a$ and lead $g = b$. Set $h = rt^{n}f + t^{m}g$ in $\BC$.
+Then $ra + b = $ lead $h$ proving $\UF$ is an ideal. As $R$ is Noetherian,
+$\UF = (a_{1}, \dots, a_{n})$ for some $a_{1}, \dots, a_{n} \in \UF$
+with $n \in \ZZ^{+}$. Choose $f_{id_{i}}$ in $\BC$ such that $a_{i} = $ lead
+$f_{id_{i}}$ and $\deg f_{id_{i}} = d_{i}$. Let $\BC_{0} = (f_{1d_{1}}, \dots, f_{nd_{n}})$,
+and ideal in $R[t]$, and $N = \max\{d_{1}, \dots, d_{n}\}$. \\ \\
+Let $f \in \BC$ with lead $f = a$ and $\deg f = d$. Suppose that $d > N$.
+There exist $r_{i} \in R$ satisfying $a = \sum_{i=1}^{n} r_{i}a_{i}$,
+hence $f - \sum_{i=1}^{n} r_{i}t^{d-d_{i}}f_{i, d_{i}}$ lies in $\BC$
+and has degree less than $d$. It follows by induction that there exists a $g \in \BC_{0}$
+such that $f-g$ lies $\BC$ with $\deg(f-g) \leq N$. As the $R$-module $M = \sum_{i=0}^{n} Rt^{i}$
+is finitely generated and $R$ is Noetherian, $M$ is a Noetherian $R$-module.
+In particular, the submodule $M_{0} = \{f \in \BC \ | \ \deg f \leq N \}$ is
+finitely generated. If $M_{0} = \sum_{i=0}^{m} R[t]g_{i}$, then
+$\BC = \BC + \sum_{i=0}^{m} R[t]g_{i}$ is finitely generated. \qedsymbol
+
+\begin{definition*}
+  Let $R \subset S$ be commutative rings. We say that $S$ is a finitely generated
+  commutative $R$-algebra (or an affine $R$-algebra when $R$ is a field)
+  if there exists $x_{1}, \dots, x_{n}$ in $S$ satisfying $S = R[x_{1}, \dots, x_{n}]$
+  as rings.
+\end{definition*}
+
+\begin{proposition}
+  Let $R$ be a commutative ring and $S$ a finitely generated commutative $R$-algebra. If
+  $R$ is Noetherian so is $S$.
+\end{proposition} \vspace{1.8em}
+\proof Let $S = R[x_{1}, \dots, x_{n}]$. Since $R[t_{1}, \dots, t_{n}]$ is Noetherian
+and we have a ring epimorphism $R[t_{1}, \dots, t_{n}] \longrightarrow R[x_{1}, \dots, x_{n}]$
+via $f(t_{1}, \dots, t_{n}) \mapsto f(x_{1}, \dots, x_{n})$, all ideals of $S$ are
+finitely generated by the Correspondence Principle. \qedsymbol
+
+\begin{theorem}[Hilbert Nullstellensatz, Strong Form]
+  Suppose that $F$ be an algebraically closed field and $R = F[t_{1}, \dots, t_{n}]$.
+  Let $f, f_{1}, \dots, f_{r}$ be elements in $R$ and $\UF = (f_{1}, \dots, f_{r}) \subset R$.
+  Suppose that $f(a) = 0$ for all $a \in Z_{F}(\UF)$. Then there exists an integer
+  $m$ such that $f^{m} \in \UF$ (\ie f $\in \sqrt{U}$). In particular, if
+  $\UF$ is a prime ideal, then $f \in \UF$.
+\end{theorem} \vspace{1.8em}
+\proof We may assume that $f$ is nonzero. Let $S = R[t]$. Define the ideal $\BC$ in
+$S$ by $\BC = (f_{1}, \dots, f_{r}, 1-tf) \subset S$. If $\BC < S$, then there
+exists a point $(a_{1}, \dots, a_{n+1}) \in Z_{F}(\BC)$. Thus $f_{i}(a_{1}, \dots, a_{n}) = 0$
+for all $i$ and $1-a_{n+1}f(a_{1}, \dots, a_{n+1}) = 0$. In particular,
+$(a_{1}, \dots, a_{n})$ lies in $Z_{F}(\UF)$. By hypothesis, this means that $(a_{1}. \dots, a_{n}) = 0$
+which in turn implies that $1 = 0$, a contradiction. Thus $\BC = S$. So we can write
+$$
+1 = \sum_{i=1}^{r} g_{i}f_{i} + g \cdot (1-tf)
+$$
+for some $g, g_{i} \in S$. Substituting $1/f$ for $t$ and clearing denominators yields the
+result. \qedsymbol
+
+  
+\chapter{Field Theory}
+
+\begin{definition*}
+  \label{def-field}
+  A field is a commutative ring (necessarily a domain) whose nonzero elements
+  constitute a group under multiplication.
+\end{definition*}
+
+\begin{definition*}
+  \label{def-subfield}
+  A subfield of a field $F$ is a subset $K$ of $F$ such that $K$ is an
+  additive subgroup of $F$ on $K \backslash \{0\}$ is a multiplicative subgroup
+  of $F \backslash \{0\}$.
+\end{definition*}
+Equivalently to Definition \ref{def-subfield}, $K$ is a subfield of $F$ iff
+\begin{enumerate}[I. ]
+    \ii $0, 1 \in K$,
+    \ii $x, y \in K$ implies $x-y \in K$,
+    \ii $x, y \in K, y \neq 0$ implies $xy^{-1} \in K$.
+\end{enumerate}
+Then $x, y \in K$ implies $x+y \in K$ and $xy \in K$, so that $K$ inherits an addition
+and a multiplication from $F$, and $K$ is a field under these inherited operations,
+this field $K$ is also called a subfield of $F$.
+
+\begin{example*}
+  $\QQ$ is a subfield of $\RR$, and $\RR$ is a subfield of $\CC$.
+\end{example*}
+
+\begin{definition*}
+  A homomorphism of a field $K$ into a field $L$ is a mapping $\varphi: K \longrightarrow L$
+  such that $\varphi(1) = 1, \varphi(x+y) = \varphi(x) + \varphi(y)$ and
+  $\varphi(xy) = \varphi(x)\varphi(y)$ for all $x, y \in K$.
+\end{definition*}
+
+\begin{proposition}
+  The characteristic of a field is either 0 or a prime number.
+\end{proposition} \vspace{1.8em}
+\proof REIMAINDER
+
+\begin{proposition}
+  Every field $K$  has a smallest subfield, which is isomorphic to $\QQ$
+  if $K$ has characteristic 0, to $\ZZ_{p}$ if $K$ has characteristic $p \neq 0$.
+\end{proposition} \vspace{1.8em}
+\proof REIMAINDER
+
+\begin{definition*}
+  An element $r$ of a field $K$ is an $n$th root of unity when $r^{n} = 1$.
+\end{definition*}
+
+\section{Extensions}
+
+\begin{definition*}
+  \label{def-extension-field}
+  A field extension of a field $K$ is a field $E$ of which $K$ is a subfield.
+\end{definition*}
+
+\begin{definition*}
+  \label{def-k-homomorphism}
+  Let $K \subseteq E$ and $K \subseteq F$ be field extensions of $K$. A $K$-homomorphism of $E$ into $F$
+  is a field homomorphism $\varphi: E \longrightarrow F$ that is the identity
+  on $K(\varphi(x) = x \text{ for all } x \in K)$.
+\end{definition*}
+
+\begin{definition*}
+  The degree $[E:K]$ of a field extension $K \subseteq E$ is its dimension
+  as a vector space over $K$. A field extension $K \subseteq E$ is finite when
+  it has finite degree and is finite otherwise.
+\end{definition*}
+
+\begin{example*}
+  $[\CC:\RR] = 2$.
+\end{example*}
+
+\begin{proposition}
+  If $K \subseteq E \subseteq F$, then $[F:K] = [F:E][E:K]$.
+\end{proposition} \vspace{1.8em}
+\proof Let $(\alpha_{i})_{i \in I}$ be a basis of $E$ over $K$ and let
+$(\beta_{j})_{j \in J}$ be a basis of $F$ over $E$. Every element
+of $F$ is a linear combination of $\beta_{j}$'s with coefficients
+in $E$, which are themselves linear combinations of $\alpha_{i}$'s with
+coefficints in $K$. \\ \\
+Hence every element of $F$ is a linear combination of $\alpha_{i} \beta_{j}$'s with
+coefficients  in $K$. Moreover, $(\alpha_{i} \beta_{j})_{(i, j) \in I \times J}$
+is a linearly independent family in $F$, viewed as a vector space over $K:$ if
+$\sum_{(i, j) \in I \times J} x_{i, j}\alpha_{i}\beta_{j} = 0$  (with $x_{i, j} = 0$
+for almost all $(i, j)$), then $\sum_{j \in J} \left( \sum_{i \in I} x_{i, j}\alpha_{i} \right) \beta_{j} = 0$,
+$\sum_{i \in I} x_{i, j}\alpha_{i} = 0$ for all $j$, and $x_{i, j} = 0$ for all
+$i, j$. Thus $(\alpha_{i}\beta_{j})_{(i, j) \in I \times J}$ is a basis
+of $F$ over $K$ and $[F:K] = |I \imes J| = |I||J| = [F:E][E:K]$. \qedsymbol
+
+\begin{definition*}
+  Let $K \subset E$ be a field extension. An element of $E$ is \textbf{algebraic}
+  over $K$ when $f(x) = 0$ for some nonzero polynomial $f(X) \in K[X]$. Otherwise,
+  $\alpha$ is \textbf{transcendental} over $K$.
+\end{definition*}
+
+
+\begin{definition*}
+  Let $\alpha$ be algebraic over $K$. The unique monic irreducible polynomial
+  $q = \Irr(\alpha:K) \in K[X]$ such that $q(\alpha) = 0$ is the
+  irreducible polynomial of $\alpha$ over $K$, the degree of $\alpha$
+  over $K$ is the degree of $\Irr(\alpha:K)$.
+\end{definition*}
+  
+\begin{definition*}
+  A field extension $K \subseteq E$ is algebraic, and $E$ is algebraic over
+  $K$, when every element of $E$ is algebraic over $K$. A field extension
+  $K \subseteq E$ is transcendental over $K$, when some element of $E$
+  is transcendental over $K$.
+\end{definition*}
+
+\begin{example*}
+  $\CC$ is algebraic extension of $\RR$ and $\RR$ is a transcendental
+  extension of $\QQ$.
+\end{example*}
+
+\subsection{The Algebraic Closure}
+\begin{definition*}
+  A field is algebraically closed when it satisfies the following
+  equivalent conditions:
+  \begin{enumerate}[1. ]
+      \ii The only algebraic extension of $K$ is $K$ itself.
+      \ii In $K[X]$, every irreducible polynomial has degree 1.
+      \ii Every nonconstant polynomial in $K[X]$ has a root in $K$.
+  \end{enumerate}
+\end{definition*}
+
+\begin{example*}
+  $\CC$ is algebraically closed.
+\end{example*}
+
+\begin{theorem}
+  \label{theo-homomorphism-field}
+  Every homomorphism of a field $K$ into a algebraically closed field can be extended to every
+  algebraic extension of $K$.
+\end{theorem} \vspace{1.8em}
+\proof Let $E$ be an algebraic extension of $K$ and let $\alpha$ be an homomorphism of $K$
+into an algebraically closed field $L$. If $E = K(\alpha)$ is simple extension of $K$,
+and $q = \Irr(\alpha:K)$, then $&&^{\varphi}q \in L[X]$ has a root in $L$, since
+$L$ is algebraically closed and $\varphi$ can be extended to $E$. \qedsymbol \\ \\
+We need to remark that $K$ can be embedded into an algebraically closed field $\overline{K}$
+that is algebraic over $K$, and then every algebraic extension of $K$ can be embedded in $\overline{K}$,
+by Theorem \ref{theo-homomorphism-field}.
+
+\begin{definition*}
+  An algebraic closure of a field $K$ is an algebraic extension $\overline{K}$ of $K$ that
+  is algebraically closed.
+\end{definition*}
+  
+\begin{definition*}
+  An algebraic extension $K \subseteq E$ is separable when the irreducible polynomial of its
+  elements are separable (have no multiple roots).
+\end{definition*}
+  
+\begin{example*}
+  $f(X) = X^{4} + 2X^{2} + 1 \in \RR[X]$ factors as $f(X) = (X^{2} + 1)^{2} = (X - i)^{2}(X + i)^{2}$ in $\CC[X]$
+  and has two multiples roots in $\overline{\RR} = \CC$, it is not separable. But $X^{2} + 1 \in \RR[X]$
+  is separable.
+\end{example*}
+
+\begin{definition*}
+  An element $\alpha$ is separable over $K$ when $\alpha$ is algebraic over $K$ and $\Irr(\alpha:K)$
+  is separable. An algebraic extension $E$ of $K$ is separable, and $E$
+  is separable over $K$, when every element of $E$ is separable over $K$.
+\end{definition*}
+
+\begin{definition*}
+  \label{def-purely-inseparable}
+  An algebraic extension $K \subseteq E$ is purely inseparable, and $E$ is purely
+  inseparable over $K$, when no element of $E \backslash K$ ise separable over $K$.
+\end{definition*}
+
+\begin{proposition}
+  For every algebraic extension $E$ of $K$, $S = \{\alpha \in E \ | \ $
+  $\alpha \text{ is separable over } K \}$
+  is a subfield of $E$, $S$ is separable over $K$, and $E$ is purely inseparable over $S$.
+\end{proposition} \vspace{1.8em}
+\proof First, 0 and 1 $\in K$ are separable over $K$. If $\alpha, \beta \in E$ are separable
+over $K$, then $K(\alpha, \beta)$ is separable over $K$ and $\alpha - \beta, \alpha\beta^{-1} \in K(\alpha, \beta)$
+are separable over $K$. Thus $S$ is a subfield of $E$. Clearly $S$ is separable over $K$.
+If $\alpha \in E$ is separable over $S$, then $S(\alpha)$ is separable over $K$ and $\alpha \in S$. \qedsymbol
+
+\begin{definition*}
+  A field extension $K \subseteq E$ is totally transcendental, and $E$ is
+  transcendental over $K$, when every element of $E \backslash K$ is transcendental over $K$.
+\end{definition*}
+
+
+\begin{proposition*}
+  For every field $K, K((X_{i})_{i \in I})$ is totally transcendental over $K$.
+\end{proposition*} \vspace{1.8em}
+\proof First, we show that $K(X)$ is totally transcendental over $K$. For clarity's
+sake we prove the equivalent result that $K(\gamma) \cong K(X)$ is totally transcendental
+over $K$ when $\gamma$ is transcendental over $K$. Let $\alpha \in K(\gamma)$, so that $\alpha = f(\gamma)/g(\gamma)$
+for some $f, g \in K[X], g \neq 0$. If $\alpha \notin K$, then $\alpha g(X) \notin K[X], \alpha g(X) \neq f(X)$,
+and $\alpha g(X) - f(X) \neq 0$ in $K(\alpha)[X]$. But $\alpha g(\gamam) - f(\gamma) = 0$, so
+$\gamma$ is algebraic over $K(\alpha)$. Hence $K(\gamma) = K(\alpha)(\gamma)$ is finite
+over $K(\alpha)$. Therefore $[K(\alpha):K]$ is infinite. Otherwise, $[K(\gamma):K]$
+would be finite. Hence $\alpha$ is transcendental over $K$. \\ \\
+That $K[X_{1}, \dots, X_{n}]$ is totally transcendental over $K$ now follows by
+induction on $n$. Let $\alpha \in K(X_{1}, \dots, X_{n})$ be algebraic over $K$.
+Then $\alpha \in K(X_{1}, \dots, X_{n-1})(X_{n})$ is algebraic over $K(X_{1}, \dots, X_{n-1})$.
+By the case, $n=1, \alpha \in K(X_{1}, \dots, X_{n-1})$, and the
+induction hypothesis yields $\alpha \in K$. \\ \\
+Finally, let $\alpha = f/g \in K((X_{i})_{i \in I})$ be algebraic over $K$. The
+polynomials $f$ and $g$ have only finitely many nonzero terms. Hence
+$\alpha \in K ((X_{i})_{i \in J})$ for some finite subset $J$ of $I$. Therefore $\alpha \in K$. \qedsymbol
+
+\section{Separability}
+
+\begin{definition*}
+  Two field extension $K \subseteq E \subseteq L$, $K \subseteq F \subseteq L$ are linearly disjoint
+  over $K$ when they satisfy the following equivalent conditions:
+  \begin{enumerate}[1. ]
+      \ii.$(\alpha_{i})_{i \in I} \in E$ linearly independent over $K$ implies
+      $(\alpha_{i})_{i \in I}$ linearly independent over $F$.
+      \ii $(\beta_{j})_{j \in J} \in F$ linearly independent over $K$ implies
+      $(\beta_{i})_{i \in I}$ linearly independent over $E$.
+      \ii $(\alpha_{i})_{i \in I} \in E$ and $(\beta_{j})_{j \in J} \in F$ linearly
+      independent over $K$ implies $(\alpha_{i}\beta_{j})_{(i, j) \in I \times J} \in L$
+      linearly independent over $K$.
+  \end{enumerate}
+\end{definition*}
+
+\begin{definition*}
+  A transcendence base $B$ of a field extension $K \subset E$ is separating
+  when $E$ is separable (algebraic) over $K(B)$.
+\end{definition*}
+
+\begin{definition*}
+  A field extension $E$ of $K$ is separable, and $E$ is separable over $K$,
+  when every finitely generated subfield $K \subseteq F$ of $E$ has a separating
+  transcendental base.
+\end{definition*}
+
+\section{Galois Theory}
+
+\begin{definition*}
+  A polynomial $f \in K[X]$ splits in a field extension $E$ of $K$
+  when it has a factorization $f(X) = a(X - \alpha_{1})(X - \alpha_{2}) \dots (X- \alpa_{n})$ in $E[X]$.
+\end{definition*}
+
+\begin{definition*}
+  Let $K$ be a field. A splitting field over $K$ of a polynomial $f \in K[X]$
+  is a field extension $E$ of $K$ such that $f$ splits in $E$ and $E$ is 
+  generated over $K$ by the roots of $f$. A splitting field over $K$ of a set 
+  $\SC \subseteq K[X]$ of polynomials is a field extension $E$ of $K$ such
+  that every $f \in \SC$ splits in $E$ and $E$ is generated over $K$ by the
+  roots of all $f \in \SC$.
+\end{definition*}
+
+\begin{lemma}
+  If $E$ and $F$ are splitting fields of $\SC \subseteq K[X]$ over $K$, and $F \subseteq \overline{K}$,
+  then $\varphi E = F$ for every $K$ homomorphism $\varphi: E \longrightarrow \overline{K}$.
+\end{lemma} \vspace{1.8em}
+\proof Every $f \in \SC$ has unique factorizations $f(X) = a(X - \alpha_{1}) \dots (X - \alpha_{n})$
+in $F[X] \subseteq \overline{K}[X]$. Since $\varphi$ is the identity on $K$, $f, &^{\varphi}f = a(X - \varphi \alpha_{1}) \dots (X - \varphi \alpha_{n})$
+in $\overline{K}[X]$, therefore $\vaprhi\{\alpha_{1, \dots, \alpha_{n}}\} = \{\beta_{1}, \dots, \beta_{n}\}$.
+Thus $\varphi$ sends the set $R$ of all roots $f \in \SC$ in $E$ onto the set $\SC$ of all roots
+$f \in \SC$ in $F$. Then, $\varphi$ sends $E = K(R)$ onto $K(S) = F$. \qedsymbol
+
+\begin{definition*}
+  A normal extension of a field $K$ is an algebraic extension of $K$ that
+  satisfies the following equivalent conditions:
+  \begin{enumerate}[1. ]
+      \ii $E$ is the splitting field over $K$ of a set of polynomials,
+      \ii $\varphi E = E$ for every $K$-homomorphism $\varphi: E \longrightarrow \overline{K}$,
+      \ii $\varphi E \subseteq E$ for every $K$-homomorphism $\varphi: E \longrightarrow \overline{K}$,
+      \ii $\rho E = E$ for every $K$-automorphism $\rho:$ of $\overline{K}$,
+      \ii $\rho E \subseteq E$ for every $K$-automorphism $\rho:$ of $\overline{K}$,
+      \ii every irreducible polynomial $q \in K[X]$ with a root in $E$ splits in $E$.
+  \end{enumerate}
+\end{definition*}
+
+\begin{definition*}
+  A Galois extension of a field $K$ is a normal and separable extension $E$ of $K$,
+  then $E$ is Galois over $K$.
+\end{definition*}
+
+\begin{definition*}
+  The \textbf{Galois group} $\Gal(E:K)$ of a Galois extension $E$ of a field $K$, also
+  called the Galois group of $E$ over $K$, is the group of all $K$-automorphisms
+  of $E$.
+\end{definition*}
+
+\begin{example*}
+  The Galois group $\CC = \overline{\RR}$ over $\RR$ has two extensions, the identity
+  on $\CC$ and the complex conjugation.
+\end{example*}
+
+\begin{proposition}
+  If $E$ is Galois over $K$, then $|\Gal(E:K)| = [E:K]$.
+\end{proposition} \vspace{1.8em}
+\proof If $E \subseteq \overline{K}$ is normal over $K$, then every $K$-homomorphism of $E$
+into $\overline{K}$ sends $E$ and is (as a set of ordered pairs) a $K$-automorphism of $E$.
+Hence $|\Gal(E:K)| = [E:K]_{s} = [E:K}$ when $E$ is separable over $K$. \qedsymbol
+
+\begin{definition*}
+  Let $E$ be a field and let $G$ be a group of automorphisms of $E$. The fixed field
+  of $G$ if $\Fix_{E}(G) = \{\alpha \in E \ | \ \varphi \alpha = \alpha \text{ for all } \varphi \in G \}$.
+\end{definition*}
+
+\begin{theorem}[Fundamental Theorem of Galois Theory]
+  Let $E$ be a finite Galois extension of a field $K$. \\ \\
+  If $F$ is a subfield of E that contains $K$, then $E$ is a finite Galois extension of
+  $F$ and $F$ is the fixed field of $\Gal(E:F)$. \\ \\
+  If $H$ is a subgroup of $\Gal(E:K)$, then $F = \Fix_{E}(H)$ is a subfield of $E$ that
+  contains $K$ , and $\Gal(E:F) = H$. \\ \\
+  This defines a one-to-one correspondence between intermediate fields $K \subseteq F \subseteq E$
+  and subgroups of $\Gal(E:K)$.
+\end{theorem} \vspace{1.8em}
+
+%\part{The second part}
+%
+%\chapter{Algebras}
+%
+%\backmatter \appendix
+%
+%\chapter{The First Appendix}
+%
+%The \verb"\appendix" command should be used only once. Subsequent
+%appendices can be created using the Chapter command.
+%
+%\chapter{The Second Appendix}
+%%
+%Some text for the second Appendix.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                 BIBLIOGRAPHY                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% arXiv bibliography macro
+\def\arXiv#1{\href{http://arxiv.org/abs/#1}{arXiv:#1}}
+
+\begin{thebibliography}{0}
+ 
+ \bibitem[Gr]{grillet} P. A. Grillet,
+   \emph{Abstract Algebra (Graduate Texts in Mathematics), Second Edition. \/}
+   Springer New York, 2007. \\
+
+ \bibitem[La]{lang} Serge Lang,
+   \emph{Algebra (Graduate Texts in Mathematics), Third Edition. \/}
+   Springer Science \& Business Media, 2005. \\
+
+ \bibitem[Ro]{rotman} J. J. Rotman,
+   \emph{Advanced Modern Algebra (Graduate Texts in Mathematics), Third Edition, Part I. \/}
+   American Mathematical Soc., 2015. \\
+
+ \bibitem[Ed]{edwards} H. M. Edwards,
+   \emph{Galois Theory (Graduate Texts in Mathematics). \/}
+   Springer New York, 1997. \\
+
+ \bibitem[El]{elman} Richard Elman,
+   \emph{Lectures on Abstract Algebra (Preliminary Version). \/}
+   \url{http://www.math.ucla.edu/~rse/algebra_book.pdf} .\\
+
+ \bibitem[Ch]{chen} Evan Chen,
+   \emph{Math 55a Lecture Notes. \/}
+   Harvard, Fall 2014 \url{http://www.mit.edu/~evanchen/notes/Harvard-55a.pdf} .\\
+
+ \bibitem[Re]{reeder} Mark Reeder,
+   \emph{Notes on Group Theory. \/}
+   Boston College, 2015 \url{https://www2.bc.edu/mark-reeder/Groups.pdf} .\\
+
+\end{thebibliography}
+
+\end{document}
