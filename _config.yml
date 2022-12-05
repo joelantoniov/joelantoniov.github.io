@@ -12,4 +12,6 @@ brilliant_username: antoniovasquez.joel
 
 # Build settings
 markdown: Kramdown
+  kramdown:
+    math_engine: katex
 permalink: pretty
