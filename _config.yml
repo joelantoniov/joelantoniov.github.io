@@ -5,13 +5,11 @@ description: "遅かれ早かれ、知性 が 規律を破る,
     Japanese Proverb"
 baseurl: ""
 url: "https://joelantoniov.github.io"
-mathexchange_username: antoniov-joel
-mathoverflow_username: antoniov-joel
-codeforces_username: antoniovasquez.joel
-brilliant_username: antoniovasquez.joel
+  #mathexchange_username: antoniov-joel
+  #mathoverflow_username: antoniov-joel
+  #codeforces_username: antoniovasquez.joel
+  #brilliant_username: antoniovasquez.joel
 
 # Build settings
 markdown: Kramdown
-  kramdown:
-    math_engine: katex
 permalink: pretty
