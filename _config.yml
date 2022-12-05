@@ -5,10 +5,6 @@ email: antoniovasquez.joel@gmail.com
     Japanese Proverb"
 baseurl: ""
 url: "https://joelantoniov.github.io"
-  #mathexchange_username: antoniov-joel
-  #mathoverflow_username: antoniov-joel
-  #codeforces_username: antoniovasquez.joel
-  #brilliant_username: antoniovasquez.joel
 
 # Build settings
 markdown: Kramdown
